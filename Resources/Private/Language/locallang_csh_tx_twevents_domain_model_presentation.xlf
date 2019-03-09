@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2019-01-06T13:57:17Z"
+          product-name="tw_events">
+        <header/>
+        <body>
+            <trans-unit id="title.description">
+                <source>Title</source>
+            </trans-unit>
+            <trans-unit id="type.description">
+                <source>Type</source>
+            </trans-unit>
+            <trans-unit id="summary.description">
+                <source>Summary</source>
+            </trans-unit>
+            <trans-unit id="description.description">
+                <source>description</source>
+            </trans-unit>
+            <trans-unit id="hashtag.description">
+                <source>Hashtag</source>
+            </trans-unit>
+            <trans-unit id="start.description">
+                <source>Start</source>
+            </trans-unit>
+            <trans-unit id="duration.description">
+                <source>Duration (minutes)</source>
+            </trans-unit>
+            <trans-unit id="performers.description">
+                <source>Performers</source>
+            </trans-unit>
+            <trans-unit id="coverage.description">
+                <source>Coverage</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

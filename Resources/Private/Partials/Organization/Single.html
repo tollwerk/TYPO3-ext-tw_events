@@ -1,0 +1,113 @@
+<f:comment><!--
+
+    @param Organization organization    Organization
+    @param string itemprop             Organization property value
+
+--></f:comment>
+<html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
+    <address class="Organization h-card{f:if(condition: itemprop, then: ' p-{itemprop}')}" itemscope
+             itemtype="http://schema.org/Organization"
+             id="{organization.label -> f:format.case(mode: 'lower')}" {f:if(condition: itemprop, then:
+    'itemprop="{itemprop}"')}>
+    <f:if condition="{organization.logo}">
+        <div class="Organization__logo-wrap">
+            <f:image image="{organization.logo}" class="Organization__logo u-logo"
+                     additionalAttributes="{itemprop: 'logo'}" alt=""/>
+        </div>
+    </f:if>
+    <base:heading content="{organization.name}" class="Organization__name p-name p-label p-org"
+                  additionalAttributes="{itemprop: 'name'}">
+        <div class="Organization__location" itemprop="location" itemscope itemtype="http://schema.org/Place">
+            <div class="Organization__address p-adr h-adr" itemprop="address" itemscope
+                 itemtype="http://schema.org/PostalAddress">
+                <div class="Organization__street-address p-street-address" itemprop="streetAddress">
+                    {organization.streetAddress}
+                </div>
+                <div>
+                    <span class="Organization__postal-code p-postal-code" itemprop="postalCode">{organization.postalCode}</span>
+                    <span class="Organization__locality p-locality"
+                          itemprop="addressLocality">{organization.locality}</span>
+                    <f:if condition="{organization.region}">
+                        <span class="Organization__region-wrap">,
+                            <span class="Organization__region p-region"
+                                  itemprop="addressRegion">{organization.region}</span>
+                        </span>
+                    </f:if>
+                    <span class="Organization__country-wrap">,
+                        <span class="Organization__country p-country" itemprop="addressCountry">{organization.country.shortNameEn}</span>
+                    </span>
+                </div>
+            </div>
+            <div class="Organization__geo" itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
+                <span class="Organization__latitude p-latitude" itemprop="latitude">{organization.latitude}</span>
+                <span class="Organization__longitude p-longitude"
+                      itemprop="longitude">{organization.longitude}</span>
+            </div>
+        </div>
+        <f:if
+            condition="{organization.website} || {organization.twitter} || {organization.facebook} || {organization.email} || {organization.phone}">
+            <dl class="Organization__contact">
+                <f:if condition="{organization.website} && {settings.details.website}">
+                    <dt>
+                        <f:translate key="LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:contact.website"/>
+                    </dt>
+                    <dd>
+                        <f:link.external uri="{organization.website}" target="_blank" class="u-url"
+                                         additionalAttributes="{itemprop: 'url'}"
+                                         rel="noreferrer">{organization.website}
+                        </f:link.external>
+                    </dd>
+                </f:if>
+                <f:if condition="{organization.twitter} && {settings.details.twitter}">
+                    <dt>
+                        <f:translate key="LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:contact.twitter"/>
+                    </dt>
+                    <dd>
+                        <f:link.external uri="https://twitter.com/{organization.twitter}" target="_blank"
+                                         class="u-url"
+                                         additionalAttributes="{itemprop: 'url'}"
+                                         rel="noreferrer">@{organization.twitter}
+                        </f:link.external>
+                    </dd>
+                </f:if>
+                <f:if condition="{organization.facebook} && {settings.details.facebook}">
+                    <dt>
+                        <f:translate key="LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:contact.facebook"/>
+                    </dt>
+                    <dd>
+                        <f:link.external uri="https://facebook.com/{organization.facebook}" target="_blank"
+                                         class="u-url" additionalAttributes="{itemprop: 'url'}"
+                                         rel="noreferrer">{organization.facebook}
+                        </f:link.external>
+                    </dd>
+                </f:if>
+                <f:if condition="{organization.email} && {settings.details.email}">
+                    <dt>
+                        <f:translate key="LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:contact.email"/>
+                    </dt>
+                    <dd>
+                        <f:link.email email="{organization.email}" target="_blank">
+                            <span class="u-email" itemprop="email">{organization.email}</span>
+                        </f:link.email>
+                    </dd>
+                </f:if>
+                <f:if condition="{organization.phone} && {settings.details.phone}">
+                    <dt>
+                        <f:translate key="LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:contact.phone"/>
+                    </dt>
+                    <dd>
+                        <f:link.external uri="tel://{organization.phone -> evt:format.tel()}" target="_blank">
+                            <span class="p-tel" itemprop="telephone">{organization.phone}</span>
+                        </f:link.external>
+                    </dd>
+                </f:if>
+            </dl>
+        </f:if>
+        <f:if condition="{organization.description} && {settings.details.teaser}">
+            <div class="Organization__description p-note" itemprop="description">
+                <f:format.html>{organization.description}</f:format.html>
+            </div>
+        </f:if>
+    </base:heading>
+    </address>
+</html>

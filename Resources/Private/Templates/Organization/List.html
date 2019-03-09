@@ -1,0 +1,17 @@
+<f:comment><!--
+
+    @param Organization[] organizations     Organizations
+
+--></f:comment>
+<html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
+    <f:if condition="{organizations}">
+        <f:if condition="{f:count(subject: organizations)} > 1">
+            <f:then>
+                <f:render partial="Organization/List" arguments="{organizations: organizations}"/>
+            </f:then>
+            <f:else>
+                <f:render partial="Organization/Single" arguments="{organization: organizations.0}"/>
+            </f:else>
+        </f:if>
+    </f:if>
+</html>

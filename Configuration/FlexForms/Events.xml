@@ -1,0 +1,124 @@
+<T3DataStructure>
+    <meta>
+        <langDisable>1</langDisable>
+    </meta>
+    <sheets>
+        <main>
+            <ROOT>
+                <type>array</type>
+                <el>
+                    <settings.selection_mode>
+                        <TCEforms>
+                            <exclude>1</exclude>
+                            <label>
+                                LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:plugin.events.selection_mode
+                            </label>
+                            <onChange>reload</onChange>
+                            <config>
+                                <type>select</type>
+                                <renderType>selectSingle</renderType>
+                                <items>
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">
+                                            LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:plugin.events.selection_mode.categories
+                                        </numIndex>
+                                        <numIndex index="1">categories</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2" type="array">
+                                        <numIndex index="0">
+                                            LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:plugin.events.selection_mode.date
+                                        </numIndex>
+                                        <numIndex index="1">date</numIndex>
+                                    </numIndex>
+                                    <numIndex index="3" type="array">
+                                        <numIndex index="0">
+                                            LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:plugin.events.selection_mode.manual
+                                        </numIndex>
+                                        <numIndex index="1">manual</numIndex>
+                                    </numIndex>
+                                </items>
+                            </config>
+                        </TCEforms>
+                    </settings.selection_mode>
+                    <settings.events>
+                        <TCEforms>
+                            <displayCond>FIELD:settings.selection_mode:=:manual</displayCond>
+                            <exclude>1</exclude>
+                            <label>
+                                LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:plugin.events.selection_mode.manual.ids
+                            </label>
+                            <config>
+                                <type>select</type>
+                                <renderType>selectMultipleSideBySide</renderType>
+                                <foreign_table>tx_twevents_domain_model_event</foreign_table>
+                                <foreign_table_where>AND tx_twevents_domain_model_event.hidden = 0 AND
+                                    tx_twevents_domain_model_event.deleted = 0 ORDER BY
+                                    tx_twevents_domain_model_event.name
+                                </foreign_table_where>
+                                <minitems>0</minitems>
+                                <maxitems>99</maxitems>
+                                <size>3</size>
+                                <enableMultiSelectFilterTextfield>1</enableMultiSelectFilterTextfield>
+                            </config>
+                        </TCEforms>
+                    </settings.events>
+                    <settings.categories>
+                        <TCEforms>
+                            <displayCond>FIELD:settings.selection_mode:=:categories</displayCond>
+                            <exclude>1</exclude>
+                            <label>
+                                LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:plugin.events.selection_mode.categories.ids
+                            </label>
+                            <config>
+                                <type>select</type>
+                                <foreign_table>sys_category</foreign_table>
+                                <foreign_table_where>AND sys_category.sys_language_uid IN (-1, 0) ORDER BY
+                                    sys_category.sorting ASC
+                                </foreign_table_where>
+                                <maxitems>9999</maxitems>
+                                <renderType>selectTree</renderType>
+                                <size>50</size>
+                                <treeConfig>
+                                    <appearance>
+                                        <expandAll>1</expandAll>
+                                        <showHeader>1</showHeader>
+                                    </appearance>
+                                    <parentField>parent</parentField>
+                                </treeConfig>
+                            </config>
+                        </TCEforms>
+                    </settings.categories>
+                    <settings.date>
+                        <TCEforms>
+                            <displayCond>FIELD:settings.selection_mode:=:date</displayCond>
+                            <exclude>1</exclude>
+                            <label>
+                                LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:plugin.events.selection_mode.date.type
+                            </label>
+                            <config>
+                                <type>select</type>
+                                <renderType>selectSingle</renderType>
+                                <items>
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">
+                                            LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:plugin.events.selection_mode.date.past
+                                        </numIndex>
+                                        <numIndex index="1">past</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2" type="array">
+                                        <numIndex index="0">
+                                            LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:plugin.events.selection_mode.date.future
+                                        </numIndex>
+                                        <numIndex index="1">future</numIndex>
+                                    </numIndex>
+                                </items>
+                            </config>
+                        </TCEforms>
+                    </settings.date>
+                </el>
+            </ROOT>
+        </main>
+    </sheets>
+</T3DataStructure>
+
+

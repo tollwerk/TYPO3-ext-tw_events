@@ -1,0 +1,15 @@
+<f:comment><!--
+
+    @param Sponsor[] sponsors           Sponsors
+    @param int type                     Sponsor type
+
+--></f:comment>
+<html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
+    <ul class="SponsorList SponsorList--{type}">
+        <f:for each="{sponsors}" as="sponsor">
+            <li class="SponsorList__item">
+                <f:render partial="Sponsor/Single" arguments="{sponsor: sponsor, type: type}"/>
+            </li>
+        </f:for>
+    </ul>
+</html>

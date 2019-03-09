@@ -1,0 +1,18 @@
+<f:comment><!--
+
+    @param Event event		Event
+
+--></f:comment>
+<html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
+    <f:if condition="{event.future}">
+        <f:then>
+            <f:render partial="Event/Future" arguments="{_all}"/>
+        </f:then>
+        <f:else if="{event.past}">
+            <f:render partial="Event/Past" arguments="{_all}"/>
+        </f:else>
+        <f:else>
+            <f:render partial="Event/Current" arguments="{_all}"/>
+        </f:else>
+    </f:if>
+</html>

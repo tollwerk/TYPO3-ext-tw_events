@@ -1,0 +1,39 @@
+<f:comment><!--
+
+    Basic event template
+
+    @param string[] data            Page record
+    @param string current           Current layout
+
+--></f:comment>
+<html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
+    <f:layout name="Event"/>
+
+    <f:comment><!--
+
+        Render the main section
+
+        @param string[] data            Page recurd
+        @param string current           Current layout
+        @param Event event              Current event
+        @param string stage             Current event stage
+        @param string[] blocks          Layout blocks to render (key = colPos)
+
+    --></f:comment>
+    <f:section name="Main">
+        <div class="Event h-event" itemscope itemtype="https://schema.org/Event">
+            <f:for each="{blocks}" as="blockTemplate" key="colPos">
+                <f:variable name="contentElements"
+                            value="{f:cObject(typoscriptObjectPath: 'lib.content.render', data: '{colPos: colPos}')}"/>
+                <f:if condition="{contentElements -> v:format.trim()}">
+                    <f:then>
+                        <f:format.raw>{contentElements}</f:format.raw>
+                    </f:then>
+                    <f:else>
+                        <f:render partial="Block/{blockTemplate}" arguments="{event: event}" optional="true"/>
+                    </f:else>
+                </f:if>
+            </f:for>
+        </div>
+    </f:section>
+</html>

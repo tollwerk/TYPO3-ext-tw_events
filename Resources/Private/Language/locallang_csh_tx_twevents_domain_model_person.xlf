@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2019-01-06T13:57:17Z"
+          product-name="tw_events">
+        <header/>
+        <body>
+            <trans-unit id="given_name.description">
+                <source>Name</source>
+            </trans-unit>
+            <trans-unit id="family_name.description">
+                <source>Family Name</source>
+            </trans-unit>
+            <trans-unit id="photo.description">
+                <source>photo</source>
+            </trans-unit>
+            <trans-unit id="description.description">
+                <source>Description
+                </source>
+            </trans-unit>
+            <trans-unit id="website.description">
+                <source>Website URL</source>
+            </trans-unit>
+            <trans-unit id="twitter.description">
+                <source>Twitter Handle</source>
+            </trans-unit>
+            <trans-unit id="facebook.description">
+                <source>Facebook Profile URL</source>
+            </trans-unit>
+            <trans-unit id="email.description">
+                <source>Email Address</source>
+            </trans-unit>
+            <trans-unit id="phone.description">
+                <source>Phone Number</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

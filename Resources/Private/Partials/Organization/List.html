@@ -1,0 +1,14 @@
+<f:comment><!--
+
+    @param Organization[] organizations     Organizations
+
+--></f:comment>
+<html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
+    <ul class="OrganizationList">
+        <f:for each="{organizations}" as="organization">
+            <li>
+                <f:render partial="Organization/Single" arguments="{organization: organization}"/>
+            </li>
+        </f:for>
+    </ul>
+</html>

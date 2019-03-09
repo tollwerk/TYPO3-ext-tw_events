@@ -1,0 +1,111 @@
+mod.web_layout.BackendLayouts {
+    event {
+        title = LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:backendLayout.event
+        config {
+            backend_layout {
+                colCount = 1
+                rowCount = 11
+                rows {
+                    1 {
+                        columns {
+                            1 {
+                                name = LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:plugin.layout.basics
+                                colPos = 1
+                            }
+                        }
+                    }
+
+                    2 {
+                        columns {
+                            1 {
+                                name = LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:plugin.layout.description
+                                colPos = 2
+                            }
+                        }
+                    }
+
+                    3 {
+                        columns {
+                            1 {
+                                name = LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:plugin.layout.performers
+                                colPos = 3
+                            }
+                        }
+                    }
+
+                    4 {
+                        columns {
+                            1 {
+                                name = LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:plugin.layout.schedule
+                                colPos = 4
+                            }
+                        }
+                    }
+
+                    5 {
+                        columns {
+                            1 {
+                                name = LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:plugin.layout.tickets
+                                colPos = 5
+                            }
+                        }
+                    }
+
+                    6 {
+                        columns {
+                            1 {
+                                name = LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:plugin.layout.location
+                                colPos = 6
+                            }
+                        }
+                    }
+
+                    7 {
+                        columns {
+                            1 {
+                                name = LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:plugin.layout.downloads
+                                colPos = 7
+                            }
+                        }
+                    }
+
+                    8 {
+                        columns {
+                            1 {
+                                name = LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:plugin.layout.hosts
+                                colPos = 8
+                            }
+                        }
+                    }
+
+                    9 {
+                        columns {
+                            1 {
+                                name = LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:plugin.layout.sponsors
+                                colPos = 9
+                            }
+                        }
+                    }
+
+                    10 {
+                        columns {
+                            1 {
+                                name = LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:plugin.layout.coverage
+                                colPos = 10
+                            }
+                        }
+                    }
+
+                    11 {
+                        columns {
+                            1 {
+                                name = LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:plugin.layout.live
+                                colPos = 11
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,20 @@
+<f:comment><!--
+
+    @param Person[] persons         Persons
+    @param string listId            List ID
+    @param string personItemProp    Person itemprop value
+
+--></f:comment>
+<html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
+    <ul class="PersonList" id="{f:if(condition: listId, then: listId, else: 'persons')}">
+        <f:for each="{persons}" as="person">
+            <li>
+                <f:render partial="Person/Single" arguments="{
+                        settings: settings,
+                        person: person,
+                        itemprop: personItemProp
+                    }"/>
+            </li>
+        </f:for>
+    </ul>
+</html>

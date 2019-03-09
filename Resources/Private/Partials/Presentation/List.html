@@ -1,0 +1,30 @@
+<f:comment><!--
+
+    @param Person[] persons     Persons
+
+--></f:comment>
+<html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
+    <table class="PresentationList">
+        <thead>
+            <tr>
+                <th>
+                    <f:translate key="LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:schedule.head.time"/>
+                </th>
+                <th>
+                    <f:translate key="LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:schedule.head.item"/>
+                </th>
+            </tr>
+        </thead>
+        <f:for each="{presentations}" as="presentation">
+            <tr class="Presentation h-event" itemprop="subEvent" itemscope itemtype="https://schema.org/Event"
+                itemref="location" id="{presentation.slug}">
+                <td>
+                    <f:render partial="Presentation/Single" section="Time" arguments="{presentation: presentation}"/>
+                </td>
+                <td>
+                    <f:render partial="Presentation/Single" section="Item" arguments="{presentation: presentation}"/>
+                </td>
+            </tr>
+        </f:for>
+    </table>
+</html>

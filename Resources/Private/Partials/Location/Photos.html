@@ -1,0 +1,32 @@
+<f:comment><!--
+
+    @param Location location            Location
+
+--></f:comment>
+<html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
+    <f:if condition="{location.photos}">
+        <ul class="Location__photos">
+            <f:for each="{location.photos}" as="photo">
+                <li>
+                    <figure class="Location__photo" itemprop="photo" itemscope itemtype="https://schema.org/Photograph">
+                        <f:image image="{photo}" class="" additionalAttributes="{itemprop: 'image'}"/>
+                        <f:if condition="{photo.originalResource.title} || {photo.originalResource.description}">
+                            <figcaption>
+                                <f:if condition="{photo.originalResource.title}">
+                                    <div class="Location__photo-title" itemprop="name">
+                                        {photo.originalResource.title}
+                                    </div>
+                                </f:if>
+                                <f:if condition="{photo.originalResource.description}">
+                                    <div class="Location__photo-description" itemprop="description">
+                                        <f:format.nl2br>{photo.originalResource.description}</f:format.nl2br>
+                                    </div>
+                                </f:if>
+                            </figcaption>
+                        </f:if>
+                    </figure>
+                </li>
+            </f:for>
+        </ul>
+    </f:if>
+</html>

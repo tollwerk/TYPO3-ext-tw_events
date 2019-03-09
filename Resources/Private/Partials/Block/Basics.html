@@ -1,0 +1,25 @@
+<f:comment><!--
+
+    Render the default event basics
+
+    @param Event event              Current event
+
+--></f:comment>
+<html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
+    <section id="basics" class="Event__basics">
+        <base:heading content="{event.name}" class="p-name" additionalAttributes="{itemprop: 'name'}">
+            <p>
+                <time class="Event__start dt-start" itemprop="startDate"
+                      datetime="{event.eventStart -> f:format.date(format: 'c')}">
+                    <f:format.date date="{event.eventStart}" format="F jS, Y"/>
+                </time>
+                <time class="Event__end dt-end" itemprop="endDate"
+                      datetime="{event.eventEnd -> f:format.date(format: 'c')}">
+                    <f:format.date date="{event.eventStart}" format="g:i a"/>
+                    -
+                    <f:format.date date="{event.eventEnd}" format="g:i a"/>
+                </time>
+            </p>
+        </base:heading>
+    </section>
+</html>

@@ -1,0 +1,26 @@
+<f:comment><!--
+
+    Render the default event tickets
+
+    @param Event event              Current event
+
+--></f:comment>
+<html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
+    <f:if condition="{event.ticketUrl}">
+        <section id="tickets" class="Event__tickets">
+            <base:heading
+                content="{f:translate(key: 'LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:event.heading.tickets')}">
+                <f:if condition="{event.ticketDescription}">
+                    <div class="Event__ticket-description">
+                        <f:format.html>{event.ticketDescription}</f:format.html>
+                    </div>
+                </f:if>
+                <f:if condition="{event.ticketUrl}">
+                    <f:link.external uri="{event.ticketUrl}" rel="noreferrer" target="_blank" class="Event__ticket-cta">
+                        <f:translate key="LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:event.cta.ticket"/>
+                    </f:link.external>
+                </f:if>
+            </base:heading>
+        </section>
+    </f:if>
+</html>

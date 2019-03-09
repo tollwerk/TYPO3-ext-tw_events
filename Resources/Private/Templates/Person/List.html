@@ -1,0 +1,17 @@
+<f:comment><!--
+
+    @param Person[] persons         Persons
+
+--></f:comment>
+<html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
+    <f:if condition="{persons}">
+        <f:if condition="{f:count(subject: persons)} > 1">
+            <f:then>
+                <f:render partial="Person/List" arguments="{persons: persons}"/>
+            </f:then>
+            <f:else>
+                <f:render partial="Person/Single" arguments="{person: persons.0}"/>
+            </f:else>
+        </f:if>
+    </f:if>
+</html>

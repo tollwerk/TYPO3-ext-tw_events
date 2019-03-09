@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2019-01-06T13:57:17Z"
+          product-name="tw_events">
+        <header/>
+        <body>
+            <trans-unit id="name.description">
+                <source>Name</source>
+            </trans-unit>
+            <trans-unit id="event_start.description">
+                <source>Event Start</source>
+            </trans-unit>
+            <trans-unit id="event_end.description">
+                <source>Event End</source>
+            </trans-unit>
+            <trans-unit id="description.description">
+                <source>description</source>
+            </trans-unit>
+            <trans-unit id="location_description.description">
+                <source>Location Description</source>
+            </trans-unit>
+            <trans-unit id="ticket_description.description">
+                <source>Ticket Description</source>
+            </trans-unit>
+            <trans-unit id="ticket_url.description">
+                <source>Ticket URL</source>
+            </trans-unit>
+            <trans-unit id="facebook.description">
+                <source>Facebook URL</source>
+            </trans-unit>
+            <trans-unit id="colloq.description">
+                <source>Colloq URL</source>
+            </trans-unit>
+            <trans-unit id="hashtag.description">
+                <source>Hashtag</source>
+            </trans-unit>
+            <trans-unit id="livestream_url.description">
+                <source>Livestream URL</source>
+            </trans-unit>
+            <trans-unit id="livestream_embed.description">
+                <source>Livestream Embed Code</source>
+            </trans-unit>
+            <trans-unit id="downloads.description">
+                <source>Downloads</source>
+            </trans-unit>
+            <trans-unit id="location.description">
+                <source>Location</source>
+            </trans-unit>
+            <trans-unit id="sponsors.description">
+                <source>Sponsors &amp;amp; Supporters</source>
+            </trans-unit>
+            <trans-unit id="organizers.description">
+                <source>Organizers</source>
+            </trans-unit>
+            <trans-unit id="presentations.description">
+                <source>Presentations</source>
+            </trans-unit>
+            <trans-unit id="coverage.description">
+                <source>Coverage</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

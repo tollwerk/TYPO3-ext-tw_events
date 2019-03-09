@@ -1,0 +1,16 @@
+<f:comment><!--
+
+    @param Person person     Person
+
+--></f:comment>
+<html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
+    <f:variable name="fullName" value="{v:format.trim(content: '{person.givenName} {person.familyName}')}"/>
+    <f:if condition="{person.photo}">
+        <div class="Person__photo-wrap">
+            <f:image image="{person.photo}" class="Person__photo u-photo"
+                     additionalAttributes="{itemprop: 'image'}"
+                     maxWidth="300"
+                     alt="{f:translate(key: 'person.photo', arguments: '{0: fullName}')}"/>
+        </div>
+    </f:if>
+</html>

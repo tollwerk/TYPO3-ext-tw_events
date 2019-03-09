@@ -1,0 +1,22 @@
+<f:comment><!--
+
+    Render the default event organizers
+
+    @param Event event              Current event
+
+--></f:comment>
+<html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
+    <f:if condition="{event.organizers}">
+        <section id="hosts" class="Event__organizers">
+            <base:heading
+                content="{f:translate(key: 'LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:event.heading.hosts')}">
+                <f:render partial="Person/List" arguments="{
+                            settings: '{details: \'{teaser: 1}\'}',
+                            persons: event.organizers,
+                            listId: 'host-persons',
+                            personItemProp: 'organizer'
+                        }"/>
+            </base:heading>
+        </section>
+    </f:if>
+</html>

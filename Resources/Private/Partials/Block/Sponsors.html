@@ -1,0 +1,39 @@
+<f:comment><!--
+
+    Render the default event location
+
+    @param Event event              Current event
+
+--></f:comment>
+<html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
+    <f:if condition="{event.sponsors}">
+        <section id="sponsors" class="Event__sponsors">
+            <base:heading
+                content="{f:translate(key: 'LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:event.heading.sponsors')}">
+                <f:groupedFor each="{event.sponsors}" as="sponsors" groupBy="type" groupKey="type">
+                    <f:render section="SponsorType" arguments="{event: event, sponsors: sponsors, type: type}"/>
+                </f:groupedFor>
+            </base:heading>
+        </section>
+    </f:if>
+
+    <f:comment><!--
+
+        Render a particular sponsor type list
+
+        @param Event event              Current event
+        @param Sponsor[] sponsors       Sponsors
+        @param int type                 Sponsor type
+
+    --></f:comment>
+    <f:section name="SponsorType">
+        <f:variable name="typeStr"
+                    value="{f:translate(key: 'LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:event.sponsor.type.{type}')}"/>
+        <section id="sponsors-{typeStr}">
+            <base:heading
+                content="{f:translate(key: 'LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:event.heading.sponsors.type.{type}')}">
+                <f:render partial="Sponsor/List" arguments="{sponsors: sponsors, type: type}"/>
+            </base:heading>
+        </section>
+    </f:section>
+</html>

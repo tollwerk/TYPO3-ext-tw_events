@@ -1,0 +1,38 @@
+<f:comment><!--
+
+    Render the default event tickets
+
+    @param Event event              Current event
+
+--></f:comment>
+<html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
+    <f:if condition="{event.livestreamEmbed} || {event.livestreamUrl}">
+        <section id="tickets" class="Event__livestream">
+            <base:heading
+                content="{f:translate(key: 'LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:event.heading.livestream')}">
+                <f:if condition="{event.stage} == 'future'">
+                    <f:then>
+
+                    </f:then>
+                    <f:else>
+                        <f:if condition="{event.livestreamEmbed}">
+                            <f:format.raw>{event.livestreamEmbed}</f:format.raw>
+                        </f:if>
+                        <f:if condition="{event.livestreamUrl}">
+                            <f:variable name="livestreamLink">
+                                <f:link.external uri="{event.livestreamUrl}" target="_blank" rel="noreferrer"
+                                                 class="Event__livestream-url">{event.livestreamUrl}
+                                </f:link.external>
+                            </f:variable>
+                            <f:format.raw>
+                                <f:translate
+                                    key="LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:event.livestream.at"
+                                    arguments="{0: '{livestreamLink -> v:format.trim()}'}"/>
+                            </f:format.raw>
+                        </f:if>
+                    </f:else>
+                </f:if>
+            </base:heading>
+        </section>
+    </f:if>
+</html>

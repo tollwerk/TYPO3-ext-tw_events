@@ -1,0 +1,29 @@
+<f:comment><!--
+
+    @param Sponsor sponsor              Sponsor
+    @param int type                     Sponsor type
+
+--></f:comment>
+<html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
+    <div class="Sponsor__label">
+        <f:if condition="{sponsor.label}">
+            <f:then>{sponsor.label}</f:then>
+            <f:else>
+                <f:translate
+                    key="LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:event.heading.sponsors.type.{sponsor.type}.label"/>
+            </f:else>
+        </f:if>
+    </div>
+    <f:render partial="Organization/Single" arguments="{
+            organization: sponsor.organization,
+            itemprop: 'sponsor',
+            settings: '{details: \'{
+                teaser: 1,
+                website: 1,
+                twitter: 1,
+                facebook: 1,
+                email: 1,
+                phone: 1
+            }\'}'
+        }"/>
+</html>

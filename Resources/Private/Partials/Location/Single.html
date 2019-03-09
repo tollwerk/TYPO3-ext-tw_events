@@ -1,0 +1,25 @@
+<f:comment><!--
+
+    @param Location location            Location
+    @param string description           Alternate description
+
+--></f:comment>
+<html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
+    <div class="p-location h-card icons-location" itemprop="location" itemscope itemtype="http://schema.org/Place">
+        <f:if condition="{description}">
+            <div class="p-summary" itemprop="description">
+                <f:format.html>{description}</f:format.html>
+            </div>
+        </f:if>
+
+        <div class="p-name p-label p-org" itemprop="name">
+            <f:if condition="{location.label}">
+                <f:then>{location.label}</f:then>
+                <f:else>{location.name}</f:else>
+            </f:if>
+        </div>
+
+        <f:render partial="Location/Address" arguments="{location: location}"/>
+        <f:render partial="Location/Photos" arguments="{location: location}"/>
+    </div>
+</html>

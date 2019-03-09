@@ -1,0 +1,17 @@
+<f:comment><!--
+
+    Render the default event schedule
+
+    @param Event event              Current event
+
+--></f:comment>
+<html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
+    <f:if condition="{event.presentations}">
+        <section id="schedule" class="Event__schedule">
+            <base:heading
+                content="{f:translate(key: 'LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:event.heading.schedule')}">
+                <f:render partial="Presentation/List" arguments="{presentations: event.presentations}"/>
+            </base:heading>
+        </section>
+    </f:if>
+</html>

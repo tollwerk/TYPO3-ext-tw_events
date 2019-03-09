@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2019-01-06T13:57:17Z"
+          product-name="tw_events">
+        <header/>
+        <body>
+            <trans-unit id="file" xml:space="preserve">
+				<source>Files &amp; directories</source>
+			</trans-unit>
+            <trans-unit id="file.templateRootPath" xml:space="preserve">
+				<source>Path to template files (FE)</source>
+			</trans-unit>
+            <trans-unit id="file.partialRootPath" xml:space="preserve">
+				<source>Path to template partials (FE)</source>
+			</trans-unit>
+            <trans-unit id="file.layoutRootPath" xml:space="preserve">
+				<source>Path to template layouts (FE)</source>
+			</trans-unit>
+            <trans-unit id="ids" xml:space="preserve">
+				<source>Page IDs</source>
+			</trans-unit>
+            <trans-unit id="ids.storage" xml:space="preserve">
+				<source>Default storage PID</source>
+			</trans-unit>
+            <trans-unit id="ids.events.details" xml:space="preserve">
+				<source>Event details PID</source>
+			</trans-unit>
+            <trans-unit id="tabs.images">
+                <source>Images</source>
+            </trans-unit>
+            <trans-unit id="tabs.descriptions">
+                <source>Descriptions</source>
+            </trans-unit>
+            <trans-unit id="tabs.coverage">
+                <source>Coverage</source>
+            </trans-unit>
+            <trans-unit id="tabs.schedule">
+                <source>Schedule</source>
+            </trans-unit>
+            <trans-unit id="backendLayout.event">
+                <source>Event 2</source>
+            </trans-unit>
+            <trans-unit id="plugin.layout.basics">
+                <source>Basics</source>
+            </trans-unit>
+            <trans-unit id="plugin.layout.description">
+                <source>Description</source>
+            </trans-unit>
+            <trans-unit id="plugin.layout.performers">
+                <source>Performers</source>
+            </trans-unit>
+            <trans-unit id="plugin.layout.schedule">
+                <source>Schedule</source>
+            </trans-unit>
+            <trans-unit id="plugin.layout.tickets">
+                <source>Tickets</source>
+            </trans-unit>
+            <trans-unit id="plugin.layout.location">
+                <source>Location</source>
+            </trans-unit>
+            <trans-unit id="plugin.layout.downloads">
+                <source>Downloads</source>
+            </trans-unit>
+            <trans-unit id="plugin.layout.hosts">
+                <source>Hosts</source>
+            </trans-unit>
+            <trans-unit id="plugin.layout.sponsors">
+                <source>Sponsors</source>
+            </trans-unit>
+            <trans-unit id="plugin.layout.coverage">
+                <source>Coverage</source>
+            </trans-unit>
+            <trans-unit id="plugin.layout.live">
+                <source>Live</source>
+            </trans-unit>
+            <trans-unit id="page.event">
+                <source>Event</source>
+            </trans-unit>
+            <trans-unit id="pages.tx_twevents_layout.past">
+                <source>Layout for past events</source>
+            </trans-unit>
+            <trans-unit id="pages.tx_twevents_layout.running">
+                <source>Layout for running events</source>
+            </trans-unit>
+            <trans-unit id="pages.tx_twevents_layout.future">
+                <source>Layout for future events</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_organization">
+                <source>Organization</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_organization.name">
+                <source>Name</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_organization.slug">
+                <source>Slug</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_organization.label">
+                <source>Label</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_organization.street_address">
+                <source>Street Address</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_organization.postal_code">
+                <source>Postal Code</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_organization.locality">
+                <source>Locality</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_organization.region">
+                <source>Region</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_organization.country">
+                <source>Country</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_organization.latitude">
+                <source>Latitude</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_organization.longitude">
+                <source>Longitude</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_organization.map_url">
+                <source>Map URL</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_organization.website">
+                <source>Website</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_organization.twitter">
+                <source>Twitter handle</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_organization.facebook">
+                <source>Facebook handle</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_organization.email">
+                <source>Email address</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_organization.phone">
+                <source>Phone</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_organization.logo">
+                <source>Logo</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_organization.photos">
+                <source>Photos</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_organization.description">
+                <source>Description</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event">
+                <source>Event</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event.name">
+                <source>Name</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event.slug">
+                <source>Slug</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event.event_start">
+                <source>Event Start</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event.event_end">
+                <source>Event End</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event.summary">
+                <source>Summary</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event.description">
+                <source>Description</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event.location_description">
+                <source>Location Description</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event.ticket_description">
+                <source>Ticket Description</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event.ticket_url">
+                <source>Ticket URL</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event.facebook">
+                <source>Facebook Event</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event.colloq">
+                <source>Colloq Event</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event.hashtag">
+                <source>Hashtag</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event.livestream_url">
+                <source>Livestream URL</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event.livestream_embed">
+                <source>Livestream Embed</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event.livestream_start">
+                <source>Livestream Start</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event.livestream_end">
+                <source>Livestream End</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event.downloads">
+                <source>Downloads</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event.location">
+                <source>Location</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event.sponsors">
+                <source>Sponsors</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event.organizers">
+                <source>Organizers</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event.presentations">
+                <source>Presentations</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event.coverage">
+                <source>Coverage</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event.page">
+                <source>Presentation page</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_person">
+                <source>Person</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_person.given_name">
+                <source>Given Name</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_person.family_name">
+                <source>Family Name</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_person.slug">
+                <source>Slug</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_person.photo">
+                <source>Photo</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_person.summary">
+                <source>Summary</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_person.biography">
+                <source>Biography</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_person.teaser">
+                <source>Teaser</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_person.website">
+                <source>Website</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_person.twitter">
+                <source>Twitter</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_person.facebook">
+                <source>Facebook</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_person.email">
+                <source>Email</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_person.phone">
+                <source>Phone</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_sponsor">
+                <source>Sponsor</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_sponsor.label">
+                <source>Alternative label</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_sponsor.organization">
+                <source>Organization</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_sponsor.type">
+                <source>Type</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_sponsor.type.initiator">
+                <source>Initiator</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_sponsor.type.sponsor">
+                <source>Sponsor</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_sponsor.type.organizer">
+                <source>Organizer</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_sponsor.type.supporter">
+                <source>Supporter</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_coverage">
+                <source>Coverage</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_coverage.title">
+                <source>title</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_coverage.type">
+                <source>Type</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_coverage.type.gallery">
+                <source>Photo Gallery</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_coverage.type.blog">
+                <source>Blog Post</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_coverage.type.tweet">
+                <source>Tweet</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_coverage.type.video">
+                <source>Video</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_coverage.url">
+                <source>Url</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_coverage.author">
+                <source>Author (Person)</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_coverage.author_name">
+                <source>Author (Name)</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_presentation">
+                <source>Presentation</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_presentation.title">
+                <source>Title</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_presentation.slug">
+                <source>Slug</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_presentation.type">
+                <source>Type</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_presentation.type.talk">
+                <source>Talk</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_presentation.type.session">
+                <source>Session</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_presentation.type.panel">
+                <source>Discussion Panel</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_presentation.type.break">
+                <source>Break</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_presentation.summary">
+                <source>Summary</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_presentation.description">
+                <source>Description</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_presentation.hashtag">
+                <source>Hashtag</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_presentation.start">
+                <source>Start</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_presentation.duration">
+                <source>Duration (minutes)</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_presentation.performers">
+                <source>Performers</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_presentation.coverage">
+                <source>Coverage</source>
+            </trans-unit>
+            <trans-unit id="tx_tw_events_events.name">
+                <source>Events</source>
+            </trans-unit>
+            <trans-unit id="tx_tw_events_events.description">
+                <source>Event listing &amp; display</source>
+            </trans-unit>
+            <trans-unit id="tx_tw_events_event.name">
+                <source>Event detail</source>
+            </trans-unit>
+            <trans-unit id="tx_tw_events_event.description">
+                <source>Configurable event detail</source>
+            </trans-unit>
+            <trans-unit id="tx_tw_events_organizations.name">
+                <source>Organizations</source>
+            </trans-unit>
+            <trans-unit id="tx_tw_events_organizations.description">
+                <source>Organization listing &amp; display</source>
+            </trans-unit>
+            <trans-unit id="tx_tw_events_sponsors.name">
+                <source>Sponsors</source>
+            </trans-unit>
+            <trans-unit id="tx_tw_events_sponsors.description">
+                <source>Sponsor listing &amp; display</source>
+            </trans-unit>
+            <trans-unit id="tx_tw_events_presentations.name">
+                <source>Presentations</source>
+            </trans-unit>
+            <trans-unit id="tx_tw_events_presentations.description">
+                <source>Presentation listing &amp; display</source>
+            </trans-unit>
+            <trans-unit id="tx_tw_events_coverage.name">
+                <source>Coverage</source>
+            </trans-unit>
+            <trans-unit id="tx_tw_events_coverage.description">
+                <source>Coverage listing &amp; display</source>
+            </trans-unit>
+            <trans-unit id="tx_tw_events_persons.name">
+                <source>Persons</source>
+            </trans-unit>
+            <trans-unit id="tx_tw_events_persons.description">
+                <source>Person listing &amp; display</source>
+            </trans-unit>
+            <trans-unit id="plugin.organizations.selection_mode">
+                <source>Selection mode</source>
+            </trans-unit>
+            <trans-unit id="plugin.organizations.selection_mode.categories">
+                <source>By categories</source>
+            </trans-unit>
+            <trans-unit id="plugin.organizations.selection_mode.categories.ids">
+                <source>Categories</source>
+            </trans-unit>
+            <trans-unit id="plugin.organizations.selection_mode.manual">
+                <source>Manually</source>
+            </trans-unit>
+            <trans-unit id="plugin.organizations.selection_mode.manual.ids">
+                <source>Selected organizations</source>
+            </trans-unit>
+            <trans-unit id="plugin.persons.selection_mode">
+                <source>Selection mode</source>
+            </trans-unit>
+            <trans-unit id="plugin.persons.selection_mode.categories">
+                <source>By categories</source>
+            </trans-unit>
+            <trans-unit id="plugin.persons.selection_mode.categories.ids">
+                <source>Categories</source>
+            </trans-unit>
+            <trans-unit id="plugin.persons.selection_mode.manual">
+                <source>Manually</source>
+            </trans-unit>
+            <trans-unit id="plugin.persons.selection_mode.manual.ids">
+                <source>Selected persons</source>
+            </trans-unit>
+            <trans-unit id="plugin.events.selection_mode">
+                <source>Selection mode</source>
+            </trans-unit>
+            <trans-unit id="plugin.events.selection_mode.categories">
+                <source>By categories</source>
+            </trans-unit>
+            <trans-unit id="plugin.events.selection_mode.categories.ids">
+                <source>Categories</source>
+            </trans-unit>
+            <trans-unit id="plugin.events.selection_mode.manual">
+                <source>Manually</source>
+            </trans-unit>
+            <trans-unit id="plugin.events.selection_mode.manual.ids">
+                <source>Selected events</source>
+            </trans-unit>
+            <trans-unit id="plugin.events.selection_mode.date">
+                <source>By date</source>
+            </trans-unit>
+            <trans-unit id="plugin.events.selection_mode.date.type">
+                <source>Date type</source>
+            </trans-unit>
+            <trans-unit id="plugin.events.selection_mode.date.past">
+                <source>Past events</source>
+            </trans-unit>
+            <trans-unit id="plugin.events.selection_mode.date.future">
+                <source>Future events</source>
+            </trans-unit>
+            <trans-unit id="plugin.event.block">
+                <source>Render detail block</source>
+            </trans-unit>
+            <trans-unit id="plugin.details">
+                <source>Show details</source>
+            </trans-unit>
+            <trans-unit id="plugin.details.biography">
+                <source>Biography / Description</source>
+            </trans-unit>
+            <trans-unit id="plugin.details.teaser">
+                <source>Teaser</source>
+            </trans-unit>
+            <trans-unit id="plugin.details.website">
+                <source>Website</source>
+            </trans-unit>
+            <trans-unit id="plugin.details.twitter">
+                <source>Twitter profile</source>
+            </trans-unit>
+            <trans-unit id="plugin.details.facebook">
+                <source>Facebook profile</source>
+            </trans-unit>
+            <trans-unit id="plugin.details.email">
+                <source>Email address</source>
+            </trans-unit>
+            <trans-unit id="plugin.details.phone">
+                <source>Phone number</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

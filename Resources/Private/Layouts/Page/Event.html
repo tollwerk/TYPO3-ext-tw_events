@@ -1,0 +1,12 @@
+<f:comment><!--
+
+    @param array data           Page record
+    @param string current       Current backend layout ("event")
+
+--></f:comment>
+<html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
+    <f:variable name="event" value="{evt:event()}"/>
+    <f:variable name="stage" value="{event.stage}"/>
+    <f:variable name="blocks" value="{evt:event.blocks(list: '{data.tx_twevents_layout_{stage}}')}"/>
+    <f:render section="Main" arguments="{event: event, stage: stage, blocks: blocks}"/>
+</html>

@@ -1,0 +1,71 @@
+<f:comment><!--
+
+    @param Presentation presentation    Presentation
+
+--></f:comment>
+<html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+    <f:comment><!--
+
+        Render the presentation time
+
+        @param Presentation presentation    Presentation
+
+    --></f:comment>
+    <f:section name="Time">
+        <f:spaceless>
+            <f:if condition="{presentation.start} && {presentation.end}">
+                <f:then>
+                    <time class="Presentation__start dt-start" itemprop="startDate"
+                          datetime="{presentation.start -> f:format.date(format: 'c')}">
+                        <f:format.date date="{presentation.start}" format="H:i"/>
+                    </time>
+                    <span>-</span>
+                    <time class="Presentation__end dt-end" itemprop="endDate"
+                          datetime="{presentation.end -> f:format.date(format: 'c')}">
+                        <f:format.date date="{presentation.end}" format="H:i"/>
+                    </time>
+                </f:then>
+                <f:else>
+                    <f:translate
+                        key="LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:schedule.presentation.tba"/>
+                </f:else>
+            </f:if>
+        </f:spaceless>
+    </f:section>
+
+    <f:comment><!--
+
+        Render the presentation item
+
+        @param Presentation presentation    Presentation
+
+    --></f:comment>
+    <f:section name="Item">
+        <f:if condition="{presentation.performers}">
+            <f:render partial="Presentation/Performers" arguments="{performers: presentation.performers}"/>
+        </f:if>
+        <f:if condition="{presentation.summary} || {presentation.description}">
+            <f:then>
+                <details>
+                    <summary class="p-name"
+                             aria-label="{f:translate(key: 'LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:schedule.presentation.title')}"
+                             itemprop="name">{presentation.title}
+                    </summary>
+                    <div itemprop="description">
+                        <div class="Presentation__summary p-summary">
+                            <f:format.html>{presentation.summary}</f:format.html>
+                        </div>
+                        <div class="Presentation__description e-content">
+                            <f:format.html>{presentation.description}</f:format.html>
+                        </div>
+                    </div>
+                </details>
+            </f:then>
+            <f:else>
+                <div class="Presentation__name p-name" itemprop="name">{presentation.title}</div>
+            </f:else>
+        </f:if>
+    </f:section>
+</html>

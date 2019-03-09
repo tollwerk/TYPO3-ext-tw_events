@@ -1,0 +1,11 @@
+<f:comment><!--
+
+    Render a specific event block
+
+    @param string blockTemplate		Block template
+
+--></f:comment>
+<html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
+    <f:variable name="event" value="{evt:event()}"/>
+    <f:render partial="Block/{blockTemplate}" arguments="{event: event}"/>
+</html>

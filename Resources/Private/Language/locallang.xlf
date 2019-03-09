@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2019-01-06T13:57:17Z"
+          product-name="tw_events">
+        <header/>
+        <body>
+            <trans-unit id="tx_twevents_domain_model_organization">
+                <source>Organization</source>
+            </trans-unit>
+            <trans-unit id="contact.website">
+                <source>Internet</source>
+            </trans-unit>
+            <trans-unit id="contact.twitter">
+                <source>Twitter</source>
+            </trans-unit>
+            <trans-unit id="contact.facebook">
+                <source>Facebook</source>
+            </trans-unit>
+            <trans-unit id="contact.email">
+                <source>Email</source>
+            </trans-unit>
+            <trans-unit id="contact.phone">
+                <source>Phone</source>
+            </trans-unit>
+            <trans-unit id="person.photo">
+                <source>Photo of %s</source>
+            </trans-unit>
+            <trans-unit id="events.none.categories">
+                <source>Currently there are no events in these categories.</source>
+            </trans-unit>
+            <trans-unit id="events.none.manual">
+                <source>Currently there are no matching events.</source>
+            </trans-unit>
+            <trans-unit id="events.none.date.future">
+                <source>Currently there are no events scheduled.</source>
+            </trans-unit>
+            <trans-unit id="events.none.date.past">
+                <source>Currently there are no past scheduled.</source>
+            </trans-unit>
+            <trans-unit id="event.heading.description">
+                <source>About the event</source>
+            </trans-unit>
+            <trans-unit id="event.heading.performers">
+                <source>Performers</source>
+            </trans-unit>
+            <trans-unit id="event.heading.schedule">
+                <source>Schedule</source>
+            </trans-unit>
+            <trans-unit id="event.heading.tickets">
+                <source>Tickets</source>
+            </trans-unit>
+            <trans-unit id="event.heading.location">
+                <source>Location</source>
+            </trans-unit>
+            <trans-unit id="event.heading.downloads">
+                <source>Downloads</source>
+            </trans-unit>
+            <trans-unit id="event.heading.coverage">
+                <source>Coverage</source>
+            </trans-unit>
+            <trans-unit id="event.heading.hosts">
+                <source>Hosts</source>
+            </trans-unit>
+            <trans-unit id="event.heading.livestream">
+                <source>Live stream</source>
+            </trans-unit>
+            <trans-unit id="event.heading.sponsors">
+                <source>Sponsors &amp; supporters</source>
+            </trans-unit>
+            <trans-unit id="event.heading.sponsors.type.0">
+                <source>Initiators</source>
+            </trans-unit>
+            <trans-unit id="event.heading.sponsors.type.0.label">
+                <source>By initiative of</source>
+            </trans-unit>
+            <trans-unit id="event.heading.sponsors.type.1">
+                <source>Sponsors</source>
+            </trans-unit>
+            <trans-unit id="event.heading.sponsors.type.1.label">
+                <source>Kindly sponsored by</source>
+            </trans-unit>
+            <trans-unit id="event.heading.sponsors.type.2">
+                <source>Organizers</source>
+            </trans-unit>
+            <trans-unit id="event.heading.sponsors.type.2.label">
+                <source>With organizational support of</source>
+            </trans-unit>
+            <trans-unit id="event.heading.sponsors.type.3">
+                <source>Supporters</source>
+            </trans-unit>
+            <trans-unit id="event.heading.sponsors.type.3.label">
+                <source>Kindly supported by</source>
+            </trans-unit>
+            <trans-unit id="event.sponsor.type.0">
+                <source>initiators</source>
+            </trans-unit>
+            <trans-unit id="event.sponsor.type.1">
+                <source>sponsors</source>
+            </trans-unit>
+            <trans-unit id="event.sponsor.type.2">
+                <source>organizers</source>
+            </trans-unit>
+            <trans-unit id="event.sponsor.type.3">
+                <source>supporters</source>
+            </trans-unit>
+            <trans-unit id="event.cta.ticket">
+                <source>Get your ticket</source>
+            </trans-unit>
+            <trans-unit id="event.intro.downloads">
+                <source>You might be interested in downloading any of these related resources:</source>
+            </trans-unit>
+            <trans-unit id="event.coverage.type.0">
+                <source>Photo gallery (%s)</source>
+            </trans-unit>
+            <trans-unit id="event.coverage.type.0.by">
+                <source>Photo gallery by %s (%s)</source>
+            </trans-unit>
+            <trans-unit id="event.coverage.type.1">
+                <source>Article (%s)</source>
+            </trans-unit>
+            <trans-unit id="event.coverage.type.1.by">
+                <source>Article by %s (%s)</source>
+            </trans-unit>
+            <trans-unit id="event.coverage.type.2">
+                <source>Tweet</source>
+            </trans-unit>
+            <trans-unit id="event.coverage.type.2.by">
+                <source>Tweet by %s</source>
+            </trans-unit>
+            <trans-unit id="event.coverage.type.3">
+                <source>Video (%s)</source>
+            </trans-unit>
+            <trans-unit id="event.coverage.type.3.by">
+                <source>Video by %s (%s)</source>
+            </trans-unit>
+            <trans-unit id="event.livestream.at">
+                <source>Please visit our live stream at %s</source>
+            </trans-unit>
+            <trans-unit id="schedule.head.time">
+                <source>Time</source>
+            </trans-unit>
+            <trans-unit id="schedule.head.item">
+                <source>Agenda item</source>
+            </trans-unit>
+            <trans-unit id="schedule.presentation.title">
+                <source>Presentation title</source>
+            </trans-unit>
+            <trans-unit id="schedule.presentation.tba">
+                <source>TBA</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

@@ -1,0 +1,15 @@
+<f:comment><!--
+
+    @param Person[] performers      Performers
+
+--></f:comment>
+<html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
+    <ul class="Presentation__performer-list">
+        <f:for each="{performers}" as="performer">
+            <li class="Presentation__performer" itemprop="performer" itemscope itemtype="https://schema.org/Person"
+                itemref="{performer.slug}">
+                <a href="#{performer.slug}">{performer.givenName} {performer.familyName}</a>
+            </li>
+        </f:for>
+    </ul>
+</html>

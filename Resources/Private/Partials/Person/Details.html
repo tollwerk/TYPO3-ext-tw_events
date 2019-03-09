@@ -1,0 +1,94 @@
+<f:comment><!--
+
+    @param Person person     Person
+
+--></f:comment>
+<html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
+    <f:if condition="{person.biography} && {settings.details.description}">
+        <f:then>
+            <div class="Person__biography p-note" itemprop="description">
+                <f:if condition="person.summary">
+                    <p class="Person__summary">
+                        {person.summary}
+                    </p>
+                </f:if>
+                <f:format.html>{person.biography}</f:format.html>
+            </div>
+        </f:then>
+        <f:else if="{person.teaser} && {settings.details.teaser}">
+            <div class="Person__description p-note" itemprop="description">
+                <f:if condition="person.summary">
+                    <p class="Person__summary">
+                        {person.summary}
+                    </p>
+                </f:if>
+                <f:format.html>{person.teaser}</f:format.html>
+            </div>
+        </f:else>
+        <f:else>
+            <f:if condition="person.summary">
+                <div class="Person__summary p-note" itemprop="description">
+                    {person.summary}
+                </div>
+            </f:if>
+        </f:else>
+    </f:if>
+    <f:if condition="{person.website} || {person.twitter} || {person.facebook} || {person.email} || {person.phone}">
+        <dl class="Person__contact">
+            <f:if condition="{person.website} && {settings.details.website}">
+                <dt>
+                    <f:translate key="contact.website"/>
+                </dt>
+                <dd>
+                    <f:link.external uri="{person.website}" target="_blank" class="u-url"
+                                     additionalAttributes="{itemprop: 'url'}"
+                                     rel="noreferrer">{person.website}
+                    </f:link.external>
+                </dd>
+            </f:if>
+            <f:if condition="{person.twitter} && {settings.details.twitter}">
+                <dt>
+                    <f:translate key="contact.twitter"/>
+                </dt>
+                <dd>
+                    <f:link.external uri="https://twitter.com/{person.twitter}" target="_blank"
+                                     class="u-url"
+                                     additionalAttributes="{itemprop: 'url'}"
+                                     rel="noreferrer">@{person.twitter}
+                    </f:link.external>
+                </dd>
+            </f:if>
+            <f:if condition="{person.facebook} && {settings.details.facebook}">
+                <dt>
+                    <f:translate key="contact.facebook"/>
+                </dt>
+                <dd>
+                    <f:link.external uri="https://facebook.com/{person.facebook}" target="_blank"
+                                     class="u-url" additionalAttributes="{itemprop: 'url'}"
+                                     rel="noreferrer">{person.facebook}
+                    </f:link.external>
+                </dd>
+            </f:if>
+            <f:if condition="{person.email} && {settings.details.email}">
+                <dt>
+                    <f:translate key="contact.email"/>
+                </dt>
+                <dd>
+                    <f:link.email email="{person.email}" target="_blank">
+                        <span class="u-email" itemprop="email">{person.email}</span>
+                    </f:link.email>
+                </dd>
+            </f:if>
+            <f:if condition="{person.phone} && {settings.details.phone}">
+                <dt>
+                    <f:translate key="contact.phone"/>
+                </dt>
+                <dd>
+                    <f:link.external uri="tel://{person.phone -> evt:format.tel()}" target="_blank">
+                        <span class="p-tel" itemprop="telephone">{person.phone}</span>
+                    </f:link.external>
+                </dd>
+            </f:if>
+        </dl>
+    </f:if>
+</html>

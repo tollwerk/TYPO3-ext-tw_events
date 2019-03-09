@@ -1,0 +1,40 @@
+<f:comment><!--
+
+    Render the default event downloads
+
+    @param Event event              Current event
+
+--></f:comment>
+<html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
+    <f:if condition="{event.downloads}">
+        <section id="downloads" class="Event__downloads">
+            <base:heading
+                content="{f:translate(key: 'LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:event.heading.downloads')}">
+                <p>
+                    <f:translate
+                        key="LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:event.intro.downloads"/>
+                </p>
+                <ul class="Event__download-list">
+                    <f:for each="{event.downloads}" as="download">
+                        <li class="Event__download">
+                            <f:link.external uri="{download}" target="_blank">
+                                <div class="Event__download-title">
+                                    <f:if condition="{download.originalResource.originalFile.properties.title}">
+                                        <f:then>{download.originalResource.originalFile.properties.title}</f:then>
+                                        <f:else>{download.originalResource.originalFile.name}</f:else>
+                                    </f:if>
+                                </div>
+                                <f:if condition="{download.originalResource.originalFile.properties.description}">
+                                    <div class="Event__download-description">
+                                        {download.originalResource.originalFile.properties.description ->
+                                        f:format.nl2br()}
+                                    </div>
+                                </f:if>
+                            </f:link.external>
+                        </li>
+                    </f:for>
+                </ul>
+            </base:heading>
+        </section>
+    </f:if>
+</html>
