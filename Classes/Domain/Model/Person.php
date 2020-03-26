@@ -25,7 +25,7 @@ class Person extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Name
      *
      * @var string
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $givenName = '';
 
@@ -40,8 +40,8 @@ class Person extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * photo
      *
      * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-     * @validate NotEmpty
-     * @cascade  remove
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade  remove
      */
     protected $photo = null;
 

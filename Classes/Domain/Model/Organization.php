@@ -27,7 +27,7 @@ class Organization extends AbstractEntity
      * Name
      *
      * @var string
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $name = '';
 
@@ -35,7 +35,7 @@ class Organization extends AbstractEntity
      * Label
      *
      * @var string
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $label = '';
 
@@ -43,7 +43,7 @@ class Organization extends AbstractEntity
      * Street Address
      *
      * @var string
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $streetAddress = '';
 
@@ -51,7 +51,7 @@ class Organization extends AbstractEntity
      * Postal Code
      *
      * @var string
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $postalCode = '';
 
@@ -59,7 +59,7 @@ class Organization extends AbstractEntity
      * Locality
      *
      * @var string
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $locality = '';
 
@@ -67,7 +67,7 @@ class Organization extends AbstractEntity
      * Region
      *
      * @var string
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $region = '';
 
@@ -75,7 +75,7 @@ class Organization extends AbstractEntity
      * Country
      *
      * @var \SJBR\StaticInfoTables\Domain\Model\Country
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $country = 0;
 
@@ -83,7 +83,7 @@ class Organization extends AbstractEntity
      * Latitude
      *
      * @var float
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $latitude = 0.0;
 
@@ -91,7 +91,7 @@ class Organization extends AbstractEntity
      * Longitude
      *
      * @var float
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $longitude = 0.0;
 
@@ -141,8 +141,8 @@ class Organization extends AbstractEntity
      * Logo
      *
      * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-     * @validate NotEmpty
-     * @cascade  remove
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade  remove
      */
     protected $logo = null;
 
@@ -150,7 +150,7 @@ class Organization extends AbstractEntity
      * Photos
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
-     * @cascade remove
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade remove
      */
     protected $photos = null;
 

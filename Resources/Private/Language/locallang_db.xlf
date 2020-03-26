@@ -163,6 +163,36 @@
             <trans-unit id="tx_twevents_domain_model_event.event_end">
                 <source>Event End</source>
             </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event.attendance_mode">
+                <source>Attendance Mode</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event.attendance_mode.offline">
+                <source>Offline</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event.attendance_mode.online">
+                <source>Online</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event.attendance_mode.mixed">
+                <source>Mixed</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event.status">
+                <source>Status</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event.status.scheduled">
+                <source>Scheduled</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event.status.rescheduled">
+                <source>Rescheduled</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event.status.postponed">
+                <source>Postponed</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event.status.movedOnline">
+                <source>Moved Online</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event.status.cancelled">
+                <source>Cancelled</source>
+            </trans-unit>
             <trans-unit id="tx_twevents_domain_model_event.summary">
                 <source>Summary</source>
             </trans-unit>
@@ -177,6 +207,9 @@
             </trans-unit>
             <trans-unit id="tx_twevents_domain_model_event.ticket_url">
                 <source>Ticket URL</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event.website">
+                <source>Website URL</source>
             </trans-unit>
             <trans-unit id="tx_twevents_domain_model_event.facebook">
                 <source>Facebook Event</source>

@@ -8,12 +8,12 @@
       "email": "joschi@tollwerk.de"
     }
   ],
-  "version": "0.1.0",
+  "version": "1.0.0",
   "require": {
-    "typo3/cms-core": "^9.5",
+    "typo3/cms-core": "^10.3",
     "tollwerk/tw-base": "dev-develop",
-    "fluidtypo3/vhs": "^5.1",
-    "sjbr/static-info-tables": "^6.7"
+    "fluidtypo3/vhs": "^6.0",
+    "sjbr/static-info-tables": "^6.8"
   },
   "autoload": {
     "psr-4": {

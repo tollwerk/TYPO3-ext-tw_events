@@ -34,14 +34,14 @@ class Presentation extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Title
      *
      * @var string
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $title = '';
     /**
      * Type
      *
      * @var int
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $type = 0;
     /**
@@ -54,14 +54,14 @@ class Presentation extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * description
      *
      * @var string
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $description = '';
     /**
      * Hashtag
      *
      * @var string
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $hashtag = '';
 
@@ -70,14 +70,14 @@ class Presentation extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Start
      *
      * @var \DateTime
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $start = null;
     /**
      * Duration (minutes)
      *
      * @var int
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $duration = 0;
     /**
@@ -90,21 +90,21 @@ class Presentation extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Coverage
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Tollwerk\TwEvents\Domain\Model\Coverage>
-     * @cascade remove
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade remove
      */
     protected $coverage = null;
     /**
      * Video recordings
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
-     * @cascade remove
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade remove
      */
     protected $video = null;
     /**
      * Note
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Tollwerk\TwEvents\Domain\Model\Note>
-     * @cascade remove
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade remove
      */
     protected $note = null;
     /**

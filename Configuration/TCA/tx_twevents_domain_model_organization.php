@@ -33,7 +33,7 @@ return [
             map_url,
             --palette--;;profiles,
             --div--;LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tabs.images,
-            logo, photos, 
+            logo, photos,
         --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,
         hidden,
         sys_language_uid, l10n_parent, l10n_diffsource'
@@ -182,6 +182,7 @@ return [
             'label'     => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_organization.country',
             'config'    => [
                 'type'                => 'select',
+                'renderType'          => 'selectSingle',
                 'foreign_table'       => 'static_countries',
                 'foreign_table_where' => 'ORDER BY static_countries.cn_short_en',
                 'itemsProcFunc'       => 'SJBR\\StaticInfoTables\\Hook\\Backend\\Form\\FormDataProvider\\TcaSelectItemsProcessor->translateCountriesSelector',
