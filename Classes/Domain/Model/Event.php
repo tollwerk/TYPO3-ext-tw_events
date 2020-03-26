@@ -3,6 +3,7 @@
 namespace Tollwerk\TwEvents\Domain\Model;
 
 use Tollwerk\TwEvents\Domain\Model\Traits\SlugTrait;
+use Tollwerk\TwEvents\Utility\DatetimeUtility;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 /***
@@ -247,21 +248,21 @@ class Event extends AbstractEntity
     /**
      * Returns the eventStart
      *
-     * @return \DateTime $eventStart
+     * @return \DateTimeInterface $eventStart
      */
-    public function getEventStart()
+    public function getEventStart(): \DateTime
     {
-        return $this->eventStart;
+        return DatetimeUtility::fixTimezone($this->eventStart);
     }
 
     /**
      * Sets the eventStart
      *
-     * @param \DateTime $eventStart
+     * @param \DateTimeInterface $eventStart
      *
      * @return void
      */
-    public function setEventStart(\DateTime $eventStart)
+    public function setEventStart(\DateTimeInterface $eventStart): void
     {
         $this->eventStart = $eventStart;
     }
@@ -269,11 +270,11 @@ class Event extends AbstractEntity
     /**
      * Returns the eventEnd
      *
-     * @return \DateTime $eventEnd
+     * @return \DateTimeInterface $eventEnd
      */
-    public function getEventEnd()
+    public function getEventEnd(): \DateTime
     {
-        return $this->eventEnd;
+        return DatetimeUtility::fixTimezone($this->eventEnd);
     }
 
     /**
@@ -283,7 +284,7 @@ class Event extends AbstractEntity
      *
      * @return void
      */
-    public function setEventEnd(\DateTime $eventEnd)
+    public function setEventEnd(\DateTime $eventEnd): void
     {
         $this->eventEnd = $eventEnd;
     }

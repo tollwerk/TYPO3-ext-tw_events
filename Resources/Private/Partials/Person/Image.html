@@ -10,6 +10,7 @@
             <f:image image="{person.photo}" class="Person__photo u-photo"
                      additionalAttributes="{itemprop: 'image'}"
                      maxWidth="300"
+                     cropVariant="square"
                      alt="{f:translate(key: 'person.photo', arguments: '{0: fullName}')}"/>
         </div>
     </f:if>

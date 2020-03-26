@@ -29,7 +29,7 @@
     <f:section name="SponsorType">
         <f:variable name="typeStr"
                     value="{f:translate(key: 'LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:event.sponsor.type.{type}')}"/>
-        <section id="sponsors-{typeStr}">
+        <section id="sponsors-{typeStr}" class="Event__sponsors-type">
             <base:heading
                 content="{f:translate(key: 'LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:event.heading.sponsors.type.{type}')}">
                 <f:render partial="Sponsor/List" arguments="{sponsors: sponsors, type: type}"/>

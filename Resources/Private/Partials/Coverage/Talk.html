@@ -1,0 +1,19 @@
+<f:comment><!--
+
+    Render the default event coverage talk documentation
+
+    @param Event event              Current event
+    @param Coverage coverage        Coverage item
+    @param string host              Remote host
+
+--></f:comment>
+<html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
+    <div class="Coverage Coverage--talk">
+        <f:variable name="info" value="{base:link.info(typolink: coverage.url)}"/>
+        <f:link.external uri="{coverage.url}" class="Coverage__title" target="_blank"
+                         rel="noreferrer">{coverage.title}</f:link.external>:
+        <f:render partial="Coverage/Common" section="AuthorClause"
+                  arguments="{coverage: coverage, host: info.url.host}"/>
+    </div>
+</html>
+

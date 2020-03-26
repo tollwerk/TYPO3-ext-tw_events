@@ -22,6 +22,7 @@ class Coverage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     const TYPE_BLOG = 1;
     const TYPE_TWEET = 2;
     const TYPE_VIDEO = 3;
+    const TYPE_TALK = 4;
     /**
      * Title
      *

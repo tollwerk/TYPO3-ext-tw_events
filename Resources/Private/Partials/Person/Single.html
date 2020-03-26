@@ -2,21 +2,21 @@
 
     @param Person person        Person
     @param string itemprop      Person itemprop value
+    @param array settings       Settings
 
 --></f:comment>
 <html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers"
       xmlns:base="http://typo3.org/ns/Tollwerk/TwBase/ViewHelpers"
       data-namespace-typo3-fluid="true">
     <div class="Person h-card{f:if(condition: itemprop, then: ' p-{itemprop}')}" itemscope
-         itemtype="http://schema.org/Person" {f:if(condition: itemprop, then:
-    'itemprop="{itemprop}"')}>
+         itemtype="http://schema.org/Person" {f:if(condition: itemprop, then: 'itemprop="{itemprop}"')}>
     <figure id="{person.slug}">
         <f:render partial="Person/Image" arguments="{person: person}"/>
-        <figcaption>
+        <figcaption class="Person__details">
             <base:heading content="{f:render(partial: 'Person/Name', arguments: '{person: person}')}"
                           class="Person__name p-name p-label"
                           additionalAttributes="{itemprop: 'name'}">
-                <f:render partial="Person/Details" arguments="{person: person}"/>
+                <f:render partial="Person/Details" arguments="{person: person, settings: settings}"/>
             </base:heading>
         </figcaption>
     </figure>

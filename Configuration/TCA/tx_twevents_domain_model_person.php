@@ -37,7 +37,7 @@ return [
     ],
     'palettes'  => [
         'name'     => ['showitem' => 'given_name, family_name', 'canNotCollapse' => true],
-        'profiles' => ['showitem' => 'website, twitter, facebook, email, phone', 'canNotCollapse' => true],
+        'profiles' => ['showitem' => 'website, twitter, facebook, github, email, phone', 'canNotCollapse' => true],
     ],
     'columns'   => [
         'sys_language_uid' => [
@@ -237,6 +237,16 @@ return [
             'exclude'   => true,
             'l10n_mode' => 'exclude',
             'label'     => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_person.twitter',
+            'config'    => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim'
+            ],
+        ],
+        'github'     => [
+            'exclude'   => true,
+            'l10n_mode' => 'exclude',
+            'label'     => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_person.github',
             'config'    => [
                 'type' => 'input',
                 'size' => 30,

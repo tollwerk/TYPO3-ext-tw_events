@@ -4,22 +4,22 @@
 
 --></f:comment>
 <html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
-    <address class="p-adr h-adr">
+    <address class="Location__address p-adr h-adr">
         <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-            <div class="p-street-address" itemprop="streetAddress">{location.streetAddress}</div>
-            <div><span class="p-postal-code" itemprop="postalCode">{location.postalCode}</span> <span
-                class="p-locality" itemprop="addressLocality">{location.locality}</span>
+            <div class="Location__street-address p-street-address" itemprop="streetAddress">{location.streetAddress}</div>
+            <div><span class="Location__postal-code p-postal-code" itemprop="postalCode">{location.postalCode}</span> <span
+                class="Location__locality p-locality" itemprop="addressLocality">{location.locality}</span>
                 <span class="hide">,
                         <f:if condition="{location.region}">
-                            <span class="p-region" itemprop="addressRegion">{location.region}</span>
+                            <span class="Location__region p-region" itemprop="addressRegion">{location.region}</span>
                         </f:if>
-                        <span class="p-country" itemprop="addressCountry">{location.country.shortNameEn}</span>
+                        <span class="Location__country p-country" itemprop="addressCountry">{location.country.shortNameEn}</span>
                     </span>
             </div>
         </div>
         <div class="hide" itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
-            <span class="p-latitude" itemprop="latitude">{location.latitude}</span>
-            <span class="p-longitude" itemprop="longitude">{location.longitude}</span>
+            <span class="Location__latitude p-latitude" itemprop="latitude">{location.latitude}</span>
+            <span class="Location__longitude p-longitude" itemprop="longitude">{location.longitude}</span>
         </div>
     </address>
 </html>

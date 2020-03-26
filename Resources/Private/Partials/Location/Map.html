@@ -1,0 +1,12 @@
+<f:comment><!--
+
+    @param Location location            Location
+
+--></f:comment>
+<html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
+    <f:if condition="{location.mapUrl}">
+        <f:link.external uri="{location.mapUrl}" rel="noreferrer" target="_blank" class="Location__map-link">
+            <f:translate key="LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:event.location.map"/>
+        </f:link.external>
+    </f:if>
+</html>

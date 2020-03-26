@@ -2,6 +2,8 @@
 
 namespace Tollwerk\TwEvents\Controller;
 
+use Tollwerk\TwEvents\Domain\Model\Presentation;
+use Tollwerk\TwEvents\Domain\Repository\PresentationRepository;
 
 /***
  *
@@ -15,18 +17,26 @@ namespace Tollwerk\TwEvents\Controller;
  ***/
 
 /**
- * PresentationController
+ * Presentation Controller
  */
 class PresentationController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
-
     /**
-     * presentationRepository
+     * Presentation repository
      *
      * @var \Tollwerk\TwEvents\Domain\Repository\PresentationRepository
-     * @inject
      */
     protected $presentationRepository = null;
+
+    /**
+     * Inject the presentation repository
+     *
+     * @param PresentationRepository $presentationRepository
+     */
+    public function injectPresentationRepository(PresentationRepository $presentationRepository): void
+    {
+        $this->presentationRepository = $presentationRepository;
+    }
 
     /**
      * action list
@@ -35,18 +45,19 @@ class PresentationController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
      */
     public function listAction()
     {
-        $presentations = $this->presentationRepository->findAll();
+        $presentations = empty($GLOBALS['TSFE']->event) ?
+            $this->presentationRepository->findAll() : $GLOBALS['TSFE']->event->getPresentations();
         $this->view->assign('presentations', $presentations);
     }
 
     /**
-     * action show
+     * Presentation details
      *
-     * @param \Tollwerk\TwEvents\Domain\Model\Presentation $presentation
+     * @param Presentation $presentation Presentation
      *
      * @return void
      */
-    public function showAction(\Tollwerk\TwEvents\Domain\Model\Presentation $presentation)
+    public function showAction(Presentation $presentation)
     {
         $this->view->assign('presentation', $presentation);
     }

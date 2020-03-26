@@ -7,7 +7,19 @@
     <ol class="EventList">
         <f:for each="{events}" as="event">
             <li>
-                <f:render partial="Event/Single" arguments="{event: event}"/>
+                <f:if condition="{event.page}">
+                    <f:then>
+                        <f:link.page pageUid="{event.page.uid}" class="EventList__item">
+                            <f:render partial="Event/Single" arguments="{event: event}"/>
+                        </f:link.page>
+                    </f:then>
+                    <f:else>
+                        <f:link.action action="show" pageUid="{settings.events.details}" arguments="{event: event}"
+                                       class="EventList__item">
+                            <f:render partial="Event/Single" arguments="{event: event}"/>
+                        </f:link.action>
+                    </f:else>
+                </f:if>
             </li>
         </f:for>
     </ol>

@@ -5,8 +5,16 @@
 
 --></f:comment>
 <html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
+    <f:variable name="presentation" value="{evt:presentation()}"/>
     <f:variable name="event" value="{evt:event()}"/>
     <f:variable name="stage" value="{event.stage}"/>
-    <f:variable name="blocks" value="{evt:event.blocks(list: '{data.tx_twevents_layout_{stage}}')}"/>
-    <f:render section="Main" arguments="{event: event, stage: stage, blocks: blocks}"/>
+    <f:if condition="{presentation}">
+        <f:then>
+            <f:render section="Presentation" arguments="{event: event, stage: stage, presentation: presentation}"/>
+        </f:then>
+        <f:else>
+            <f:variable name="blocks" value="{evt:event.blocks(list: '{data.tx_twevents_layout_{stage}}')}"/>
+            <f:render section="Event" arguments="{event: event, stage: stage, blocks: blocks}"/>
+        </f:else>
+    </f:if>
 </html>

@@ -1,92 +1,10 @@
-<html data-namespace-typo3-fluid="true" xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers">
-    <f:layout name="Default"/>
+<f:comment><!--
 
-    This Template is responsible for creating a table of domain objects.
+    @param Presentation[] presentations     Presentations
 
-    If you modify this template, do not forget to change the overwrite settings
-    in /Configuration/ExtensionBuilder/settings.yaml:
-    Resources:
-    Private:
-    Templates:
-    List.html: keep
-
-    Otherwise your changes will be overwritten the next time you save the extension in the extension builder
-
-    <f:section name="content">
-        <h1>Listing for Presentation</h1>
-
-        <f:flashMessages/>
-
-        <table class="tx_twevents">
-            <tr>
-                <th>
-                    <f:translate key="tx_twevents_domain_model_presentation.title"/>
-                </th>
-                <th>
-                    <f:translate key="tx_twevents_domain_model_presentation.type"/>
-                </th>
-                <th>
-                    <f:translate key="tx_twevents_domain_model_presentation.summary"/>
-                </th>
-                <th>
-                    <f:translate key="tx_twevents_domain_model_presentation.description"/>
-                </th>
-                <th>
-                    <f:translate key="tx_twevents_domain_model_presentation.hashtag"/>
-                </th>
-                <th>
-                    <f:translate key="tx_twevents_domain_model_presentation.start"/>
-                </th>
-                <th>
-                    <f:translate key="tx_twevents_domain_model_presentation.duration"/>
-                </th>
-                <th></th>
-                <th></th>
-            </tr>
-
-            <f:for as="presentation" each="{presentations}">
-                <tr>
-                    <td>
-                        <f:link.action action="show" arguments="{presentation : presentation}"> {presentation.title}
-                        </f:link.action>
-                    </td>
-                    <td>
-                        <f:link.action action="show" arguments="{presentation : presentation}"> {presentation.type}
-                        </f:link.action>
-                    </td>
-                    <td>
-                        <f:link.action action="show" arguments="{presentation : presentation}"> {presentation.summary}
-                        </f:link.action>
-                    </td>
-                    <td>
-                        <f:link.action action="show" arguments="{presentation : presentation}">
-                            {presentation.description}
-                        </f:link.action>
-                    </td>
-                    <td>
-                        <f:link.action action="show" arguments="{presentation : presentation}"> {presentation.hashtag}
-                        </f:link.action>
-                    </td>
-                    <td>
-                        <f:link.action action="show" arguments="{presentation : presentation}"> {presentation.start ->
-                            f:format.date()}
-                        </f:link.action>
-                    </td>
-                    <td>
-                        <f:link.action action="show" arguments="{presentation : presentation}">
-                            {presentation.duration}
-                        </f:link.action>
-                    </td>
-                    <td>
-                        <f:link.action action="edit" arguments="{presentation : presentation}">Edit</f:link.action>
-                    </td>
-                    <td>
-                        <f:link.action action="delete" arguments="{presentation : presentation}">Delete</f:link.action>
-                    </td>
-                </tr>
-            </f:for>
-        </table>
-
-        <f:link.action action="new">New Presentation</f:link.action>
-    </f:section>
+--></f:comment>
+<html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
+    <f:if condition="{presentations}">
+        <f:render partial="Presentation/List" arguments="{presentations: presentations}"/>
+    </f:if>
 </html>

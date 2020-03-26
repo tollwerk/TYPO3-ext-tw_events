@@ -1,6 +1,6 @@
 <f:comment><!--
 
-    Render the default event coverage photo gallery
+    Render the default event coverage blog post
 
     @param Event event              Current event
     @param Coverage coverage        Coverage item
@@ -11,9 +11,7 @@
     <div class="Coverage Coverage--post">
         <f:variable name="info" value="{base:link.info(typolink: coverage.url)}"/>
         <f:link.external uri="{coverage.url}" class="Coverage__title" target="_blank"
-                         rel="noreferrer">{coverage.title}
-        </f:link.external>
-        :
+                         rel="noreferrer">{coverage.title}</f:link.external>:
         <f:render partial="Coverage/Common" section="AuthorClause"
                   arguments="{coverage: coverage, host: info.url.host}"/>
     </div>

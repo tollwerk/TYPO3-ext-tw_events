@@ -3,8 +3,8 @@
 /**
  * data
  *
- * @category   Jkphl
- * @package    Jkphl\Antibot
+ * @category   Tollwerk
+ * @package    Tollwerk\TwEvents
  * @subpackage Tollwerk\TwEvents\Domain\Repository
  * @author     Joschi Kuphal <joschi@kuphal.net> / @jkphl
  * @copyright  Copyright © 2019 Joschi Kuphal <joschi@kuphal.net> / @jkphl
@@ -60,7 +60,7 @@ class AbstractRepository extends Repository
     public function findByIdentifiers(array $identifiers): array
     {
         $records = array_combine($identifiers, array_pad([], count($identifiers), null));
-        $query   = $this->createQuery();
+        $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
         $query->matching($query->in('uid', $identifiers));
         foreach ($query->execute() as $record) {

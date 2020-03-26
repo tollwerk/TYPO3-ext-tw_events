@@ -31,7 +31,7 @@ call_user_func(
             'Tollwerk.TwEvents',
             'Organizations',
             [
-                'Organization' => 'list',
+                'Organization' => 'list, location',
             ],
             // non-cacheable actions
             [
@@ -47,6 +47,7 @@ call_user_func(
                 'Event'        => 'list, show',
                 'Person'       => 'list, show',
                 'Coverage'     => 'list, show',
+                'Note'         => 'list, show',
                 'Presentation' => 'list, show'
             ],
             // non-cacheable actions
@@ -55,6 +56,7 @@ call_user_func(
                 'Event'        => '',
                 'Person'       => '',
                 'Coverage'     => '',
+                'Note'         => '',
                 'Presentation' => ''
             ]
         );
@@ -80,6 +82,18 @@ call_user_func(
             // non-cacheable actions
             [
                 'Coverage' => '',
+            ]
+        );
+
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'Tollwerk.TwEvents',
+            'Note',
+            [
+                'Note' => 'list, show',
+            ],
+            // non-cacheable actions
+            [
+                'Note' => '',
             ]
         );
 
@@ -154,6 +168,15 @@ call_user_func(
                             list_type = twevents_coverage
                         }
                     }
+                    note {
+                        iconIdentifier = tw_events-plugin-note
+                        title = LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_tw_events_note.name
+                        description = LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_tw_events_note.description
+                        tt_content_defValues {
+                            CType = list
+                            list_type = twevents_note
+                        }
+                    }
                     persons {
                         iconIdentifier = tw_events-plugin-persons
                         title = LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_tw_events_persons.name
@@ -204,6 +227,12 @@ call_user_func(
         );
 
         $iconRegistry->registerIcon(
+            'tw_events-plugin-note',
+            \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+            ['source' => 'EXT:tw_events/Resources/Public/Icons/Note.svg']
+        );
+
+        $iconRegistry->registerIcon(
             'tw_events-plugin-persons',
             \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
             ['source' => 'EXT:tw_events/Resources/Public/Icons/Person.svg']
@@ -211,5 +240,8 @@ call_user_func(
 
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']['base'] = ['Tollwerk\\TwBase\\ViewHelpers'];
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']['evt']  = ['Tollwerk\\TwEvents\\ViewHelpers'];
+
+        // Treat all date & time values as UTC
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['phpTimeZone'] = 'UTC';
     }
 );

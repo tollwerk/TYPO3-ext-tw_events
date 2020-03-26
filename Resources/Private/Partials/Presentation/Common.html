@@ -1,0 +1,37 @@
+<f:comment><!--
+
+    Common presentation templates
+
+    @param Presentation presentation    Presentation
+
+--></f:comment>
+<html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
+    <f:comment><!--
+
+        Render the presentation time
+
+        @param Presentation presentation    Presentation
+
+    --></f:comment>
+    <f:section name="Time">
+        <f:spaceless>
+            <f:if condition="{presentation.start} && {presentation.end}">
+                <f:then>
+                    <time class="Presentation__start dt-start" itemprop="startDate"
+                          datetime="{presentation.start -> f:format.date(format: 'c')}">
+                        <f:format.date date="{presentation.start}" format="H:i"/>
+                    </time>
+                    <span>-</span>
+                    <time class="Presentation__end dt-end" itemprop="endDate"
+                          datetime="{presentation.end -> f:format.date(format: 'c')}">
+                        <f:format.date date="{presentation.end}" format="H:i"/>
+                    </time>
+                </f:then>
+                <f:else>
+                    <f:translate
+                        key="LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:schedule.presentation.tba"/>
+                </f:else>
+            </f:if>
+        </f:spaceless>
+    </f:section>
+</html>

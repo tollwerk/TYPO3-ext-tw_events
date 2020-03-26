@@ -5,14 +5,14 @@
 
 --></f:comment>
 <html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
-    <div class="p-location h-card icons-location" itemprop="location" itemscope itemtype="http://schema.org/Place">
+    <div class="Location p-location h-card" itemprop="location" itemscope itemtype="http://schema.org/Place">
         <f:if condition="{description}">
-            <div class="p-summary" itemprop="description">
+            <div class="Location__description p-summary" itemprop="description">
                 <f:format.html>{description}</f:format.html>
             </div>
         </f:if>
 
-        <div class="p-name p-label p-org" itemprop="name">
+        <div class="Location__name p-name p-label p-org" itemprop="name">
             <f:if condition="{location.label}">
                 <f:then>{location.label}</f:then>
                 <f:else>{location.name}</f:else>
@@ -20,6 +20,7 @@
         </div>
 
         <f:render partial="Location/Address" arguments="{location: location}"/>
+        <f:render partial="Location/Map" arguments="{location: location}"/>
         <f:render partial="Location/Photos" arguments="{location: location}"/>
     </div>
 </html>

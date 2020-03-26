@@ -23,6 +23,9 @@
             <trans-unit id="twitter.description">
                 <source>Twitter Handle</source>
             </trans-unit>
+            <trans-unit id="github.description">
+                <source>Github Handle</source>
+            </trans-unit>
             <trans-unit id="facebook.description">
                 <source>Facebook Profile URL</source>
             </trans-unit>

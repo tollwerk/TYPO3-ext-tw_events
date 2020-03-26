@@ -1,30 +1,155 @@
 <f:comment><!--
 
-    @param Person[] persons     Persons
+    @param Presentation[] presentations     Presentations
 
 --></f:comment>
 <html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
-    <table class="PresentationList">
-        <thead>
-            <tr>
-                <th>
-                    <f:translate key="LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:schedule.head.time"/>
-                </th>
-                <th>
-                    <f:translate key="LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:schedule.head.item"/>
-                </th>
-            </tr>
-        </thead>
-        <f:for each="{presentations}" as="presentation">
-            <tr class="Presentation h-event" itemprop="subEvent" itemscope itemtype="https://schema.org/Event"
-                itemref="location" id="{presentation.slug}">
-                <td>
-                    <f:render partial="Presentation/Single" section="Time" arguments="{presentation: presentation}"/>
-                </td>
-                <td>
-                    <f:render partial="Presentation/Single" section="Item" arguments="{presentation: presentation}"/>
-                </td>
-            </tr>
-        </f:for>
-    </table>
+    <f:variable name="schedule" value="{evt:presentation.schedule(presentations: presentations)}"/>
+    <f:for each="{schedule}" as="dayPresentations" key="dayTimestamp">
+        <f:render section="DaySchedule" arguments="{presentations: dayPresentations, timestamp: dayTimestamp}"/>
+    </f:for>
+
+
+    <f:comment><!--
+
+        Render a presentation list
+
+        @param Presentation presentation    Presentation
+        @param int timestamp                UNIX timestamp for rendering a date caption
+
+    --></f:comment>
+    <f:section name="DaySchedule">
+        <table class="PresentationList">
+            <f:if condition="{timestamp}">
+                <caption class="PresentationList__caption" id="schedule-{f:format.date(date: '@{timestamp}', format: 'Y-m-d')}">
+                    <f:variable name="dateFormat" value="{f:translate(key: 'date.format.schedule.caption')}"/>
+                    <base:heading content="{f:format.date(date: '@{timestamp}', format: dateFormat)}"/>
+                </caption>
+            </f:if>
+            <thead>
+                <tr>
+                    <th class="PresentationList__time">
+                        <f:translate
+                            key="LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:schedule.head.time"/>
+                    </th>
+                    <th class="PresentationList__item">
+                        <f:translate
+                            key="LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:schedule.head.item"/>
+                    </th>
+                </tr>
+            </thead>
+            <f:for each="{v:iterator.sort(subject: presentations, sortBy: 'start')}" as="presentation">
+                <tr class="Presentation{f:if(condition: presentation.documented, then: ' Presentation--has-documentation')} h-event"
+                    itemprop="subEvent" itemscope itemtype="https://schema.org/Event"
+                    itemref="location" id="{presentation.slug}">
+                    <td class="PresentationList__time">
+                        <f:render partial="Presentation/Common" section="Time"
+                                  arguments="{presentation: presentation}"/>
+                    </td>
+                    <td class="PresentationList__item">
+                        <f:render section="Item" arguments="{presentation: presentation}"/>
+                    </td>
+                </tr>
+            </f:for>
+        </table>
+    </f:section>
+
+    <f:comment><!--
+
+        Render the presentation item
+
+        @param Presentation presentation    Presentation
+
+    --></f:comment>
+    <f:section name="Item">
+        <f:variable name="documentedLabel"
+                    value="{f:translate(key: 'LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:schedule.presentation.documented')}"/>
+        <f:if
+            condition="{presentation.summary} || {presentation.description} || {presentation.documented} || {presentation.page}">
+            <f:then>
+                <details class="Presentation__info">
+                    <summary class="Presentation__summary p-name"
+                             aria-label="{f:translate(key: 'LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:schedule.presentation.title')}"
+                             itemprop="name">{presentation.title}
+                        <f:if condition="{presentation.documented}">
+                            <span class="Presentation__documented" title="{documentedLabel}">({documentedLabel})</span>
+                        </f:if>
+                    </summary>
+                    <div class="Presentation__details" itemprop="description">
+                        <f:if condition="{presentation.summary}">
+                            <div class="Presentation__summary p-summary">
+                                <f:format.html>{presentation.summary}</f:format.html>
+                            </div>
+                        </f:if>
+                        <f:if condition="{presentation.description}">
+                            <div class="Presentation__description e-content">
+                                <f:format.html>{presentation.description}</f:format.html>
+                            </div>
+                        </f:if>
+                        <f:if condition="{presentation.page}">
+                            <f:then>Link to presentation page</f:then>
+                            <f:else if="{presentation.documented}">
+                                <ul class="Presentation__documentation">
+                                    <li>
+                                        <f:link.action action="show" pluginName="Presentations"
+                                                       controller="Presentation"
+                                                       pageUid="{settings.events.details}"
+                                                       arguments="{event: presentation.event, presentation: presentation}"
+                                                       class="u-url" additionalAttributes="{itemprop: 'url'}"
+                                        >{f:translate(key:
+                                            'LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:schedule.presentation.details')}
+                                        </f:link.action>
+                                    </li>
+                                    <f:if condition="{presentation.note}">
+                                        <li>
+                                            <f:link.action action="show" pluginName="Presentations"
+                                                           controller="Presentation"
+                                                           pageUid="{settings.events.details}"
+                                                           arguments="{event: presentation.event, presentation: presentation}"
+                                                           section="notes">{f:translate(key:
+                                                'LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:schedule.presentation.notes')}
+                                            </f:link.action>
+                                        </li>
+                                    </f:if>
+                                    <f:if condition="{presentation.coverage}">
+                                        <li>
+                                            <f:link.action action="show" pluginName="Presentations"
+                                                           controller="Presentation"
+                                                           pageUid="{settings.events.details}"
+                                                           arguments="{event: presentation.event, presentation: presentation}"
+                                                           section="coverage">{f:translate(key:
+                                                'LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:schedule.presentation.coverage')}
+                                            </f:link.action>
+                                        </li>
+                                    </f:if>
+                                </ul>
+                            </f:else>
+                        </f:if>
+                    </div>
+                </details>
+            </f:then>
+            <f:else>
+                <div class="Presentation__name p-name" itemprop="name">{presentation.title}
+                    <f:if condition="{presentation.documented}">
+                        <span class="Presentation__documented" title="{documentedLabel}">({documentedLabel})</span>
+                    </f:if>
+                </div>
+            </f:else>
+        </f:if>
+        <f:if condition="{presentation.performers}">
+            <div class="Presentation__performers">
+                <f:if condition="{presentation.type} == 4">
+                    <f:then>
+                        <f:translate
+                            key="LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:schedule.presentation.workshop"/>
+                    </f:then>
+                    <f:else>
+                        <f:translate
+                            key="LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:schedule.presentation.performed"/>
+                    </f:else>
+                </f:if>
+                <f:render partial="Presentation/Performers" arguments="{performers: presentation.performers}"/>
+            </div>
+        </f:if>
+    </f:section>
 </html>

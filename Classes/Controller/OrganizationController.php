@@ -3,6 +3,7 @@
 namespace Tollwerk\TwEvents\Controller;
 
 
+use Tollwerk\TwEvents\Domain\Model\Organization;
 use Tollwerk\TwEvents\Domain\Repository\OrganizationRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
@@ -70,5 +71,18 @@ class OrganizationController extends AbstractController
                 $this->organizationRepository->findByCategories($categoryIdentifiers) : [];
         }
         $this->view->assign('organizations', $organizations);
+    }
+
+    /**
+     * Render an organisation as location
+     */
+    public function locationAction(): void
+    {
+        $organizationIdentifiers = GeneralUtility::trimExplode(',', $this->settings['organizations'], true);
+        $organization            = null;
+        while (!($organization instanceof Organization)) {
+            $organization = $this->organizationRepository->findByIdentifier(array_shift($organizationIdentifiers));
+        }
+        $this->view->assign('location', $organization);
     }
 }

@@ -84,6 +84,13 @@ class Person extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $twitter = '';
 
     /**
+     * Github Handle
+     *
+     * @var string
+     */
+    protected $github = '';
+
+    /**
      * Facebook Profile URL
      *
      * @var string
@@ -278,6 +285,28 @@ class Person extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setTwitter($twitter)
     {
         $this->twitter = $twitter;
+    }
+
+    /**
+     * Returns the github
+     *
+     * @return string $github
+     */
+    public function getGithub()
+    {
+        return $this->github;
+    }
+
+    /**
+     * Sets the github
+     *
+     * @param string $github
+     *
+     * @return void
+     */
+    public function setGithub($github)
+    {
+        $this->github = $github;
     }
 
     /**

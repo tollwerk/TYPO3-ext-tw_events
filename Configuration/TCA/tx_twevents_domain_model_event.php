@@ -128,8 +128,12 @@ return [
                 'generatorOptions'  => [
                     'fields'               => ['name'],
                     'fieldSeparator'       => '-',
+                    'replacements'         => [
+                        '/' => '-'
+                    ],
                     'prefixParentPageSlug' => false,
                 ],
+                'prependSlash'      => false,
                 'fallbackCharacter' => '-',
                 'eval'              => 'uniqueInSite',
             ],
@@ -357,8 +361,14 @@ return [
                 'renderType'    => 'selectSingle',
                 'foreign_table' => 'tx_twevents_domain_model_organization',
                 'size'          => 1,
-                'minitems'      => 1,
+                'minitems'      => 0,
                 'maxitems'      => 1,
+                'items'         => [
+                    [
+                        'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.location.tba',
+                        0
+                    ]
+                ]
             ],
         ],
         'sponsors'             => [
@@ -430,17 +440,19 @@ return [
             'exclude' => false,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.coverage',
             'config'  => [
-                'type'          => 'inline',
-                'foreign_table' => 'tx_twevents_domain_model_coverage',
-                'foreign_field' => 'event',
-                'maxitems'      => 9999,
-                'appearance'    => [
+                'type'           => 'inline',
+                'foreign_table'  => 'tx_twevents_domain_model_coverage',
+                'foreign_field'  => 'event',
+                'foreign_sortby' => 'sorting',
+                'maxitems'       => 9999,
+                'appearance'     => [
                     'collapseAll'                     => 1,
                     'expandSingle'                    => 1,
                     'levelLinksPosition'              => 'top',
                     'showSynchronizationLink'         => 1,
                     'showPossibleLocalizationRecords' => 1,
-                    'showAllLocalizationLink'         => 1
+                    'showAllLocalizationLink'         => 1,
+                    'useSortable'                     => true
                 ],
             ],
         ],
@@ -461,7 +473,6 @@ return [
                         'addWhere'               => ' AND pages.doktype = '.\Tollwerk\TwEvents\Domain\Model\Event::DOKTYPE
                     ]
                 ],
-                'default'        => 0
             ]
         ],
     ],

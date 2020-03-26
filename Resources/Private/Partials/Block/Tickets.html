@@ -16,9 +16,12 @@
                     </div>
                 </f:if>
                 <f:if condition="{event.ticketUrl}">
-                    <f:link.external uri="{event.ticketUrl}" rel="noreferrer" target="_blank" class="Event__ticket-cta">
-                        <f:translate key="LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:event.cta.ticket"/>
-                    </f:link.external>
+                    <div class="Event__ticket-cta">
+                        <f:link.external uri="{event.ticketUrl}" rel="noreferrer" target="_blank">
+                            <f:translate
+                                key="LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:event.cta.ticket"/>
+                        </f:link.external>
+                    </div>
                 </f:if>
             </base:heading>
         </section>

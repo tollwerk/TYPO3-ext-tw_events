@@ -1,1 +1,14 @@
 <INCLUDE_TYPOSCRIPT: source="DIR:./BackendLayouts" extensions="tsconfig">
+
+TCEFORM.sys_file_reference.crop.config.cropVariants {
+    square {
+        title = Portrait
+        selectedRatio = NaN
+        allowedAspectRatios {
+            NaN {
+                title = square / 1:1
+                value = 1
+            }
+        }
+    }
+}

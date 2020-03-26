@@ -11,7 +11,15 @@
             <p>
                 <time class="Event__start dt-start" itemprop="startDate"
                       datetime="{event.eventStart -> f:format.date(format: 'c')}">
-                    <f:format.date date="{event.eventStart}" format="F jS, Y"/>
+                    <f:if condition="{event.eventStart -> f:format.date(format: 'z')} == {event.eventEnd -> f:format.date(format: 'z')}">
+                        <f:then>
+                            <f:format.date date="{event.eventStart}" format="F jS, Y"/>
+                        </f:then>
+                        <f:else>
+                            {event.eventStart -> f:format.date(format: 'F jS')}-{event.eventEnd ->
+                            f:format.date(format: 'jS, Y')}
+                        </f:else>
+                    </f:if>
                 </time>
                 <time class="Event__end dt-end" itemprop="endDate"
                       datetime="{event.eventEnd -> f:format.date(format: 'c')}">

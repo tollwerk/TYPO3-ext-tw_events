@@ -5,9 +5,11 @@
 
 --></f:comment>
 <html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
-    <ul class="SponsorList SponsorList--{type}">
+    <f:variable name="typeStr"
+                value="{f:translate(key: 'LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:event.sponsor.type.{type}')}"/>
+    <ul class="SponsorList SponsorList--{typeStr} OrganizationList">
         <f:for each="{sponsors}" as="sponsor">
-            <li class="SponsorList__item">
+            <li class="SponsorList__item OrganizationList__item">
                 <f:render partial="Sponsor/Single" arguments="{sponsor: sponsor, type: type}"/>
             </li>
         </f:for>

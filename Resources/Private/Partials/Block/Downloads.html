@@ -17,7 +17,7 @@
                 <ul class="Event__download-list">
                     <f:for each="{event.downloads}" as="download">
                         <li class="Event__download">
-                            <f:link.external uri="{download}" target="_blank">
+                            <f:link.typolink parameter="{download.originalResource.publicUrl}" target="_blank" absolute="1">
                                 <div class="Event__download-title">
                                     <f:if condition="{download.originalResource.originalFile.properties.title}">
                                         <f:then>{download.originalResource.originalFile.properties.title}</f:then>
@@ -30,7 +30,7 @@
                                         f:format.nl2br()}
                                     </div>
                                 </f:if>
-                            </f:link.external>
+                            </f:link.typolink>
                         </li>
                     </f:for>
                 </ul>

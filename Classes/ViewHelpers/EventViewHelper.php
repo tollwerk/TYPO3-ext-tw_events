@@ -37,6 +37,7 @@
 namespace Tollwerk\TwEvents\ViewHelpers;
 
 use Tollwerk\TwEvents\Domain\Model\Event;
+use Tollwerk\TwEvents\Domain\Model\Presentation;
 use Tollwerk\TwEvents\Domain\Repository\EventRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
@@ -57,10 +58,16 @@ class EventViewHelper extends AbstractViewHelper
      */
     public function render(): ?Event
     {
+        // If this is a presentation view: derive the event from there
+        if (isset($GLOBALS['TSFE']->presentation) && ($GLOBALS['TSFE']->presentation instanceof Presentation)) {
+            return $GLOBALS['TSFE']->presentation->getEvent();
+        }
+
         $event = null;
 
         // Try to extract the current event from the GET / POST parameters
-        $eventParameters = GeneralUtility::_GPmerged('tx_twevents_events');
+        $eventParameters = GeneralUtility::_GPmerged('tx_twevents_events') ?:
+            GeneralUtility::_GPmerged('tx_twevents_presentations');
         if (!empty($eventParameters['event'])) {
             $objectManager   = GeneralUtility::makeInstance(ObjectManager::class);
             $eventRepository = $objectManager->get(EventRepository::class);
@@ -74,6 +81,6 @@ class EventViewHelper extends AbstractViewHelper
             $event           = $eventRepository->findOneByPage($GLOBALS['TSFE']->id);
         }
 
-        return $event;
+        return $GLOBALS['TSFE']->event = $event;
     }
 }

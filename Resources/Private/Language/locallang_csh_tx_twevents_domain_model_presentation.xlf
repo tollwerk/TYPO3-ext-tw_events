@@ -31,6 +31,9 @@
             <trans-unit id="coverage.description">
                 <source>Coverage</source>
             </trans-unit>
+            <trans-unit id="note.description">
+                <source>Note</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

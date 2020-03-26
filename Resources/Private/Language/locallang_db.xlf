@@ -31,6 +31,9 @@
             <trans-unit id="tabs.descriptions">
                 <source>Descriptions</source>
             </trans-unit>
+            <trans-unit id="tabs.note">
+                <source>Notes</source>
+            </trans-unit>
             <trans-unit id="tabs.coverage">
                 <source>Coverage</source>
             </trans-unit>
@@ -202,6 +205,9 @@
             <trans-unit id="tx_twevents_domain_model_event.location">
                 <source>Location</source>
             </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_event.location.tba">
+                <source>--- TBA ---</source>
+            </trans-unit>
             <trans-unit id="tx_twevents_domain_model_event.sponsors">
                 <source>Sponsors</source>
             </trans-unit>
@@ -247,6 +253,9 @@
             <trans-unit id="tx_twevents_domain_model_person.twitter">
                 <source>Twitter</source>
             </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_person.github">
+                <source>Github</source>
+            </trans-unit>
             <trans-unit id="tx_twevents_domain_model_person.facebook">
                 <source>Facebook</source>
             </trans-unit>
@@ -280,6 +289,18 @@
             <trans-unit id="tx_twevents_domain_model_sponsor.type.supporter">
                 <source>Supporter</source>
             </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_note">
+                <source>Note</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_note.content">
+                <source>Content</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_note.author">
+                <source>Author (Person)</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_note.author_name">
+                <source>Author (Name)</source>
+            </trans-unit>
             <trans-unit id="tx_twevents_domain_model_coverage">
                 <source>Coverage</source>
             </trans-unit>
@@ -300,6 +321,9 @@
             </trans-unit>
             <trans-unit id="tx_twevents_domain_model_coverage.type.video">
                 <source>Video</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_coverage.type.talk">
+                <source>Talk documentation</source>
             </trans-unit>
             <trans-unit id="tx_twevents_domain_model_coverage.url">
                 <source>Url</source>
@@ -334,6 +358,12 @@
             <trans-unit id="tx_twevents_domain_model_presentation.type.break">
                 <source>Break</source>
             </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_presentation.type.workshop">
+                <source>Workshop</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_presentation.type.other">
+                <source>Other</source>
+            </trans-unit>
             <trans-unit id="tx_twevents_domain_model_presentation.summary">
                 <source>Summary</source>
             </trans-unit>
@@ -354,6 +384,15 @@
             </trans-unit>
             <trans-unit id="tx_twevents_domain_model_presentation.coverage">
                 <source>Coverage</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_presentation.note">
+                <source>Note</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_presentation.page">
+                <source>Presentation page</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_domain_model_presentation.video">
+                <source>Video recording</source>
             </trans-unit>
             <trans-unit id="tx_tw_events_events.name">
                 <source>Events</source>
@@ -391,11 +430,26 @@
             <trans-unit id="tx_tw_events_coverage.description">
                 <source>Coverage listing &amp; display</source>
             </trans-unit>
+            <trans-unit id="tx_tw_events_note.name">
+                <source>Note</source>
+            </trans-unit>
+            <trans-unit id="tx_tw_events_note.description">
+                <source>Note listing &amp; display</source>
+            </trans-unit>
             <trans-unit id="tx_tw_events_persons.name">
                 <source>Persons</source>
             </trans-unit>
             <trans-unit id="tx_tw_events_persons.description">
                 <source>Person listing &amp; display</source>
+            </trans-unit>
+            <trans-unit id="plugin.organizations.display">
+                <source>Display</source>
+            </trans-unit>
+            <trans-unit id="plugin.organizations.display.organization">
+                <source>Organization</source>
+            </trans-unit>
+            <trans-unit id="plugin.organizations.display.location">
+                <source>Location</source>
             </trans-unit>
             <trans-unit id="plugin.organizations.selection_mode">
                 <source>Selection mode</source>
@@ -472,6 +526,9 @@
             <trans-unit id="plugin.details.twitter">
                 <source>Twitter profile</source>
             </trans-unit>
+            <trans-unit id="plugin.details.github">
+                <source>Github profile</source>
+            </trans-unit>
             <trans-unit id="plugin.details.facebook">
                 <source>Facebook profile</source>
             </trans-unit>
@@ -480,6 +537,21 @@
             </trans-unit>
             <trans-unit id="plugin.details.phone">
                 <source>Phone number</source>
+            </trans-unit>
+            <trans-unit id="tt_content.slug">
+                <source>Slug</source>
+            </trans-unit>
+            <trans-unit id="tt_content.stages">
+                <source>Stages</source>
+            </trans-unit>
+            <trans-unit id="tt_content.stages.past">
+                <source>Past events</source>
+            </trans-unit>
+            <trans-unit id="tt_content.stages.running">
+                <source>Running events</source>
+            </trans-unit>
+            <trans-unit id="tt_content.stages.future">
+                <source>Future events</source>
             </trans-unit>
         </body>
     </file>

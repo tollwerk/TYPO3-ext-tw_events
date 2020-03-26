@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2019-01-06T13:57:17Z"
+          product-name="tw_events">
+        <header/>
+        <body>
+            <trans-unit id="content.description">
+                <source>Content</source>
+            </trans-unit>
+            <trans-unit id="author.description">
+                <source>Author</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

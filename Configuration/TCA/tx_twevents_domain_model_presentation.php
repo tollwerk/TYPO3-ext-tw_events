@@ -14,6 +14,7 @@ return [
         'languageField'            => 'sys_language_uid',
         'transOrigPointerField'    => 'l10n_parent',
         'transOrigDiffSourceField' => 'l10n_diffsource',
+        'default_sortby'           => 'start',
         'delete'                   => 'deleted',
         'enablecolumns'            => [
             'disabled' => 'hidden',
@@ -28,12 +29,15 @@ return [
         '1' => [
             'showitem' => '
         --palette--;;titletype,
-        slug,
+        --palette--;;slugpage,
         --palette--;;duration,
         performers, 
         summary,
         description,
+        --div--;LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tabs.note,
+        note,
         --div--;LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tabs.coverage,
+        video,
         coverage,
         --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,
         hidden,
@@ -43,6 +47,7 @@ return [
     ],
     'palettes'  => [
         'titletype' => ['showitem' => 'title, type, hashtag', 'canNotCollapse' => true],
+        'slugpage'  => ['showitem' => 'slug,page', 'canNotCollapse' => true],
         'duration'  => ['showitem' => 'start, duration', 'canNotCollapse' => true],
         'profiles'  => ['showitem' => 'website, twitter, facebook, email, phone', 'canNotCollapse' => true],
     ],
@@ -117,8 +122,12 @@ return [
                 'generatorOptions'  => [
                     'fields'               => ['title', 'start'],
                     'fieldSeparator'       => '-',
+                    'replacements'         => [
+                        '/' => '-'
+                    ],
                     'prefixParentPageSlug' => false,
                 ],
+                'prependSlash'      => false,
                 'fallbackCharacter' => '-',
                 'eval'              => 'uniqueInSite',
             ],
@@ -145,6 +154,14 @@ return [
                     [
                         'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_presentation.type.break',
                         Presentation::TYPE_BREAK
+                    ],
+                    [
+                        'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_presentation.type.workshop',
+                        Presentation::TYPE_WORKSHOP
+                    ],
+                    [
+                        'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_presentation.type.other',
+                        Presentation::TYPE_OTHER
                     ],
                 ],
                 'size'       => 1,
@@ -249,25 +266,83 @@ return [
             'exclude' => false,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_presentation.coverage',
             'config'  => [
-                'type'          => 'inline',
-                'foreign_table' => 'tx_twevents_domain_model_coverage',
-                'foreign_field' => 'presentation',
-                'maxitems'      => 9999,
-                'appearance'    => [
+                'type'           => 'inline',
+                'foreign_table'  => 'tx_twevents_domain_model_coverage',
+                'foreign_field'  => 'presentation',
+                'foreign_sortby' => 'sorting',
+                'maxitems'       => 9999,
+                'appearance'     => [
                     'collapseAll'                     => 0,
                     'levelLinksPosition'              => 'top',
                     'showSynchronizationLink'         => 1,
                     'showPossibleLocalizationRecords' => 1,
-                    'showAllLocalizationLink'         => 1
+                    'showAllLocalizationLink'         => 1,
+                    'useSortable'                     => true
                 ],
             ],
-
         ],
-
-        'event' => [
+        'note'        => [
+            'exclude' => false,
+            'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_presentation.note',
+            'config'  => [
+                'type'           => 'inline',
+                'foreign_table'  => 'tx_twevents_domain_model_note',
+                'foreign_field'  => 'presentation',
+                'foreign_sortby' => 'sorting',
+                'maxitems'       => 9999,
+                'appearance'     => [
+                    'collapseAll'                     => 0,
+                    'levelLinksPosition'              => 'top',
+                    'showSynchronizationLink'         => 1,
+                    'showPossibleLocalizationRecords' => 1,
+                    'showAllLocalizationLink'         => 1,
+                    'useSortable'                     => true
+                ],
+            ],
+        ],
+        'page'        => [
+            'exclude'   => true,
+            'l10n_mode' => 'prefixLangTitle',
+            'label'     => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_presentation.page',
+            'config'    => [
+                'type'           => 'group',
+                'internal_type'  => 'db',
+                'allowed'        => 'pages',
+                'size'           => 1,
+                'maxitems'       => 1,
+                'minitems'       => 0,
+                'suggestOptions' => [
+                    'default' => [
+                        'additionalSearchFields' => 'nav_title, alias, url',
+                        'addWhere'               => ' AND pages.doktype = '.\Tollwerk\TwEvents\Domain\Model\Event::DOKTYPE
+                    ]
+                ],
+                'default'        => 0
+            ]
+        ],
+        'event'       => [
             'config' => [
                 'type' => 'passthrough',
             ],
+        ],
+        'video'       => [
+            'label'  => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_presentation.video',
+            'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig('video', [
+                'appearance'       => [
+                    'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/Database.xlf:tt_content.asset_references.addFileReference'
+                ],
+                // custom configuration for displaying fields in the overlay/reference table
+                // behaves the same as the image field.
+                'overrideChildTca' => [
+                    'types' => [
+                        \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
+                            'showitem' => '
+                                --palette--;;videoOverlayPalette,
+                                --palette--;;filePalette'
+                        ],
+                    ],
+                ],
+            ], $GLOBALS['TYPO3_CONF_VARS']['SYS']['mediafile_ext'])
         ],
     ],
 ];

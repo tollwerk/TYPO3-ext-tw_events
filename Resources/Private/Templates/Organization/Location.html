@@ -1,0 +1,10 @@
+<f:comment><!--
+
+    @param Organization location     Organization
+
+--></f:comment>
+<html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
+    <f:if condition="{location}">
+        <f:render partial="Location/Single" arguments="{location: location}"/>
+    </f:if>
+</html>

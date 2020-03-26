@@ -5,6 +5,12 @@ CREATE TABLE pages
     tx_twevents_layout_future  varchar(255) DEFAULT '' NOT NULL,
 );
 
+CREATE TABLE tt_content
+(
+    tx_twevents_slug   varchar(255) DEFAULT ''  NOT NULL,
+    tx_twevents_stages int(11)      DEFAULT '7' NOT NULL,
+);
+
 #
 # Table structure for table 'tx_twevents_domain_model_organization'
 #
@@ -63,8 +69,7 @@ CREATE TABLE tx_twevents_domain_model_event
     presentations        int(11) unsigned DEFAULT '0' NOT NULL,
     coverage             int(11) unsigned DEFAULT '0' NOT NULL,
     categories           int(11) unsigned DEFAULT '0' NOT NULL,
-    page                 int(11) unsigned,
-    UNIQUE page (page),
+    page                 int(11) unsigned
 );
 
 #
@@ -82,6 +87,7 @@ CREATE TABLE tx_twevents_domain_model_person
     teaser      text,
     website     varchar(255)     DEFAULT ''  NOT NULL,
     twitter     varchar(255)     DEFAULT ''  NOT NULL,
+    github      varchar(255)     DEFAULT ''  NOT NULL,
     facebook    varchar(255)     DEFAULT ''  NOT NULL,
     email       varchar(255)     DEFAULT ''  NOT NULL,
     phone       varchar(255)     DEFAULT ''  NOT NULL,
@@ -114,6 +120,20 @@ CREATE TABLE tx_twevents_domain_model_coverage
     url          varchar(255)     DEFAULT ''  NOT NULL,
     author       int(11)          DEFAULT '0' NOT NULL,
     author_name  varchar(255)     DEFAULT ''  NOT NULL,
+    sorting      int(11)          DEFAULT '0' NOT NULL,
+);
+
+#
+# Table structure for table 'tx_twevents_domain_model_note'
+#
+CREATE TABLE tx_twevents_domain_model_note
+(
+    presentation int(11) unsigned DEFAULT '0' NOT NULL,
+
+    author       int(11)          DEFAULT '0' NOT NULL,
+    author_name  varchar(255)     DEFAULT ''  NOT NULL,
+    content      text,
+    sorting      int(11)          DEFAULT '0' NOT NULL,
 );
 
 #
@@ -134,7 +154,10 @@ CREATE TABLE tx_twevents_domain_model_presentation
     duration    int(11)          DEFAULT '0' NOT NULL,
     performers  int(11) unsigned DEFAULT '0' NOT NULL,
     coverage    int(11) unsigned DEFAULT '0' NOT NULL,
+    note        int(11) unsigned DEFAULT '0' NOT NULL,
     categories  int(11) unsigned DEFAULT '0' NOT NULL,
+    video       int(11) unsigned DEFAULT '0' NOT NULL,
+    page        int(11) unsigned,
 );
 
 #

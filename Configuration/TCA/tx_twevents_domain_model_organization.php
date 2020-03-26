@@ -183,7 +183,7 @@ return [
             'config'    => [
                 'type'                => 'select',
                 'foreign_table'       => 'static_countries',
-                'foreign_table_where' => 'static_countries.cn_eu_member = 1 ORDER BY static_countries.cn_short_en',
+                'foreign_table_where' => 'ORDER BY static_countries.cn_short_en',
                 'itemsProcFunc'       => 'SJBR\\StaticInfoTables\\Hook\\Backend\\Form\\FormDataProvider\\TcaSelectItemsProcessor->translateCountriesSelector',
                 'size'                => 1,
                 'minitems'            => 0,

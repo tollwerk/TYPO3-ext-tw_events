@@ -3,6 +3,7 @@
     @param Person[] persons         Persons
     @param string listId            List ID
     @param string personItemProp    Person itemprop value
+    @param array settings           Settings
 
 --></f:comment>
 <html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
@@ -12,7 +13,8 @@
                 <f:render partial="Person/Single" arguments="{
                         settings: settings,
                         person: person,
-                        itemprop: personItemProp
+                        itemprop: personItemProp,
+                        settings: settings
                     }"/>
             </li>
         </f:for>

@@ -5,7 +5,9 @@ use Tollwerk\TwEvents\Domain\Model\Coverage;
 return [
     'ctrl'      => [
         'title'                    => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_coverage',
-        'label'                    => 'type',
+        'label'                    => 'title',
+        'label_alt'                => 'type, author, author_name',
+        'label_alt_force'          => true,
         'tstamp'                   => 'tstamp',
         'crdate'                   => 'crdate',
         'cruser_id'                => 'cruser_id',
@@ -153,6 +155,10 @@ return [
                     [
                         'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_coverage.type.video',
                         Coverage::TYPE_VIDEO
+                    ],
+                    [
+                        'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_coverage.type.talk',
+                        Coverage::TYPE_TALK
                     ],
                 ],
                 'size'       => 1,

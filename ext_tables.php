@@ -65,6 +65,13 @@ call_user_func(
 
         ExtensionUtility::registerPlugin(
             'Tollwerk.TwEvents',
+            'Note',
+            'Note',
+            'EXT:tw_events/Resources/Public/Icons/Note.svg'
+        );
+
+        ExtensionUtility::registerPlugin(
+            'Tollwerk.TwEvents',
             'Persons',
             'Persons',
             'EXT:tw_events/Resources/Public/Icons/Person.svg'
@@ -106,6 +113,12 @@ call_user_func(
             'EXT:tw_events/Resources/Private/Language/locallang_csh_tx_twevents_domain_model_coverage.xlf'
         );
         ExtensionManagementUtility::allowTableOnStandardPages('tx_twevents_domain_model_coverage');
+
+        ExtensionManagementUtility::addLLrefForTCAdescr(
+            'tx_twevents_domain_model_note',
+            'EXT:tw_events/Resources/Private/Language/locallang_csh_tx_twevents_domain_model_note.xlf'
+        );
+        ExtensionManagementUtility::allowTableOnStandardPages('tx_twevents_domain_model_note');
 
         ExtensionManagementUtility::addLLrefForTCAdescr(
             'tx_twevents_domain_model_presentation',

@@ -1,71 +1,167 @@
 <f:comment><!--
 
+    Render a presentation
+
     @param Presentation presentation    Presentation
 
 --></f:comment>
 <html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers"
       data-namespace-typo3-fluid="true">
+    <section class="Presentation">
+        <base:heading content="{presentation.title}" class="Presentation__title">
+            <f:spaceless>
+                <div class="Presentation__subtitle">
+                    <f:render partial="Presentation/Common" section="Time" arguments="{presentation: presentation}"/>
+                    <f:if condition="{presentation.hashtag}">
+                        <f:for each="{presentation.hashtag}" as="hashtag">
+                            | #{hashtag}
+                        </f:for>
+                    </f:if>
+                    |
+                    <f:link.action pageUid="{settings.ids.event}" action="show" extensionName="TwEvents"
+                                   controller="Event"
+                                   pluginName="Events" arguments="{event: presentation.event}">{presentation.event.name}
+                    </f:link.action>
+                </div>
+            </f:spaceless>
+            <f:render section="Notes" arguments="{presentation: presentation}"/>
+            <f:render section="Videos" arguments="{presentation: presentation}"/>
+            <f:render section="Coverage" arguments="{presentation: presentation}"/>
+        </base:heading>
+    </section>
 
     <f:comment><!--
 
-        Render the presentation time
+        Render the presentation notes
 
         @param Presentation presentation    Presentation
 
     --></f:comment>
-    <f:section name="Time">
-        <f:spaceless>
-            <f:if condition="{presentation.start} && {presentation.end}">
-                <f:then>
-                    <time class="Presentation__start dt-start" itemprop="startDate"
-                          datetime="{presentation.start -> f:format.date(format: 'c')}">
-                        <f:format.date date="{presentation.start}" format="H:i"/>
-                    </time>
-                    <span>-</span>
-                    <time class="Presentation__end dt-end" itemprop="endDate"
-                          datetime="{presentation.end -> f:format.date(format: 'c')}">
-                        <f:format.date date="{presentation.end}" format="H:i"/>
-                    </time>
-                </f:then>
-                <f:else>
-                    <f:translate
-                        key="LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:schedule.presentation.tba"/>
-                </f:else>
-            </f:if>
-        </f:spaceless>
+    <f:section name="Notes">
+        <f:if condition="{presentation.note}">
+            <section class="Presentation__notes" id="notes">
+                <f:variable name="heading">
+                    <f:switch expression="{presentation.type}">
+                        <f:case value="0">
+                            <f:translate
+                                key="LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:presentation.notes.0"/>
+                        </f:case>
+                        <f:case value="1">
+                            <f:translate
+                                key="LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:presentation.notes.1"/>
+                        </f:case>
+                        <f:case value="2">
+                            <f:translate
+                                key="LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:presentation.notes.2"/>
+                        </f:case>
+                        <f:case value="3">
+                            <f:translate
+                                key="LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:presentation.notes.3"/>
+                        </f:case>
+                        <f:defaultCase>
+                            <f:translate
+                                key="LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:presentation.notes"/>
+                        </f:defaultCase>
+                    </f:switch>
+                </f:variable>
+                <base:heading content="{heading -> v:format.trim()}">
+                    <ul class="Presentation__notes-list">
+                        <f:for each="{presentation.note}" as="note">
+                            <li>
+                                <f:render section="Note" arguments="{note: note}"/>
+                            </li>
+                        </f:for>
+                    </ul>
+                </base:heading>
+            </section>
+        </f:if>
     </f:section>
 
     <f:comment><!--
 
-        Render the presentation item
+        Render a presentation note
+
+        @param Note note            Presentation note
+
+    --></f:comment>
+    <f:section name="Note">
+        <f:variable name="author">
+            <f:if condition="{note.author}">
+                <f:then>{note.author.givenName} {note.author.familyName}</f:then>
+                <f:else>{note.authorName}</f:else>
+            </f:if>
+        </f:variable>
+        <base:heading class="Presentation__note-author"
+                      content="{f:translate(key: 'LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:presentation.note.author', arguments: '{0: \'{author -> v:format.trim()}\'}')}">
+            <div class="Presentation__note-content">
+                <f:format.html>{note.content}</f:format.html>
+            </div>
+        </base:heading>
+    </f:section>
+
+    <f:comment><!--
+
+        Render the presentation coverage
 
         @param Presentation presentation    Presentation
 
     --></f:comment>
-    <f:section name="Item">
-        <f:if condition="{presentation.performers}">
-            <f:render partial="Presentation/Performers" arguments="{performers: presentation.performers}"/>
+    <f:section name="Videos">
+        <f:if condition="{presentation.video}">
+            <section class="Presentation__videos" id="videos">
+                <base:heading
+                    content="{f:translate(key: 'LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:presentation.videos')}">
+                    <ul class="Presentation__videos-list">
+                        <f:for each="{presentation.video}" as="video">
+                            <li>
+                                <f:media class="Presentation__videos-embed" file="{video}" alt="{video.title}"
+                                         width="{dimensions.width}" height="{dimensions.height}"
+                                         title="{video.title}"/>
+                            </li>
+                        </f:for>
+                    </ul>
+                </base:heading>
+            </section>
         </f:if>
-        <f:if condition="{presentation.summary} || {presentation.description}">
-            <f:then>
-                <details>
-                    <summary class="p-name"
-                             aria-label="{f:translate(key: 'LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:schedule.presentation.title')}"
-                             itemprop="name">{presentation.title}
-                    </summary>
-                    <div itemprop="description">
-                        <div class="Presentation__summary p-summary">
-                            <f:format.html>{presentation.summary}</f:format.html>
-                        </div>
-                        <div class="Presentation__description e-content">
-                            <f:format.html>{presentation.description}</f:format.html>
-                        </div>
-                    </div>
-                </details>
-            </f:then>
-            <f:else>
-                <div class="Presentation__name p-name" itemprop="name">{presentation.title}</div>
-            </f:else>
+    </f:section>
+
+    <f:comment><!--
+
+        Render the presentation coverage
+
+        @param Presentation presentation    Presentation
+
+    --></f:comment>
+    <f:section name="Coverage">
+        <f:if condition="{presentation.coverage}">
+            <section class="Presentation__coverage" id="coverage">
+                <base:heading
+                    content="{f:translate(key: 'LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:presentation.coverage')}">
+                    <ul class="Presentation__coverage-list">
+                        <f:for each="{presentation.coverage}" as="coverage">
+                            <li>
+                                <f:switch expression="{coverage.type}">
+                                    <f:case value="0">
+                                        <f:render partial="Coverage/Photos" arguments="{coverage: coverage}"/>
+                                    </f:case>
+                                    <f:case value="1">
+                                        <f:render partial="Coverage/Post" arguments="{coverage: coverage}"/>
+                                    </f:case>
+                                    <f:case value="2">
+                                        <f:render partial="Coverage/Tweet" arguments="{coverage: coverage}"/>
+                                    </f:case>
+                                    <f:case value="3">
+                                        <f:render partial="Coverage/Video" arguments="{coverage: coverage}"/>
+                                    </f:case>
+                                    <f:case value="4">
+                                        <f:render partial="Coverage/Talk" arguments="{coverage: coverage}"/>
+                                    </f:case>
+                                </f:switch>
+                            </li>
+                        </f:for>
+                    </ul>
+                </base:heading>
+            </section>
         </f:if>
     </f:section>
 </html>

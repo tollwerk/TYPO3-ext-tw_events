@@ -1,0 +1,35 @@
+<f:comment><!--
+
+    Render a notes list
+
+    @param Note[] notes         Notes
+    @param string labelId       Label element ID
+
+--></f:comment>
+<html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
+    <ul class="NotesList" {f:if(condition: labelId, then: ' aria-labelledby="{labelId}"')}>
+    <f:for each="{notes}" as="note">
+        <f:render section="Note" arguments="{note: note}"/>
+    </f:for>
+    </ul>
+
+    <f:comment><!--
+
+        Render a single note
+    
+        @param Note note            Note
+    
+    --></f:comment>
+    <f:section name="Note">
+        <li class="NotesList__item">
+            <f:link.action action="show" pluginName="Presentations" controller="Presentation"
+                           pageUid="{settings.events.details}" arguments="{event: note.presentation.event, presentation: note.presentation}"
+                           section="note-{note.uid}">
+                <f:if condition="{note.author}">
+                    <f:then>{note.author.givenName} {note.author.familyName}</f:then>
+                    <f:else>{note.authorName}</f:else>
+                </f:if>
+            </f:link.action>
+        </li>
+    </f:section>
+</html>

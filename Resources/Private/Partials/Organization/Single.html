@@ -21,7 +21,7 @@
             <div class="Organization__address p-adr h-adr" itemprop="address" itemscope
                  itemtype="http://schema.org/PostalAddress">
                 <div class="Organization__street-address p-street-address" itemprop="streetAddress">
-                    {organization.streetAddress}
+                    {organization.streetAddress -> f:format.nl2br()}
                 </div>
                 <div>
                     <span class="Organization__postal-code p-postal-code" itemprop="postalCode">{organization.postalCode}</span>

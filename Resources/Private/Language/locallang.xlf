@@ -13,6 +13,9 @@
             <trans-unit id="contact.twitter">
                 <source>Twitter</source>
             </trans-unit>
+            <trans-unit id="contact.github">
+                <source>Github</source>
+            </trans-unit>
             <trans-unit id="contact.facebook">
                 <source>Facebook</source>
             </trans-unit>
@@ -104,7 +107,7 @@
                 <source>supporters</source>
             </trans-unit>
             <trans-unit id="event.cta.ticket">
-                <source>Get your ticket</source>
+                <source>Register now</source>
             </trans-unit>
             <trans-unit id="event.intro.downloads">
                 <source>You might be interested in downloading any of these related resources:</source>
@@ -133,8 +136,17 @@
             <trans-unit id="event.coverage.type.3.by">
                 <source>Video by %s (%s)</source>
             </trans-unit>
+            <trans-unit id="event.coverage.type.4">
+                <source>Talk documentation (%s)</source>
+            </trans-unit>
+            <trans-unit id="event.coverage.type.4.by">
+                <source>Talk documentation by %s (%s)</source>
+            </trans-unit>
             <trans-unit id="event.livestream.at">
                 <source>Please visit our live stream at %s</source>
+            </trans-unit>
+            <trans-unit id="event.location.map">
+                <source>Open map view / route planning</source>
             </trans-unit>
             <trans-unit id="schedule.head.time">
                 <source>Time</source>
@@ -145,8 +157,53 @@
             <trans-unit id="schedule.presentation.title">
                 <source>Presentation title</source>
             </trans-unit>
+            <trans-unit id="schedule.presentation.documented">
+                <source>documentation available</source>
+            </trans-unit>
             <trans-unit id="schedule.presentation.tba">
                 <source>TBA</source>
+            </trans-unit>
+            <trans-unit id="schedule.presentation.details">
+                <source>Details</source>
+            </trans-unit>
+            <trans-unit id="schedule.presentation.notes">
+                <source>Notes</source>
+            </trans-unit>
+            <trans-unit id="schedule.presentation.coverage">
+                <source>Coverage</source>
+            </trans-unit>
+            <trans-unit id="schedule.presentation.performed">
+                <source>Performed by</source>
+            </trans-unit>
+            <trans-unit id="schedule.presentation.workshop">
+                <source>Workshop by</source>
+            </trans-unit>
+            <trans-unit id="presentation.notes">
+                <source>Notes</source>
+            </trans-unit>
+            <trans-unit id="presentation.notes.0">
+                <source>Talk notes</source>
+            </trans-unit>
+            <trans-unit id="presentation.notes.1">
+                <source>Session notes</source>
+            </trans-unit>
+            <trans-unit id="presentation.notes.2">
+                <source>Discussion panel notes</source>
+            </trans-unit>
+            <trans-unit id="presentation.notes.3">
+                <source>Break notes</source>
+            </trans-unit>
+            <trans-unit id="presentation.note.author">
+                <source>Author: %s</source>
+            </trans-unit>
+            <trans-unit id="presentation.coverage">
+                <source>Coverage</source>
+            </trans-unit>
+            <trans-unit id="presentation.videos">
+                <source>Video recordings</source>
+            </trans-unit>
+            <trans-unit id="date.format.schedule.caption">
+                <source>l, F jS, Y</source>
             </trans-unit>
         </body>
     </file>

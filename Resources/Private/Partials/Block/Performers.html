@@ -12,7 +12,7 @@
                 <base:heading
                     content="{f:translate(key: 'LLL:EXT:tw_events/Resources/Private/Language/locallang.xlf:event.heading.performers')}">
                     <f:render partial="Person/List" arguments="{
-                            settings: '{details: \'{teaser: 1}\'}',
+                            settings: '{details: \'{teaser: 1, website: 1, twitter: 1, facebook: 1}\'}',
                             persons: performers,
                             listId: 'performer-persons',
                             personItemProp: 'performer'

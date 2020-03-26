@@ -2,8 +2,9 @@
 
 namespace Tollwerk\TwEvents\Domain\Model;
 
-
 use Tollwerk\TwEvents\Domain\Model\Traits\SlugTrait;
+use Tollwerk\TwEvents\Utility\DatetimeUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /***
@@ -27,6 +28,8 @@ class Presentation extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     const TYPE_SESSION = 1;
     const TYPE_PANEL = 2;
     const TYPE_BREAK = 3;
+    const TYPE_WORKSHOP = 4;
+    const TYPE_OTHER = 99;
     /**
      * Title
      *
@@ -88,9 +91,34 @@ class Presentation extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Tollwerk\TwEvents\Domain\Model\Coverage>
      * @cascade remove
-     * @lazy
      */
     protected $coverage = null;
+    /**
+     * Video recordings
+     *
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
+     * @cascade remove
+     */
+    protected $video = null;
+    /**
+     * Note
+     *
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Tollwerk\TwEvents\Domain\Model\Note>
+     * @cascade remove
+     */
+    protected $note = null;
+    /**
+     * Event
+     *
+     * @var \Tollwerk\TwEvents\Domain\Model\Event
+     */
+    protected $event;
+    /**
+     * Presentation page
+     *
+     * @var \Tollwerk\TwEvents\Domain\Model\Page
+     */
+    protected $page = null;
 
     /**
      * __construct
@@ -114,6 +142,8 @@ class Presentation extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->performers = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->coverage   = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $this->video      = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $this->note       = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
     }
 
     /**
@@ -209,41 +239,41 @@ class Presentation extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $hashtag
      */
-    public function getHashtag(): string
+    public function getHashtag(): array
     {
-        return $this->hashtag;
+        return GeneralUtility::trimExplode(',', $this->hashtag, true);
     }
 
     /**
      * Sets the hashtag
      *
-     * @param string $hashtag
+     * @param array $hashtag
      *
      * @return void
      */
-    public function setHashtag($hashtag): void
+    public function setHashtag(array $hashtag): void
     {
-        $this->hashtag = $hashtag;
+        $this->hashtag = implode(',', $hashtag);
     }
 
     /**
      * Returns the start
      *
-     * @return \DateTime $start
+     * @return \DateTimeInterface $start
      */
-    public function getStart(): ?\DateTimeInterface
+    public function getStart(): ?\DateTime
     {
-        return $this->start;
+        return DatetimeUtility::fixTimezone($this->start);
     }
 
     /**
      * Sets the start
      *
-     * @param \DateTime $start
+     * @param \DateTimeInterface $start
      *
      * @return void
      */
-    public function setStart(\DateTime $start): void
+    public function setStart(\DateTimeInterface $start): void
     {
         $this->start = $start;
     }
@@ -273,15 +303,14 @@ class Presentation extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Return the end time
      *
-     * @return \DateTimeImmutable End time
+     * @return \DateTimeInterface End time
      * @throws \Exception
      */
-    public function getEnd(): ?\DateTimeImmutable
+    public function getEnd(): ?\DateTimeInterface
     {
-        if ($this->start instanceof \DateTimeInterface) {
-            $endTimstamp = $this->start->format('U') + $this->duration * 60;
-
-            return new \DateTimeImmutable('@'.$endTimstamp);
+        $start = $this->getStart();
+        if ($start instanceof \DateTimeInterface) {
+            return (clone $start)->modify("+{$this->duration} minutes");
         }
 
         return null;
@@ -377,5 +406,137 @@ class Presentation extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setCoverage(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $coverage): void
     {
         $this->coverage = $coverage;
+    }
+
+    /**
+     * Adds a Video
+     *
+     * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $video
+     *
+     * @return void
+     */
+    public function addVideo(\TYPO3\CMS\Extbase\Domain\Model\FileReference $video): void
+    {
+        $this->video->attach($video);
+    }
+
+    /**
+     * Removes a Video
+     *
+     * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $videoToRemove The Video to be removed
+     *
+     * @return void
+     */
+    public function removeVideo(\TYPO3\CMS\Extbase\Domain\Model\FileReference $videoToRemove): void
+    {
+        $this->video->detach($videoToRemove);
+    }
+
+    /**
+     * Returns the video
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference> $video
+     */
+    public function getVideo(): ObjectStorage
+    {
+        return $this->video;
+    }
+
+    /**
+     * Sets the video
+     *
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference> $video
+     *
+     * @return void
+     */
+    public function setVideo(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $video): void
+    {
+        $this->video = $video;
+    }
+
+    /**
+     * Adds a Note
+     *
+     * @param \Tollwerk\TwEvents\Domain\Model\Note $note
+     *
+     * @return void
+     */
+    public function addNote(\Tollwerk\TwEvents\Domain\Model\Note $note): void
+    {
+        $this->note->attach($note);
+    }
+
+    /**
+     * Removes a Note
+     *
+     * @param \Tollwerk\TwEvents\Domain\Model\Note $noteToRemove The Note to be removed
+     *
+     * @return void
+     */
+    public function removeNote(\Tollwerk\TwEvents\Domain\Model\Note $noteToRemove): void
+    {
+        $this->note->detach($noteToRemove);
+    }
+
+    /**
+     * Returns the note
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Tollwerk\TwEvents\Domain\Model\Note> $note
+     */
+    public function getNote(): ObjectStorage
+    {
+        return $this->note;
+    }
+
+    /**
+     * Sets the note
+     *
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Tollwerk\TwEvents\Domain\Model\Note> $note
+     *
+     * @return void
+     */
+    public function setNote(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $note): void
+    {
+        $this->note = $note;
+    }
+
+    /**
+     * Return whether this presentation has documentation available
+     *
+     * @return bool Documentation available
+     */
+    public function isDocumented(): bool
+    {
+        return $this->note->count() || $this->coverage->count();
+    }
+
+    /**
+     * Return the presentation event
+     *
+     * @return Event Event
+     */
+    public function getEvent(): Event
+    {
+        return $this->event;
+    }
+
+    /**
+     * Return the alternative presentation page
+     *
+     * @return \Tollwerk\TwEvents\Domain\Model\Page Alternative presentation page
+     */
+    public function getPage(): ?Page
+    {
+        return $this->page;
+    }
+
+    /**
+     * Set the alternative presentation page
+     *
+     * @param \Tollwerk\TwEvents\Domain\Model\Page $page Alternative presentation page
+     */
+    public function setPage(Page $page): void
+    {
+        $this->page = $page;
     }
 }
