@@ -54,6 +54,24 @@ class Event extends AbstractEntity
      */
     const STAGE_UNKNOWN = 'unknown';
     /**
+     * Attendance modes
+     *
+     * @var int
+     */
+    const ATTENDANCE_OFFLINE = 0;
+    const ATTENDANCE_ONLINE = 1;
+    const ATTENDANCE_MIXED = 2;
+    /**
+     * Event status
+     *
+     * @var int
+     */
+    const STATUS_SCHEDULED = 0;
+    const STATUS_RESCHEDULED = 1;
+    const STATUS_POSTPONED = 2;
+    const STATUS_MOVEDONLINE = 3;
+    const STATUS_CANCELLED = 4;
+    /**
      * Presentation page
      *
      * @var \Tollwerk\TwEvents\Domain\Model\Page
@@ -63,35 +81,47 @@ class Event extends AbstractEntity
      * Name
      *
      * @var string
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $name = '';
     /**
      * Event Start
      *
      * @var \DateTime
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $eventStart = null;
     /**
      * Event End
      *
      * @var \DateTime
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $eventEnd = null;
+    /**
+     * Event status
+     *
+     * @var int
+     */
+    protected $status = self::STATUS_SCHEDULED;
+    /**
+     * Attendance mode
+     *
+     * @var int
+     */
+    protected $attendanceMode = self::ATTENDANCE_OFFLINE;
     /**
      * description
      *
      * @var string
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $description = '';
     /**
      * Summary
      *
      * @var string
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $summary = '';
     /**
@@ -112,6 +142,12 @@ class Event extends AbstractEntity
      * @var string
      */
     protected $ticketUrl = '';
+    /**
+     * Website URL
+     *
+     * @var string
+     */
+    protected $website = '';
     /**
      * Facebook URL
      *
@@ -146,21 +182,21 @@ class Event extends AbstractEntity
      * Livestream Start
      *
      * @var \DateTime
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $livestreamStart = null;
     /**
      * Livestream End
      *
      * @var \DateTime
-     * @validate NotEmpty
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $livestreamEnd = null;
     /**
      * Downloads
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
-     * @cascade remove
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade remove
      */
     protected $downloads = null;
     /**
@@ -185,15 +221,15 @@ class Event extends AbstractEntity
      * Presentations
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Tollwerk\TwEvents\Domain\Model\Presentation>
-     * @cascade remove
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade remove
      */
     protected $presentations = null;
     /**
      * Coverage
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Tollwerk\TwEvents\Domain\Model\Coverage>
-     * @cascade remove
-     * @lazy
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade remove
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $coverage = null;
 
@@ -287,6 +323,46 @@ class Event extends AbstractEntity
     public function setEventEnd(\DateTime $eventEnd): void
     {
         $this->eventEnd = $eventEnd;
+    }
+
+    /**
+     * Return the status
+     *
+     * @return int status
+     */
+    public function getStatus(): int
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set the status
+     *
+     * @param int $status Status
+     */
+    public function setStatus(int $status): void
+    {
+        $this->status = $status;
+    }
+
+    /**
+     * Return the attendance mode
+     *
+     * @return int Attendance mode
+     */
+    public function getAttendanceMode(): int
+    {
+        return $this->attendanceMode;
+    }
+
+    /**
+     * Set the attendance mode
+     *
+     * @param int $attendanceMode Attendance mode
+     */
+    public function setAttendanceMode(int $attendanceMode): void
+    {
+        $this->attendanceMode = $attendanceMode;
     }
 
     /**
@@ -397,6 +473,28 @@ class Event extends AbstractEntity
     public function setTicketUrl($ticketUrl)
     {
         $this->ticketUrl = $ticketUrl;
+    }
+
+    /**
+     * Returns the website
+     *
+     * @return string $website
+     */
+    public function getWebsite()
+    {
+        return $this->website;
+    }
+
+    /**
+     * Sets the website
+     *
+     * @param string $website
+     *
+     * @return void
+     */
+    public function setWebsite($website)
+    {
+        $this->website = $website;
     }
 
     /**

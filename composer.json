@@ -8,12 +8,12 @@
       "email": "joschi@tollwerk.de"
     }
   ],
-  "version": "0.1.0",
+  "version": "1.0.0",
   "require": {
-    "typo3/cms-core": "^9.5",
-    "tollwerk/tw-base": "dev-develop",
-    "fluidtypo3/vhs": "^5.1",
-    "sjbr/static-info-tables": "^6.7"
+    "typo3/cms-core": "^10.3",
+    "tollwerk/tw-base": "^4.0",
+    "fluidtypo3/vhs": "^6.0",
+    "sjbr/static-info-tables": "^6.8"
   },
   "autoload": {
     "psr-4": {
@@ -28,5 +28,12 @@
   "replace": {
     "tw_events": "self.version",
     "typo3-ter/tw-events": "self.version"
-  }
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "git@github.com:garbast/static_info_tables.git",
+      "reference": "master"
+    }
+  ]
 }

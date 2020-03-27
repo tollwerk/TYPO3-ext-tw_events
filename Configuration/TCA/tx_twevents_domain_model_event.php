@@ -26,17 +26,18 @@ return [
         '1' => [
             'showitem' => '
         --palette--;;namedate,
+        --palette--;;statusattendance,
         --palette--;;slugpage,
         location,
-        organizers, 
-        sponsors, 
+        organizers,
+        sponsors,
         --palette--;;urls,
         --palette--;;livestream,
         --div--;LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tabs.descriptions,
         summary,
         description,
         location_description,
-        ticket_description, 
+        ticket_description,
         --div--;LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tabs.schedule,
         presentations,
         --div--;LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tabs.coverage,
@@ -49,10 +50,13 @@ return [
         ],
     ],
     'palettes'  => [
-        'namedate'   => ['showitem' => 'name, event_start, event_end', 'canNotCollapse' => true],
-        'slugpage'   => ['showitem' => 'slug,page', 'canNotCollapse' => true],
-        'urls'       => ['showitem' => 'ticket_url, facebook, colloq, hashtag', 'canNotCollapse' => true],
-        'livestream' => [
+        'namedate'         => ['showitem' => 'name, event_start, event_end', 'canNotCollapse' => true],
+        'slugpage'         => ['showitem' => 'slug,page', 'canNotCollapse' => true],
+        'statusattendance' => ['showitem' => 'status,attendance_mode', 'canNotCollapse' => true],
+        'urls'             => ['showitem'       => 'website, ticket_url, facebook, colloq, hashtag',
+                               'canNotCollapse' => true
+        ],
+        'livestream'       => [
             'showitem'       => 'livestream_embed, livestream_url, livestream_start, livestream_end',
             'canNotCollapse' => true
         ],
@@ -162,6 +166,64 @@ return [
                 'default'    => null,
             ],
         ],
+        'attendance_mode'      => [
+            'exclude' => false,
+            'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.attendance_mode',
+            'config'  => [
+                'type'       => 'select',
+                'renderType' => 'selectSingle',
+                'size'       => 1,
+                'minitems'   => 0,
+                'maxitems'   => 1,
+                'items'      => [
+                    [
+                        'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.attendance_mode.offline',
+                        0
+                    ],
+                    [
+                        'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.attendance_mode.online',
+                        1
+                    ],
+                    [
+                        'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.attendance_mode.mixed',
+                        2
+                    ],
+                ]
+            ],
+        ],
+        'status'               => [
+            'exclude' => false,
+            'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.status',
+            'config'  => [
+                'type'       => 'select',
+                'renderType' => 'selectSingle',
+                'size'       => 1,
+                'minitems'   => 0,
+                'maxitems'   => 1,
+                'items'      => [
+                    [
+                        'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.status.scheduled',
+                        0
+                    ],
+                    [
+                        'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.status.rescheduled',
+                        1
+                    ],
+                    [
+                        'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.status.postponed',
+                        2
+                    ],
+                    [
+                        'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.status.movedOnline',
+                        3
+                    ],
+                    [
+                        'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.status.cancelled',
+                        4
+                    ],
+                ]
+            ],
+        ],
         'summary'              => [
             'exclude' => false,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.summary',
@@ -228,6 +290,15 @@ return [
         'ticket_url'           => [
             'exclude' => false,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.ticket_url',
+            'config'  => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim'
+            ],
+        ],
+        'website'              => [
+            'exclude' => false,
+            'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.website',
             'config'  => [
                 'type' => 'input',
                 'size' => 30,
