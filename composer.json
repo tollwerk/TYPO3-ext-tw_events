@@ -8,7 +8,6 @@
       "email": "joschi@tollwerk.de"
     }
   ],
-  "version": "1.0.0",
   "require": {
     "typo3/cms-core": "^10.3",
     "tollwerk/tw-base": "^4.0",
