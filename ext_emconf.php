@@ -25,7 +25,7 @@ $EM_CONF[$_EXTKEY] = [
         'depends'   => [
             'typo3'              => '10.3.0-10.99.99',
             'static_info_tables' => '6.8.0-',
-            'tw_base'            => '3.2.0-',
+            'tw_base'            => '4.0.0-',
             'vhs'                => '6.0.0-',
         ],
         'conflicts' => [],
