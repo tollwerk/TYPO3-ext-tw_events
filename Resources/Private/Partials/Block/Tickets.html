@@ -15,7 +15,7 @@
                         <f:format.html>{event.ticketDescription}</f:format.html>
                     </div>
                 </f:if>
-                <f:if condition="{event.ticketUrl}">
+                <f:if condition="{event.offersTickets}">
                     <div class="Event__ticket-cta">
                         <f:link.external uri="{event.ticketUrl}" rel="noreferrer" target="_blank">
                             <f:translate

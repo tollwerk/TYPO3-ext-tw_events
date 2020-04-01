@@ -541,6 +541,9 @@
             <trans-unit id="plugin.events.selection_mode.date.future">
                 <source>Future events</source>
             </trans-unit>
+            <trans-unit id="plugin.events.selection_mode.date.cancelled">
+                <source>Cancelled events</source>
+            </trans-unit>
             <trans-unit id="plugin.event.block">
                 <source>Render detail block</source>
             </trans-unit>

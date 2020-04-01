@@ -72,9 +72,18 @@ class EventController extends ActionController
             $events           = count($eventIdentifiers) ?
                 $this->eventRepository->findByIdentifiers($eventIdentifiers) : [];
         } elseif ($this->settings['selection_mode'] == self::MODE_DATE) {
-            $today  = new \DateTimeImmutable('today');
-            $events = ($this->settings['date'] == 'past') ?
-                $this->eventRepository->findPastEvents($today) : $this->eventRepository->findFutureEvents($today);
+            $today = new \DateTimeImmutable('today');
+            switch ($this->settings['date']) {
+                case 'future':
+                    $events = $this->eventRepository->findFutureEvents($today);
+                    break;
+                case 'past':
+                    $events = $this->eventRepository->findPastEvents($today);
+                    break;
+                case 'cancelled':
+                    $events = $this->eventRepository->findCancelledEvents($today);
+                    break;
+            }
         } else {
             $categoryIdentifiers = GeneralUtility::trimExplode(',', $this->settings['categories'], true);
             $events              = count($categoryIdentifiers) ?

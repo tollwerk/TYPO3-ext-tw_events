@@ -995,4 +995,18 @@ class Event extends AbstractEntity
     {
         $this->page = $page;
     }
+
+    /**
+     * Return whether this event offers tickets
+     *
+     * @return bool Offers tickets
+     */
+    public function getOffersTickets(): bool
+    {
+        return strlen($this->getTicketUrl()) && in_array($this->getStatus(), [
+                self::STATUS_SCHEDULED,
+                self::STATUS_RESCHEDULED,
+                self::STATUS_MOVEDONLINE,
+            ]);
+    }
 }

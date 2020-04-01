@@ -38,7 +38,7 @@
                     </th>
                 </tr>
             </thead>
-            <f:for each="{v:iterator.sort(subject: presentations, sortBy: 'start')}" as="presentation">
+            <f:for each="{presentations -> v:iterator.sort(sortBy: 'start')}" as="presentation">
                 <tr class="Presentation{f:if(condition: presentation.documented, then: ' Presentation--has-documentation')} h-event"
                     itemprop="subEvent" itemscope itemtype="https://schema.org/Event"
                     itemref="location" id="{presentation.slug}">

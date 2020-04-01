@@ -111,6 +111,12 @@
                                         </numIndex>
                                         <numIndex index="1">future</numIndex>
                                     </numIndex>
+                                    <numIndex index="3" type="array">
+                                        <numIndex index="0">
+                                            LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:plugin.events.selection_mode.date.cancelled
+                                        </numIndex>
+                                        <numIndex index="1">cancelled</numIndex>
+                                    </numIndex>
                                 </items>
                             </config>
                         </TCEforms>

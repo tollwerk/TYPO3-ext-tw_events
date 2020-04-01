@@ -39,6 +39,7 @@ namespace Tollwerk\TwEvents\Domain\Repository;
 use DateTimeInterface;
 use Tollwerk\TwBase\Domain\Repository\Traits\DebuggableRepositoryTrait;
 use Tollwerk\TwBase\Domain\Repository\Traits\StoragePidsIgnoringRepositoryTrait;
+use Tollwerk\TwEvents\Domain\Model\Event;
 use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
@@ -78,7 +79,34 @@ class EventRepository extends AbstractRepository
     public function findFutureEvents(DateTimeInterface $date): QueryResultInterface
     {
         $query = $this->createQuery();
-        $query->matching($query->greaterThanOrEqual('eventStart', $date->format('Y-m-d H:i:s')));
+        $query->matching(
+            $query->logicalAnd(
+                $query->greaterThanOrEqual('eventStart', $date->format('Y-m-d H:i:s')),
+                $query->lessThan('status', Event::STATUS_CANCELLED)
+            )
+        );
+        $query->setOrderings(['eventStart' => QueryInterface::ORDER_ASCENDING]);
+
+        return $query->execute();
+    }
+
+    /**
+     * Return all dates after a particular date
+     *
+     * @param DateTimeInterface $date Date
+     *
+     * @return array|QueryResultInterface
+     * @throws InvalidQueryException
+     */
+    public function findCancelledEvents(DateTimeInterface $date): QueryResultInterface
+    {
+        $query = $this->createQuery();
+        $query->matching(
+            $query->logicalAnd(
+                $query->greaterThanOrEqual('eventStart', $date->format('Y-m-d H:i:s')),
+                $query->equals('status', Event::STATUS_CANCELLED)
+            )
+        );
         $query->setOrderings(['eventStart' => QueryInterface::ORDER_ASCENDING]);
 
         return $query->execute();
