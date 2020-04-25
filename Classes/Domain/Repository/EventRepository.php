@@ -72,26 +72,26 @@ class EventRepository extends AbstractRepository
      * Return all dates after a particular date
      *
      * @param DateTimeInterface $date Date
+     * @param bool $excludeCancelled  Exclude cancelled events
      *
      * @return array|QueryResultInterface
      * @throws InvalidQueryException
      */
-    public function findFutureEvents(DateTimeInterface $date): QueryResultInterface
+    public function findFutureEvents(DateTimeInterface $date, bool $excludeCancelled = true): QueryResultInterface
     {
-        $query = $this->createQuery();
-        $query->matching(
-            $query->logicalAnd(
-                $query->greaterThanOrEqual('eventStart', $date->format('Y-m-d H:i:s')),
-                $query->lessThan('status', Event::STATUS_CANCELLED)
-            )
-        );
+        $query       = $this->createQuery();
+        $constraints = [$query->greaterThanOrEqual('eventStart', $date->format('Y-m-d H:i:s'))];
+        if ($excludeCancelled) {
+            $constraints[] = $query->lessThan('status', Event::STATUS_CANCELLED);
+        }
+        $query->matching($query->logicalAnd($constraints));
         $query->setOrderings(['eventStart' => QueryInterface::ORDER_ASCENDING]);
 
         return $query->execute();
     }
 
     /**
-     * Return all dates after a particular date
+     * Return all cancelled dates after a particular date
      *
      * @param DateTimeInterface $date Date
      *
