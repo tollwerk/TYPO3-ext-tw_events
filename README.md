@@ -24,6 +24,6 @@ Credits
 License
 -------
 
-Copyright © 2019 [Joschi Kuphal / tollwerk GmbH][author-url] / info@tollwerk.de. Licensed under the terms of the  [GPL v2](LICENSE.txt) license.
+Copyright © 2020 [Joschi Kuphal / tollwerk GmbH][author-url] / info@tollwerk.de. Licensed under the terms of the  [GPL v2](LICENSE.txt) license.
 
 [author-url]: https://tollwerk.de

@@ -7,14 +7,14 @@
  * @package    Tollwerk\TwEvents
  * @subpackage Tollwerk\TwEvents\Domain\Repository
  * @author     Joschi Kuphal <joschi@kuphal.net> / @jkphl
- * @copyright  Copyright © 2019 Joschi Kuphal <joschi@kuphal.net> / @jkphl
+ * @copyright  Copyright © 2020 Joschi Kuphal <joschi@kuphal.net> / @jkphl
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
 /***********************************************************************************
  *  The MIT License (MIT)
  *
- *  Copyright © 2019 Joschi Kuphal <joschi@kuphal.net>
+ *  Copyright © 2020 Joschi Kuphal <joschi@kuphal.net>
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy of
  *  this software and associated documentation files (the "Software"), to deal in
@@ -45,7 +45,7 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  *
- *  (c) 2019
+ *  © 2020
  *
  ***/
 
