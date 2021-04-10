@@ -34,5 +34,10 @@
       "url": "git@github.com:garbast/static_info_tables.git",
       "reference": "master"
     }
-  ]
+  ],
+  "extra": {
+    "typo3/cms": {
+      "extension-key": "tw_events"
+    }
+  }
 }
