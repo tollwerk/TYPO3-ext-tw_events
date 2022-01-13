@@ -100,7 +100,11 @@ return [
                 ],
             ],
         ],
-
+        'categories'           => [
+            'config' => [
+                'type' => 'category'
+            ]
+        ],
         'name'           => [
             'exclude'   => false,
             'l10n_mode' => 'exclude',

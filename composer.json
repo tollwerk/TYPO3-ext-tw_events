@@ -9,10 +9,8 @@
     }
   ],
   "require": {
-    "typo3/cms-core": "^9 || ^10",
-    "tollwerk/tw-base": "^4.0",
-    "fluidtypo3/vhs": "^6.0",
-    "sjbr/static-info-tables": "^6.7"
+    "typo3/cms-core": "^11",
+    "sjbr/static-info-tables": "^6.9"
   },
   "autoload": {
     "psr-4": {

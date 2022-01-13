@@ -39,7 +39,6 @@ namespace Tollwerk\TwEvents\ViewHelpers;
 use Tollwerk\TwEvents\Domain\Model\Presentation;
 use Tollwerk\TwEvents\Domain\Repository\PresentationRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
@@ -50,6 +49,25 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  */
 class PresentationViewHelper extends AbstractViewHelper
 {
+    /**
+     * PresentationRepository
+     *
+     * @var PresentationRepository PresentationRepository
+     */
+    protected $presentationRepository = null;
+
+    /**
+     * Inject the Presentation Repository
+     *
+     * @param PresentationRepository $presentationRepository Presentation Repository
+     *
+     * @return void
+     */
+    public function injectPresentationRepository(PresentationRepository $presentationRepository)
+    {
+        $this->presentationRepository = $presentationRepository;
+    }
+
     /**
      * Find and return the current presentation
      *
@@ -62,16 +80,12 @@ class PresentationViewHelper extends AbstractViewHelper
         // Try to extract the current presentation from the GET / POST parameters
         $presentationParameters = GeneralUtility::_GPmerged('tx_twevents_presentations');
         if (!empty($presentationParameters['presentation'])) {
-            $objectManager          = GeneralUtility::makeInstance(ObjectManager::class);
-            $presentationRepository = $objectManager->get(PresentationRepository::class);
-            $presentation           = $presentationRepository->findByIdentifier($presentationParameters['presentation']);
+            $presentation           = $this->presentationRepository->findByIdentifier($presentationParameters['presentation']);
         }
 
         // Else: Try to find the current presentation via its presentation page
         if ($presentation === null) {
-            $objectManager          = GeneralUtility::makeInstance(ObjectManager::class);
-            $presentationRepository = $objectManager->get(PresentationRepository::class);
-            $presentation           = $presentationRepository->findOneByPage($GLOBALS['TSFE']->id);
+            $presentation           = $this->presentationRepository->findOneByPage($GLOBALS['TSFE']->id);
         }
 
         return $GLOBALS['TSFE']->presentation = $presentation;

@@ -114,7 +114,11 @@ return [
                 ],
             ],
         ],
-
+        'categories'           => [
+            'config' => [
+                'type' => 'category'
+            ]
+        ],
         'name'                 => [
             'exclude' => false,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.name',

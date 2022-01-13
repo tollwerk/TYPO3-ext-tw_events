@@ -92,6 +92,11 @@ return [
                 ],
             ],
         ],
+        'categories'           => [
+            'config' => [
+                'type' => 'category'
+            ]
+        ],
 
         'given_name'  => [
             'exclude'   => false,

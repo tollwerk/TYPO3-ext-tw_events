@@ -31,7 +31,7 @@ return [
         --palette--;;titletype,
         --palette--;;slugpage,
         --palette--;;duration,
-        performers, 
+        performers,
         summary,
         description,
         --div--;LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tabs.note,
@@ -104,7 +104,11 @@ return [
                 ],
             ],
         ],
-
+        'categories'           => [
+            'config' => [
+                'type' => 'category'
+            ]
+        ],
         'title'       => [
             'exclude' => false,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_presentation.title',

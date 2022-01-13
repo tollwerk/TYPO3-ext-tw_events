@@ -40,7 +40,6 @@ use Tollwerk\TwEvents\Domain\Model\Event;
 use Tollwerk\TwEvents\Domain\Model\Presentation;
 use Tollwerk\TwEvents\Domain\Repository\EventRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
@@ -51,6 +50,25 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  */
 class EventViewHelper extends AbstractViewHelper
 {
+    /**
+     * EventRepository
+     *
+     * @var EventRepository EventRepository
+     */
+    protected $eventRepository = null;
+
+    /**
+     * Inject the Event repository
+     *
+     * @param EventRepository $eventRepository Event repository
+     *
+     * @return void
+     */
+    public function injectEventRepository(EventRepository $eventRepository)
+    {
+        $this->eventRepository = $eventRepository;
+    }
+
     /**
      * Find and return the current event
      *
@@ -69,16 +87,12 @@ class EventViewHelper extends AbstractViewHelper
         $eventParameters = GeneralUtility::_GPmerged('tx_twevents_events') ?:
             GeneralUtility::_GPmerged('tx_twevents_presentations');
         if (!empty($eventParameters['event'])) {
-            $objectManager   = GeneralUtility::makeInstance(ObjectManager::class);
-            $eventRepository = $objectManager->get(EventRepository::class);
-            $event           = $eventRepository->findByIdentifier($eventParameters['event']);
+            $event           = $this->eventRepository->findByIdentifier($eventParameters['event']);
         }
 
         // Else: Try to find the current event via its presentation page
         if ($event === null) {
-            $objectManager   = GeneralUtility::makeInstance(ObjectManager::class);
-            $eventRepository = $objectManager->get(EventRepository::class);
-            $event           = $eventRepository->findOneByPage($GLOBALS['TSFE']->id);
+            $event           = $this->eventRepository->findOneByPage($GLOBALS['TSFE']->id);
         }
 
         return $GLOBALS['TSFE']->event = $event;
