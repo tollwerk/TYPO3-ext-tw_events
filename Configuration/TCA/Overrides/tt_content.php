@@ -5,6 +5,7 @@ if (!defined('TYPO3_MODE')) {
     die('Access denied.');
 }
 
+
 // Add new columns
 $newColumnsTtContent = [
     'tx_twevents_slug'   => [
