@@ -22,7 +22,7 @@
     }
   },
   "replace": {
-    "typo3-ter/tw-events": "self.version"
+    "typo3-ter/tw_events": "self.version"
   },
   "repositories": [
     {
