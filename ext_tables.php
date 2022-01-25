@@ -7,6 +7,18 @@ defined('TYPO3_MODE') || die('Access denied.');
 
 call_user_func(
     function() {
+
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile(
+            'tw_events',
+            'Configuration/TypoScript/Static',
+            'Events'
+        );
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::registerPageTSConfigFile(
+            'tw_events',
+            'Configuration/TypoScript/Main/TSconfig/page.tsconfig',
+            'Events: Page Settings'
+        );
+
         ExtensionUtility::registerPlugin(
             'Tollwerk.TwEvents',
             'Events',
@@ -19,7 +31,7 @@ call_user_func(
             'FILE:EXT:tw_events/Configuration/FlexForms/Events.xml'
         );
         ExtensionUtility::registerPlugin(
-            'Tollwerk.TwEvents',
+            'TwEvents',
             'Event',
             'Event detail',
             'EXT:tw_events/Resources/Public/Icons/Event.svg'
@@ -31,7 +43,7 @@ call_user_func(
         );
 
         ExtensionUtility::registerPlugin(
-            'Tollwerk.TwEvents',
+            'TwEvents',
             'Organizations',
             'Organizations',
             'EXT:tw_events/Resources/Public/Icons/Organization.svg'
@@ -43,35 +55,35 @@ call_user_func(
         );
 
         ExtensionUtility::registerPlugin(
-            'Tollwerk.TwEvents',
+            'TwEvents',
             'Sponsors',
             'Sponsors',
             'EXT:tw_events/Resources/Public/Icons/Sponsor.svg'
         );
 
         ExtensionUtility::registerPlugin(
-            'Tollwerk.TwEvents',
+            'TwEvents',
             'Presentations',
             'Presentations',
             'EXT:tw_events/Resources/Public/Icons/Presentation.svg'
         );
 
         ExtensionUtility::registerPlugin(
-            'Tollwerk.TwEvents',
+            'TwEvents',
             'Coverage',
             'Coverage',
             'EXT:tw_events/Resources/Public/Icons/Coverage.svg'
         );
 
         ExtensionUtility::registerPlugin(
-            'Tollwerk.TwEvents',
+            'TwEvents',
             'Note',
             'Note',
             'EXT:tw_events/Resources/Public/Icons/Note.svg'
         );
 
         ExtensionUtility::registerPlugin(
-            'Tollwerk.TwEvents',
+            'TwEvents',
             'Persons',
             'Persons',
             'EXT:tw_events/Resources/Public/Icons/Person.svg'

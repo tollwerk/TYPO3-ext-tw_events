@@ -37,8 +37,7 @@
 namespace Tollwerk\TwEvents\Domain\Repository;
 
 use DateTimeInterface;
-use Tollwerk\TwBase\Domain\Repository\Traits\DebuggableRepositoryTrait;
-use Tollwerk\TwBase\Domain\Repository\Traits\StoragePidsIgnoringRepositoryTrait;
+use Tollwerk\TwEvents\Domain\Repository\Traits\DebuggableRepositoryTrait;
 use Tollwerk\TwEvents\Domain\Model\Event;
 use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
@@ -49,7 +48,7 @@ use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
  */
 class EventRepository extends AbstractRepository
 {
-    use DebuggableRepositoryTrait, StoragePidsIgnoringRepositoryTrait;
+    use DebuggableRepositoryTrait;
 
     /**
      * Return all dates before a particular date

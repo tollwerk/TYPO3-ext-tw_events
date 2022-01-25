@@ -52,8 +52,9 @@ class EventController extends ActionController
     /**
      * Inject the event repository
      *
-     * @param EventRepository $eventRepository
-     */
+     * @param EventRepository $eventRepository Event Repository
+     * @return void
+    */
     public function injectEventRepository(EventRepository $eventRepository): void
     {
         $this->eventRepository = $eventRepository;
@@ -93,19 +94,23 @@ class EventController extends ActionController
     }
 
     /**
-     * action show
+     * Action show
      *
-     * @param \Tollwerk\TwEvents\Domain\Model\Event $event
+     * @param \Tollwerk\TwEvents\Domain\Model\Event $event Event Model
      *
      * @return void
      */
     public function showAction(Event $event)
     {
+        var_dump($event);
+
         $this->view->assign('event', $event);
     }
 
     /**
      * Render an event block
+     *
+     * @return void
      */
     public function blockAction()
     {

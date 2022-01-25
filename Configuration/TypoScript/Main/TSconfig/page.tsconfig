@@ -8,7 +8,7 @@ TCEFORM.sys_file_reference.crop.config.cropVariants {
             NaN {
                 title = square / 1:1
                 value = 1
-            }
+            }77
         }
     }
 }

@@ -58,9 +58,9 @@ class BlocksViewHelper extends AbstractViewHelper
     /**
      * Render
      *
-     * @param array $arguments                            Arguments
-     * @param \Closure $renderChildrenClosure             Children rendering closure
-     * @param RenderingContextInterface $renderingContext Rendering context
+     * @param array $arguments                               Arguments
+     * @param \Closure $renderChildrenClosure                Children rendering closure
+     * @param RenderingContextInterface $renderingContext    Rendering context
      *
      * @return mixed|string Output
      */
@@ -68,10 +68,12 @@ class BlocksViewHelper extends AbstractViewHelper
         array $arguments,
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
-    ) {
-        $list         = GeneralUtility::trimExplode(',', $arguments['list'] ?: $renderChildrenClosure(), true);
+    )
+    {
+
+        $list = GeneralUtility::trimExplode(',', $arguments['list'] ?: $renderChildrenClosure(), true);
         $layoutBlocks = array_flip(Tca::LAYOUT_BLOCKS);
-        $blocks       = [];
+        $blocks = [];
         foreach ($list as $block) {
             if (isset($layoutBlocks[$block])) {
                 $blocks[$layoutBlocks[$block]] = ucfirst($block);

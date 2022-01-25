@@ -432,6 +432,7 @@ return [
             'exclude' => false,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.location',
             'config'  => [
+                'eval'          => 'required',
                 'type'          => 'select',
                 'renderType'    => 'selectSingle',
                 'foreign_table' => 'tx_twevents_domain_model_organization',
@@ -536,6 +537,7 @@ return [
             'l10n_mode' => 'prefixLangTitle',
             'label'     => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.page',
             'config'    => [
+                'eval'           => 'required',
                 'type'           => 'group',
                 'internal_type'  => 'db',
                 'allowed'        => 'pages',

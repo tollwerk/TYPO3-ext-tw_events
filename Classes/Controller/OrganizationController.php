@@ -30,12 +30,14 @@ class OrganizationController extends AbstractController
      * @var string
      */
     const MODE_MANUAL = 'manual';
+
     /**
      * Selection by categories
      *
      * @var string
      */
     const MODE_CATEGORIES = 'categories';
+
     /**
      * Organization repository
      *
@@ -46,7 +48,7 @@ class OrganizationController extends AbstractController
     /**
      * Inject the organization repository
      *
-     * @param OrganizationRepository $organizationRepository
+     * @param OrganizationRepository $organizationRepository OrganizationRepository
      */
     public function injectOrganizationRepository(OrganizationRepository $organizationRepository): void
     {

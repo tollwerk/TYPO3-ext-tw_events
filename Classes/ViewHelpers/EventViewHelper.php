@@ -1,10 +1,10 @@
 <?php
 
 /**
- * data
+ * EventViewHelper
  *
  * @category   Jkphl
- * @package    Jkphl\Antibot
+ * @package    Jkphl\TwEvents
  * @subpackage Tollwerk\TwEvents\ViewHelpers
  * @author     Joschi Kuphal <joschi@kuphal.net> / @jkphl
  * @copyright  Copyright © 2020 Joschi Kuphal <joschi@kuphal.net> / @jkphl
@@ -36,17 +36,19 @@
 
 namespace Tollwerk\TwEvents\ViewHelpers;
 
-use Tollwerk\TwEvents\Domain\Model\Event;
 use Tollwerk\TwEvents\Domain\Model\Presentation;
 use Tollwerk\TwEvents\Domain\Repository\EventRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
- * Event view helper
+ * EventViewHelper
  *
- * @package    Tollwerk\TwEvents
- * @subpackage Tollwerk\TwEvents\ViewHelpers
+ * @category Tollwerk\TwEvents\ViewHelpers
+ * @package  Tollwerk
+ * @author   jolanta <jolanta@tollwerk.de>
+ * @license  MIT https://opensource.org/licenses/MIT
+ * @link     https://tollwerk.de
  */
 class EventViewHelper extends AbstractViewHelper
 {
@@ -58,26 +60,27 @@ class EventViewHelper extends AbstractViewHelper
     protected $eventRepository = null;
 
     /**
-     * Inject the Event repository
+     * Inject EventRepository
      *
-     * @param EventRepository $eventRepository Event repository
+     * @param EventRepository $eventRepository EventRepository
      *
      * @return void
      */
-    public function injectEventRepository(EventRepository $eventRepository)
+    public function injectVatRatesRepository(EventRepository $eventRepository)
     {
         $this->eventRepository = $eventRepository;
     }
 
     /**
-     * Find and return the current event
+     * Render Event
      *
-     * @return Event|null
+     * @return object|null
      */
-    public function render(): ?Event
+    public function render()
     {
         // If this is a presentation view: derive the event from there
-        if (isset($GLOBALS['TSFE']->presentation) && ($GLOBALS['TSFE']->presentation instanceof Presentation)) {
+        if (isset($GLOBALS['TSFE']->presentation) &&
+            ($GLOBALS['TSFE']->presentation instanceof Presentation)) {
             return $GLOBALS['TSFE']->presentation->getEvent();
         }
 
@@ -86,13 +89,14 @@ class EventViewHelper extends AbstractViewHelper
         // Try to extract the current event from the GET / POST parameters
         $eventParameters = GeneralUtility::_GPmerged('tx_twevents_events') ?:
             GeneralUtility::_GPmerged('tx_twevents_presentations');
+
         if (!empty($eventParameters['event'])) {
-            $event           = $this->eventRepository->findByIdentifier($eventParameters['event']);
+            $event = $this->eventRepository->findByIdentifier($eventParameters['event']);
         }
 
         // Else: Try to find the current event via its presentation page
         if ($event === null) {
-            $event           = $this->eventRepository->findOneByPage($GLOBALS['TSFE']->id);
+            $event = $this->eventRepository->findOneByPage($GLOBALS['TSFE']->id);
         }
 
         return $GLOBALS['TSFE']->event = $event;

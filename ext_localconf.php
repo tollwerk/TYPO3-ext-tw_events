@@ -5,88 +5,61 @@ defined('TYPO3_MODE') || die('Access denied.');
 call_user_func(
     function() {
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'Tollwerk.TwEvents',
+            'TwEvents',
             'Events',
-            [
-                'Event' => 'list, show',
-            ],
-            // non-cacheable actions
-            [
-                'Event' => '',
-            ]
+            [\Tollwerk\TwEvents\Controller\EventController::class => 'list, show'],
+            [\Tollwerk\TwEvents\Controller\EventController::class => '']
         );
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'Tollwerk.TwEvents',
+            'TwEvents',
             'Event',
-            [
-                'Event' => 'block',
-            ],
-            // non-cacheable actions
-            [
-                'Event' => '',
-            ]
+            [\Tollwerk\TwEvents\Controller\EventController::class => 'block'],
+            [\Tollwerk\TwEvents\Controller\EventController::class => '']
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'Tollwerk.TwEvents',
+            'TwEvents',
             'Organizations',
-            [
-                'Organization' => 'list, location',
-            ],
-            // non-cacheable actions
-            [
-                'Organization' => '',
-            ]
+            [\Tollwerk\TwEvents\Controller\OrganizationController::class => 'list, location'],
+            [\Tollwerk\TwEvents\Controller\OrganizationController::class => '',]
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'Tollwerk.TwEvents',
+            'TwEvents',
             'Sponsors',
             [
-                'Organization' => 'list, show',
-                'Event'        => 'list, show',
-                'Person'       => 'list, show',
-                'Coverage'     => 'list, show',
-                'Note'         => 'list, show',
-                'Presentation' => 'list, show'
+                \Tollwerk\TwEvents\Controller\OrganizationController::class => 'list, show',
+                \Tollwerk\TwEvents\Controller\EventController::class        => 'list, show',
+                \Tollwerk\TwEvents\Controller\PersonController::class       => 'list, show',
+                \Tollwerk\TwEvents\Controller\CoverageController::class     => 'list, show',
+                \Tollwerk\TwEvents\Controller\PresentationController::class     => 'list, show',
             ],
             // non-cacheable actions
             [
-                'Organization' => '',
-                'Event'        => '',
-                'Person'       => '',
-                'Coverage'     => '',
-                'Note'         => '',
-                'Presentation' => ''
+                \Tollwerk\TwEvents\Controller\OrganizationController::class => '',
+                \Tollwerk\TwEvents\Controller\EventController::class        => '',
+                \Tollwerk\TwEvents\Controller\PersonController::class       => '',
+                \Tollwerk\TwEvents\Controller\CoverageController::class     => '',
+                \Tollwerk\TwEvents\Controller\PresentationController::class     => '',
             ]
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'Tollwerk.TwEvents',
+            'TwEvents',
             'Presentations',
-            [
-                'Presentation' => 'list, show'
-            ],
-            // non-cacheable actions
-            [
-                'Presentation' => ''
-            ]
+            [\Tollwerk\TwEvents\Controller\PresentationController::class     => 'list, show'],
+            [\Tollwerk\TwEvents\Controller\PresentationController::class     => '']
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'Tollwerk.TwEvents',
+            'TwEvents',
             'Coverage',
-            [
-                'Coverage' => 'list, show',
-            ],
-            // non-cacheable actions
-            [
-                'Coverage' => '',
-            ]
+            [\Tollwerk\TwEvents\Controller\CoverageController::class     => 'list, show'],
+            [\Tollwerk\TwEvents\Controller\CoverageController::class     => '']
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'Tollwerk.TwEvents',
+            'TwEvents',
             'Note',
             [
                 'Note' => 'list, show',
@@ -98,15 +71,10 @@ call_user_func(
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'Tollwerk.TwEvents',
+            'TwEvents',
             'Persons',
-            [
-                'Person' => 'list, show',
-            ],
-            // non-cacheable actions
-            [
-                'Person' => '',
-            ]
+            [\Tollwerk\TwEvents\Controller\PersonController::class => 'list, show'],
+            [\Tollwerk\TwEvents\Controller\PersonController::class => '']
         );
 
         // wizards
@@ -238,7 +206,6 @@ call_user_func(
             ['source' => 'EXT:tw_events/Resources/Public/Icons/Person.svg']
         );
 
-        $GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']['base'] = ['Tollwerk\\TwBase\\ViewHelpers'];
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']['evt']  = ['Tollwerk\\TwEvents\\ViewHelpers'];
 
         // Treat all date & time values as UTC

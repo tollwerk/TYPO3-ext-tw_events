@@ -321,7 +321,6 @@ return [
                     'maxitems'      => 1,
                     'minitems'      => 1
                 ],
-                'svg'
             ),
         ],
         'photos'         => [
