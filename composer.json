@@ -21,9 +21,6 @@
       "Tollwerk\\TwEvents\\Tests\\": "Tests"
     }
   },
-  "replace": {
-    "typo3-ter/tw_events": "self.version"
-  },
   "repositories": [
     {
       "type": "vcs",
