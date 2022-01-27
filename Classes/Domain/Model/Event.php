@@ -5,6 +5,7 @@ namespace Tollwerk\TwEvents\Domain\Model;
 use Tollwerk\TwEvents\Domain\Model\Traits\SlugTrait;
 use Tollwerk\TwEvents\Utility\DatetimeUtility;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /***
  *
@@ -71,12 +72,14 @@ class Event extends AbstractEntity
     const STATUS_POSTPONED = 2;
     const STATUS_MOVEDONLINE = 3;
     const STATUS_CANCELLED = 4;
+
     /**
      * Presentation page
      *
      * @var \Tollwerk\TwEvents\Domain\Model\Page
      */
     protected $page = null;
+
     /**
      * Name
      *
@@ -84,6 +87,7 @@ class Event extends AbstractEntity
      * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $name = '';
+
     /**
      * Event Start
      *
@@ -91,6 +95,7 @@ class Event extends AbstractEntity
      * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $eventStart = null;
+
     /**
      * Event End
      *
@@ -111,12 +116,13 @@ class Event extends AbstractEntity
      */
     protected $attendanceMode = self::ATTENDANCE_OFFLINE;
     /**
-     * description
+     * Description
      *
      * @var string
      * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $description = '';
+
     /**
      * Summary
      *
@@ -178,6 +184,13 @@ class Event extends AbstractEntity
      * @var string
      */
     protected $livestreamEmbed = '';
+
+    /**
+     * Sys_categories
+     *
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category>
+     */
+    protected $categories;
     /**
      * Livestream Start
      *
@@ -240,6 +253,8 @@ class Event extends AbstractEntity
     {
         //Do not remove the next line: It would break the functionality
         $this->initStorageObjects();
+
+        $this->categories = new ObjectStorage();
     }
 
     /**
@@ -688,7 +703,7 @@ class Event extends AbstractEntity
     /**
      * Sets the downloads
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference> $downloads
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference> $downloads Downloads
      *
      * @return void
      */
@@ -700,7 +715,7 @@ class Event extends AbstractEntity
     /**
      * Returns the location
      *
-     * @return \Tollwerk\TwEvents\Domain\Model\Organization $location
+     * @return \Tollwerk\TwEvents\Domain\Model\Organization $location Location
      */
     public function getLocation()
     {
@@ -710,7 +725,7 @@ class Event extends AbstractEntity
     /**
      * Sets the location
      *
-     * @param \Tollwerk\TwEvents\Domain\Model\Organization $location
+     * @param \Tollwerk\TwEvents\Domain\Model\Organization $location Location
      *
      * @return void
      */
@@ -722,7 +737,7 @@ class Event extends AbstractEntity
     /**
      * Adds a Person
      *
-     * @param \Tollwerk\TwEvents\Domain\Model\Person $organizer
+     * @param \Tollwerk\TwEvents\Domain\Model\Person $organizer Organizer
      *
      * @return void
      */
@@ -756,7 +771,7 @@ class Event extends AbstractEntity
     /**
      * Sets the organizers
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Tollwerk\TwEvents\Domain\Model\Person> $organizers
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Tollwerk\TwEvents\Domain\Model\Person> $organizers Organizers
      *
      * @return void
      */
@@ -768,7 +783,7 @@ class Event extends AbstractEntity
     /**
      * Adds a Sponsor
      *
-     * @param \Tollwerk\TwEvents\Domain\Model\Sponsor $sponsor
+     * @param \Tollwerk\TwEvents\Domain\Model\Sponsor $sponsor Sponsor
      *
      * @return void
      */
@@ -802,7 +817,7 @@ class Event extends AbstractEntity
     /**
      * Sets the sponsors
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Tollwerk\TwEvents\Domain\Model\Sponsor> $sponsors
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Tollwerk\TwEvents\Domain\Model\Sponsor> $sponsors Sponsor
      *
      * @return void
      */
@@ -814,7 +829,7 @@ class Event extends AbstractEntity
     /**
      * Adds a Coverage
      *
-     * @param \Tollwerk\TwEvents\Domain\Model\Coverage $coverage
+     * @param \Tollwerk\TwEvents\Domain\Model\Coverage $coverage Coverage
      *
      * @return void
      */
@@ -848,7 +863,7 @@ class Event extends AbstractEntity
     /**
      * Sets the coverage
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Tollwerk\TwEvents\Domain\Model\Coverage> $coverage
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Tollwerk\TwEvents\Domain\Model\Coverage> $coverage Coverage
      *
      * @return void
      */
@@ -860,7 +875,7 @@ class Event extends AbstractEntity
     /**
      * Adds a Presentation
      *
-     * @param \Tollwerk\TwEvents\Domain\Model\Presentation $presentation
+     * @param \Tollwerk\TwEvents\Domain\Model\Presentation $presentation Presentation
      *
      * @return void
      */
@@ -894,7 +909,7 @@ class Event extends AbstractEntity
     /**
      * Sets the presentations
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Tollwerk\TwEvents\Domain\Model\Presentation> $presentations
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Tollwerk\TwEvents\Domain\Model\Presentation> $presentations Presentations
      *
      * @return void
      */
@@ -990,6 +1005,8 @@ class Event extends AbstractEntity
      * Set the alternative presentation page
      *
      * @param \Tollwerk\TwEvents\Domain\Model\Page $page Alternative presentation page
+     *
+     * @return void
      */
     public function setPage(Page $page): void
     {
@@ -1008,5 +1025,27 @@ class Event extends AbstractEntity
                 self::STATUS_RESCHEDULED,
                 self::STATUS_MOVEDONLINE,
             ]);
+    }
+
+    /**
+     * Get sys_categories
+     *
+     * @return ObjectStorage
+     */
+    public function getCategories(): ObjectStorage
+    {
+        return $this->categories;
+    }
+
+    /**
+     * Set sys_categories
+     *
+     * @param ObjectStorage $categories Categories
+     *
+     * @return void
+     */
+    public function setCategories(ObjectStorage $categories)
+    {
+        $this->categories = $categories;
     }
 }

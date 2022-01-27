@@ -42,6 +42,8 @@ use Tollwerk\TwEvents\Domain\Model\Event;
 use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * The repository for Events
@@ -49,6 +51,24 @@ use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 class EventRepository extends AbstractRepository
 {
     use DebuggableRepositoryTrait;
+
+    /**
+     * Define TYPO3 Query Settings
+     *
+     * @return void
+     */
+    public function initializeObject()
+    {
+        /**
+         * TYPO3 query settings
+         *
+         * @var Typo3QuerySettings $querySettings Typo3QuerySettings
+         */
+        $querySettings = GeneralUtility::makeInstance(Typo3QuerySettings::class);
+        $querySettings->setRespectStoragePage(false);
+
+        $this->setDefaultQuerySettings($querySettings);
+    }
 
     /**
      * Return all dates before a particular date

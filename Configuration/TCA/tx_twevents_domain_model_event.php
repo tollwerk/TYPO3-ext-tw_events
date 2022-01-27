@@ -537,17 +537,17 @@ return [
             'l10n_mode' => 'prefixLangTitle',
             'label'     => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.page',
             'config'    => [
-                'eval'           => 'required',
                 'type'           => 'group',
                 'internal_type'  => 'db',
                 'allowed'        => 'pages',
+                'eval'           => 'int',
                 'size'           => 1,
                 'maxitems'       => 1,
                 'minitems'       => 0,
                 'suggestOptions' => [
                     'default' => [
                         'additionalSearchFields' => 'nav_title, alias, url',
-                        'addWhere'               => ' AND pages.doktype = '.\Tollwerk\TwEvents\Domain\Model\Event::DOKTYPE
+                        'addWhere'               => ' AND pages.doktype = ' . \Tollwerk\TwEvents\Domain\Model\Event::DOKTYPE
                     ]
                 ],
             ]
