@@ -91,6 +91,7 @@ class EventController extends ActionController
                 $this->eventRepository->findByCategories($categoryIdentifiers) : [];
         }
         $this->view->assign('events', $events);
+        $this->view->assign('data', $this->configurationManager->getContentObject()->data);
     }
 
     /**
