@@ -1,5 +1,17 @@
 <?php
 
+/**
+ * Event Controller
+ *
+ * @category   TwEvents
+ * @package    TwEvents\TwEvents
+ * @subpackage TwEvents\TwEvents\Controller
+ * @author     Jolanta Dworczyk <jolanta@tollwerk.de>
+ * @copyright  2021 Jolanta Dworczyk <jolanta@tollwerk.de>
+ * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
+ * @link       https://tollwerk.de
+ */
+
 namespace Tollwerk\TwEvents\Controller;
 
 use Tollwerk\TwEvents\Domain\Model\Event;
@@ -8,19 +20,15 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 
-/***
- *
- * This file is part of the "tollwerk Event Calendar" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- *  © 2020
- *
- ***/
-
 /**
- * EventController
+ * Event Controller
+ *
+ * @category   Tollwerk\TwEvents\Controller
+ * @package    Tollwerk\TwEvents
+ * @subpackage Tollwerk\TwEvents\Controller
+ * @author     Jolanta Dworczyk <jolanta@tollwerk.de>
+ * @license    MIT https://opensource.org/licenses/MIT
+ * @link       https://tollwerk.de
  */
 class EventController extends ActionController
 {
@@ -50,12 +58,11 @@ class EventController extends ActionController
     protected $eventRepository = null;
 
     /**
-     * Inject the event repository
+     * Constructor
      *
      * @param EventRepository $eventRepository Event Repository
-     * @return void
     */
-    public function injectEventRepository(EventRepository $eventRepository): void
+    public function __construct(EventRepository $eventRepository)
     {
         $this->eventRepository = $eventRepository;
     }
@@ -90,6 +97,7 @@ class EventController extends ActionController
             $events              = count($categoryIdentifiers) ?
                 $this->eventRepository->findByCategories($categoryIdentifiers) : [];
         }
+
         $this->view->assign('events', $events);
         $this->view->assign('data', $this->configurationManager->getContentObject()->data);
     }
@@ -103,8 +111,6 @@ class EventController extends ActionController
      */
     public function showAction(Event $event)
     {
-        var_dump($event);
-
         $this->view->assign('event', $event);
     }
 

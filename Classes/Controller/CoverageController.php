@@ -1,12 +1,12 @@
 <?php
 
 /**
- * TYPO3 tw_events
+ * Coverage Controller
  *
  * @category   Tollwerk
  * @package    Tollwerk\TwEvents
  * @subpackage Tollwerk\TwEvents\Controller
- * @author     Jolanta Dworczyk <jolanta@tollwerk.de> / @jkphl
+ * @author     Jolanta Dworczyk <jolanta@tollwerk.de>
  * @copyright  Copyright © 2021 Jolanta Dworczyk <jolanta@tollwerk.de>
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
@@ -51,6 +51,13 @@ use Tollwerk\TwEvents\Domain\Repository\CoverageRepository;
 
 /**
  * CoverageController
+ *
+ * @category   Tollwerk\TwEvents\Controller
+ * @package    Tollwerk\TwEvents
+ * @subpackage Tollwerk\TwEvents\Controller
+ * @author     Jolanta Dworczyk <jolanta@tollwerk.de>
+ * @license    MIT https://opensource.org/licenses/MIT
+ * @link       https://tollwerk.de
  */
 class CoverageController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
@@ -63,13 +70,11 @@ class CoverageController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     protected $coverageRepository = null;
 
     /**
-     * Inject the coverage Repository
+     * Constructor
      *
      * @param CoverageRepository $coverageRepository Coverage Repository
-     *
-     * @return void
      */
-    public function injectCoverageRepository(CoverageRepository $coverageRepository)
+    public function __construct(CoverageRepository $coverageRepository)
     {
         $this->coverageRepository = $coverageRepository;
     }
