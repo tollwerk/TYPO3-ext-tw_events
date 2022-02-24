@@ -120,7 +120,7 @@ return [
         ],
         'slug'        => [
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_person.slug',
-            'exclude' => false,
+            'exclude' => true,
             'config'  => [
                 'type'              => 'slug',
                 'generatorOptions'  => [
@@ -193,7 +193,7 @@ return [
             ]
         ],
         'biography'   => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_person.biography',
             'config'  => [
                 'type'                  => 'text',
@@ -211,7 +211,7 @@ return [
 
         ],
         'teaser'      => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_person.teaser',
             'config'  => [
                 'type'                  => 'text',

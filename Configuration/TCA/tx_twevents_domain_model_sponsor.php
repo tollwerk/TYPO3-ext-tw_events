@@ -26,7 +26,7 @@ return [
             'showitem' => '
             --palette--;;orgtype,
         --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,
-        sys_language_uid, l10n_parent, l10n_diffsource, hidden, 
+        sys_language_uid, l10n_parent, l10n_diffsource, hidden,
         starttime, endtime'
         ],
     ],
@@ -85,7 +85,7 @@ return [
         ],
 
         'label' => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_sponsor.label',
             'config'  => [
                 'type' => 'input',
@@ -95,7 +95,7 @@ return [
         ],
 
         'organization' => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_sponsor.organization',
             'config'  => [
                 'type'          => 'select',
@@ -107,7 +107,7 @@ return [
         ],
 
         'type' => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_sponsor.type',
             'config'  => [
                 'type'       => 'select',

@@ -117,7 +117,7 @@ return [
         ],
         'slug'           => [
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_organization.slug',
-            'exclude' => false,
+            'exclude' => true,
             'config'  => [
                 'type'              => 'slug',
                 'generatorOptions'  => [
@@ -374,7 +374,7 @@ return [
 
         ],
         'description'    => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_organization.description',
             'config'  => [
                 'type'                  => 'text',

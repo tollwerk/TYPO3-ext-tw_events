@@ -125,7 +125,7 @@ return [
             ],
         ],
         'title'            => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_coverage.title',
             'config'  => [
                 'type' => 'input',
@@ -134,7 +134,7 @@ return [
             ],
         ],
         'type'             => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_coverage.type',
             'config'  => [
                 'type'       => 'select',
@@ -167,7 +167,7 @@ return [
             ],
         ],
         'url'              => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_coverage.url',
             'config'  => [
                 'type' => 'input',
@@ -176,7 +176,7 @@ return [
             ],
         ],
         'author'           => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_coverage.author',
             'config'  => [
                 'type'          => 'select',
@@ -188,7 +188,7 @@ return [
             ],
         ],
         'author_name'      => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_coverage.author_name',
             'config'  => [
                 'type' => 'input',

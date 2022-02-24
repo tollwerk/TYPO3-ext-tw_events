@@ -120,7 +120,7 @@ return [
             ]
         ],
         'name'                 => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.name',
             'config'  => [
                 'type' => 'input',
@@ -130,7 +130,7 @@ return [
         ],
         'slug'                 => [
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.slug',
-            'exclude' => false,
+            'exclude' => true,
             'config'  => [
                 'type'              => 'slug',
                 'generatorOptions'  => [
@@ -147,7 +147,7 @@ return [
             ],
         ],
         'event_start'          => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.event_start',
             'config'  => [
                 'dbType'     => 'datetime',
@@ -159,7 +159,7 @@ return [
             ],
         ],
         'event_end'            => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.event_end',
             'config'  => [
                 'dbType'     => 'datetime',
@@ -171,7 +171,7 @@ return [
             ],
         ],
         'attendance_mode'      => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.attendance_mode',
             'config'  => [
                 'type'       => 'select',
@@ -196,7 +196,7 @@ return [
             ],
         ],
         'status'               => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.status',
             'config'  => [
                 'type'       => 'select',
@@ -229,7 +229,7 @@ return [
             ],
         ],
         'summary'              => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.summary',
             'config'  => [
                 'type' => 'input',
@@ -238,7 +238,7 @@ return [
             ],
         ],
         'description'          => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.description',
             'config'  => [
                 'type'                  => 'text',
@@ -256,7 +256,7 @@ return [
 
         ],
         'location_description' => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.location_description',
             'config'  => [
                 'type'                  => 'text',
@@ -274,7 +274,7 @@ return [
 
         ],
         'ticket_description'   => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.ticket_description',
             'config'  => [
                 'type'                  => 'text',
@@ -292,7 +292,7 @@ return [
 
         ],
         'ticket_url'           => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.ticket_url',
             'config'  => [
                 'type' => 'input',
@@ -301,7 +301,7 @@ return [
             ],
         ],
         'website'              => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.website',
             'config'  => [
                 'type' => 'input',
@@ -310,7 +310,7 @@ return [
             ],
         ],
         'facebook'             => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.facebook',
             'config'  => [
                 'type' => 'input',
@@ -319,7 +319,7 @@ return [
             ],
         ],
         'colloq'               => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.colloq',
             'config'  => [
                 'type' => 'input',
@@ -328,7 +328,7 @@ return [
             ],
         ],
         'hashtag'              => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.hashtag',
             'config'  => [
                 'type' => 'input',
@@ -337,7 +337,7 @@ return [
             ],
         ],
         'livestream_url'       => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.livestream_url',
             'config'  => [
                 'type' => 'input',
@@ -346,7 +346,7 @@ return [
             ],
         ],
         'livestream_embed'     => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.livestream_embed',
             'config'  => [
                 'type' => 'text',
@@ -356,7 +356,7 @@ return [
             ],
         ],
         'livestream_start'     => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.livestream_start',
             'config'  => [
                 'dbType'     => 'datetime',
@@ -368,7 +368,7 @@ return [
             ],
         ],
         'livestream_end'       => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.livestream_end',
             'config'  => [
                 'dbType'     => 'datetime',
@@ -380,7 +380,7 @@ return [
             ],
         ],
         'downloads'            => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.downloads',
             'config'  =>
                 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
@@ -429,7 +429,7 @@ return [
 
         ],
         'location'             => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.location',
             'config'  => [
                 'eval'          => 'required',
@@ -448,7 +448,7 @@ return [
             ],
         ],
         'sponsors'             => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.sponsors',
             'config'  => [
                 'type'           => 'inline',
@@ -467,7 +467,7 @@ return [
             ],
         ],
         'organizers'           => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.organizers',
             'config'  => [
                 'type'          => 'select',
@@ -493,7 +493,7 @@ return [
 
         ],
         'presentations'        => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.presentations',
             'config'  => [
                 'type'                   => 'inline',
@@ -513,7 +513,7 @@ return [
 
         ],
         'coverage'             => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_event.coverage',
             'config'  => [
                 'type'           => 'inline',

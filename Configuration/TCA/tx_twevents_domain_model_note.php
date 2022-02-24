@@ -91,7 +91,7 @@ return [
         ],
 
         'author'       => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_note.author',
             'config'  => [
                 'type'          => 'select',
@@ -103,7 +103,7 @@ return [
             ],
         ],
         'author_name'  => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_note.author_name',
             'config'  => [
                 'type' => 'input',
@@ -112,7 +112,7 @@ return [
             ],
         ],
         'content'      => [
-            'exclude' => false,
+            'exclude' => true,
             'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_note.content',
             'config'  => [
                 'type'                  => 'text',
