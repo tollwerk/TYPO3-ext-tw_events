@@ -106,7 +106,7 @@ return [
             ]
         ],
         'name'           => [
-            'exclude'   => false,
+            'exclude'   => true,
             'l10n_mode' => 'exclude',
             'label'     => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_organization.name',
             'config'    => [
@@ -130,7 +130,7 @@ return [
             ],
         ],
         'label'          => [
-            'exclude'   => false,
+            'exclude'   => true,
             'l10n_mode' => 'exclude',
             'label'     => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_organization.label',
             'config'    => [
@@ -140,7 +140,7 @@ return [
             ],
         ],
         'street_address' => [
-            'exclude'   => false,
+            'exclude'   => true,
             'l10n_mode' => 'exclude',
             'label'     => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_organization.street_address',
             'config'    => [
@@ -151,7 +151,7 @@ return [
             ]
         ],
         'postal_code'    => [
-            'exclude'   => false,
+            'exclude'   => true,
             'l10n_mode' => 'exclude',
             'label'     => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_organization.postal_code',
             'config'    => [
@@ -161,7 +161,7 @@ return [
             ],
         ],
         'locality'       => [
-            'exclude'   => false,
+            'exclude'   => true,
             'l10n_mode' => 'exclude',
             'label'     => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_organization.locality',
             'config'    => [
@@ -171,7 +171,7 @@ return [
             ],
         ],
         'region'         => [
-            'exclude'   => false,
+            'exclude'   => true,
             'l10n_mode' => 'exclude',
             'label'     => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_organization.region',
             'config'    => [
@@ -181,7 +181,7 @@ return [
             ],
         ],
         'country'        => [
-            'exclude'   => false,
+            'exclude'   => true,
             'l10n_mode' => 'exclude',
             'label'     => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_organization.country',
             'config'    => [
@@ -196,7 +196,7 @@ return [
             ]
         ],
         'latitude'       => [
-            'exclude'   => false,
+            'exclude'   => true,
             'l10n_mode' => 'exclude',
             'label'     => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_organization.latitude',
             'config'    => [
@@ -206,7 +206,7 @@ return [
             ]
         ],
         'longitude'      => [
-            'exclude'   => false,
+            'exclude'   => true,
             'l10n_mode' => 'exclude',
             'label'     => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_organization.longitude',
             'config'    => [
@@ -216,7 +216,7 @@ return [
             ]
         ],
         'website'        => [
-            'exclude'   => false,
+            'exclude'   => true,
             'l10n_mode' => 'exclude',
             'label'     => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_organization.website',
             'config'    => [
@@ -226,7 +226,7 @@ return [
             ],
         ],
         'map_url'        => [
-            'exclude'   => false,
+            'exclude'   => true,
             'l10n_mode' => 'exclude',
             'label'     => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_organization.map_url',
             'config'    => [
@@ -236,7 +236,7 @@ return [
             ],
         ],
         'twitter'        => [
-            'exclude'   => false,
+            'exclude'   => true,
             'l10n_mode' => 'exclude',
             'label'     => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_organization.twitter',
             'config'    => [
@@ -246,7 +246,7 @@ return [
             ],
         ],
         'facebook'       => [
-            'exclude'   => false,
+            'exclude'   => true,
             'l10n_mode' => 'exclude',
             'label'     => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_organization.facebook',
             'config'    => [
@@ -256,7 +256,7 @@ return [
             ],
         ],
         'email'          => [
-            'exclude'   => false,
+            'exclude'   => true,
             'l10n_mode' => 'exclude',
             'label'     => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_organization.email',
             'config'    => [
@@ -266,7 +266,7 @@ return [
             ]
         ],
         'phone'          => [
-            'exclude'   => false,
+            'exclude'   => true,
             'l10n_mode' => 'exclude',
             'label'     => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_organization.phone',
             'config'    => [
@@ -276,7 +276,7 @@ return [
             ],
         ],
         'logo'           => [
-            'exclude'   => false,
+            'exclude'   => true,
             'l10n_mode' => 'exclude',
             'label'     => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_organization.logo',
             'config'    => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
@@ -324,7 +324,7 @@ return [
             ),
         ],
         'photos'         => [
-            'exclude'   => false,
+            'exclude'   => true,
             'l10n_mode' => 'exclude',
             'label'     => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tx_twevents_domain_model_organization.photos',
             'config'    =>
