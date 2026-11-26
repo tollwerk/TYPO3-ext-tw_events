@@ -1,122 +1,92 @@
 <?php
 
+/**
+ * A note on a session
+ *
+ * @category  Tollwerk
+ * @package   Tollwerk\TwEvents
+ * @author    Joschi Kuphal <joschi@tollwerk.de>
+ * @copyright 2026 tollwerk GmbH
+ * @license   https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
+ * @link      https://code.tollwerk.net/tollwerk/typo3/extensions/tw-events
+ */
+
+declare(strict_types=1);
+
 namespace Tollwerk\TwEvents\Domain\Model;
 
-/***
- *
- * This file is part of the "tollwerk Event Calendar" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- *  © 2020
- *
- ***/
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 /**
- * Note
+ * A note on a session
+ *
+ * @category  Tollwerk
+ * @package   Tollwerk\TwEvents
+ * @author    Joschi Kuphal <joschi@tollwerk.de>
+ * @copyright 2026 tollwerk GmbH
+ * @license   https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
+ * @link      https://code.tollwerk.net/tollwerk/typo3/extensions/tw-events
  */
-class Note extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+final class Note extends AbstractEntity
 {
+    /**
+     * Author
+     *
+     * @var Person|null
+     */
+    protected ?Person $author = null;
+
+    /**
+     * Name of an author without record
+     *
+     * @var string
+     */
+    protected string $authorName = '';
+
     /**
      * Content
      *
      * @var string
      */
-    protected $content = '';
+    protected string $content = '';
 
     /**
-     * Author (person)
+     * Author
      *
-     * @var \Tollwerk\TwEvents\Domain\Model\Person|null
+     * @return Person|null Author, or NULL without one
      */
-    protected $author = null;
-    /**
-     * Author (name)
-     *
-     * @var string
-     */
-    protected $authorName = '';
-    /**
-     * Presentation
-     *
-     * @var \Tollwerk\TwEvents\Domain\Model\Presentation
-     */
-    protected $presentation;
-
-    /**
-     * Returns the content
-     *
-     * @return string $content
-     */
-    public function getContent()
-    {
-        return $this->content;
-    }
-
-    /**
-     * Sets the content
-     *
-     * @param string $content
-     *
-     * @return void
-     */
-    public function setContent($content)
-    {
-        $this->content = $content;
-    }
-
-    /**
-     * Returns the author
-     *
-     * @return \Tollwerk\TwEvents\Domain\Model\Person $author
-     */
-    public function getAuthor()
+    public function getAuthor(): ?Person
     {
         return $this->author;
     }
 
     /**
-     * Sets the author
+     * Name of an author without record
      *
-     * @param \Tollwerk\TwEvents\Domain\Model\Person|null $author
-     *
-     * @return void
+     * @return string
      */
-    public function setAuthor(\Tollwerk\TwEvents\Domain\Model\Person $author = null)
-    {
-        $this->author = $author;
-    }
-
-    /**
-     * Returns the authorName
-     *
-     * @return string $authorName
-     */
-    public function getAuthorName()
+    public function getAuthorName(): string
     {
         return $this->authorName;
     }
 
     /**
-     * Sets the authorName
+     * Content
      *
-     * @param string $authorName
-     *
-     * @return void
+     * @return string
      */
-    public function setAuthorName($authorName)
+    public function getContent(): string
     {
-        $this->authorName = $authorName;
+        return $this->content;
     }
 
     /**
-     * Return the presentation
+     * Name of the author
      *
-     * @return Presentation Presentation
+     * @return string Name, or an empty string without author
      */
-    public function getPresentation(): Presentation
+    public function getAuthorDisplayName(): string
     {
-        return $this->presentation;
+        return $this->author?->getName() ?? $this->authorName;
     }
 }

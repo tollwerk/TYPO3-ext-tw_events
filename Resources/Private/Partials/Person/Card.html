@@ -1,0 +1,23 @@
+<f:comment>
+    A person with the details chosen for the place they show in
+    @param Tollwerk\TwEvents\Domain\Model\Person person Person
+    @param array details Details: photo (bool), texts (summary, teaser, biography) and contacts, both in their order
+    @param string class Microformats property, such as "p-performer"
+</f:comment>
+<div class="PersonCard {class} h-card">
+    <f:if condition="{details.photo} && {person.photo}">
+        <base:picture image="{person.photo}" srcset="96w, 192w" sizes="96px" alt="" class="PersonCard__photo u-photo" />
+    </f:if>
+    <f:variable name="uri" value="{events:uri.person(person: person)}" />
+    <p class="PersonCard__name"><f:if condition="{uri}"><f:then><a class="p-name u-url" href="{uri}">{person.name}</a></f:then><f:else><span class="p-name">{person.name}</span></f:else></f:if></p>
+    <f:for each="{details.texts}" as="text">
+        <f:if condition="{person.{text}}">
+            <f:switch expression="{text}">
+                <f:case value="summary"><p class="PersonCard__summary p-note">{person.summary}</p></f:case>
+                <f:case value="teaser"><div class="PersonCard__teaser"><f:format.html>{person.teaser}</f:format.html></div></f:case>
+                <f:case value="biography"><div class="PersonCard__biography"><f:format.html>{person.biography}</f:format.html></div></f:case>
+            </f:switch>
+        </f:if>
+    </f:for>
+    <f:render partial="Contacts" arguments="{record: person, contacts: details.contacts, class: 'PersonCard__contacts'}" />
+</div>

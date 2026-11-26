@@ -1,171 +1,126 @@
 <?php
 
+/**
+ * Documentation of an event or a session
+ *
+ * @category  Tollwerk
+ * @package   Tollwerk\TwEvents
+ * @author    Joschi Kuphal <joschi@tollwerk.de>
+ * @copyright 2026 tollwerk GmbH
+ * @license   https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
+ * @link      https://code.tollwerk.net/tollwerk/typo3/extensions/tw-events
+ */
+
+declare(strict_types=1);
+
 namespace Tollwerk\TwEvents\Domain\Model;
 
-/***
- *
- * This file is part of the "tollwerk Event Calendar" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- *  © 2020
- *
- ***/
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 /**
- * Coverage
+ * Documentation of an event or a session
+ *
+ * @category  Tollwerk
+ * @package   Tollwerk\TwEvents
+ * @author    Joschi Kuphal <joschi@tollwerk.de>
+ * @copyright 2026 tollwerk GmbH
+ * @license   https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
+ * @link      https://code.tollwerk.net/tollwerk/typo3/extensions/tw-events
  */
-class Coverage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+final class Coverage extends AbstractEntity
 {
-    const TYPE_GALLERY = 0;
-    const TYPE_BLOG = 1;
-    const TYPE_TWEET = 2;
-    const TYPE_VIDEO = 3;
-    const TYPE_TALK = 4;
+    /**
+     * Type: blog, gallery, video, talk or post
+     *
+     * @var string
+     */
+    protected string $type = '';
+
     /**
      * Title
      *
      * @var string
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
-    protected $title = '';
+    protected string $title = '';
 
-    // Coverage types
     /**
-     * Type
-     *
-     * @var int
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
-     */
-    protected $type = 0;
-    /**
-     * URL
-     *
-     * @var string
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
-     */
-    protected $url = '';
-    /**
-     * Author (person)
-     *
-     * @var \Tollwerk\TwEvents\Domain\Model\Person|null
-     */
-    protected $author = null;
-    /**
-     * Author (name)
+     * Address
      *
      * @var string
      */
-    protected $authorName = '';
+    protected string $url = '';
 
     /**
-     * Returns the title
+     * Author
      *
-     * @return string $title
+     * @var Person|null
      */
-    public function getTitle()
-    {
-        return $this->title;
-    }
+    protected ?Person $author = null;
 
     /**
-     * Sets the title
+     * Name of an author without record
      *
-     * @param string $title
-     *
-     * @return void
+     * @var string
      */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-    }
+    protected string $authorName = '';
 
     /**
-     * Returns the type
+     * Type: blog, gallery, video, talk or post
      *
-     * @return int $type
+     * @return string
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->type;
     }
 
     /**
-     * Sets the type
+     * Title
      *
-     * @param int $type
-     *
-     * @return void
+     * @return string
      */
-    public function setType($type)
+    public function getTitle(): string
     {
-        $this->type = $type;
+        return $this->title;
     }
 
     /**
-     * Returns the url
+     * Address
      *
-     * @return string $url
+     * @return string
      */
-    public function getUrl()
+    public function getUrl(): string
     {
         return $this->url;
     }
 
     /**
-     * Sets the url
+     * Author
      *
-     * @param string $url
-     *
-     * @return void
+     * @return Person|null Author, or NULL without one
      */
-    public function setUrl($url)
-    {
-        $this->url = $url;
-    }
-
-    /**
-     * Returns the author
-     *
-     * @return \Tollwerk\TwEvents\Domain\Model\Person $author
-     */
-    public function getAuthor()
+    public function getAuthor(): ?Person
     {
         return $this->author;
     }
 
     /**
-     * Sets the author
+     * Name of an author without record
      *
-     * @param \Tollwerk\TwEvents\Domain\Model\Person|null $author
-     *
-     * @return void
+     * @return string
      */
-    public function setAuthor(\Tollwerk\TwEvents\Domain\Model\Person $author = null)
-    {
-        $this->author = $author;
-    }
-
-    /**
-     * Returns the authorName
-     *
-     * @return string $authorName
-     */
-    public function getAuthorName()
+    public function getAuthorName(): string
     {
         return $this->authorName;
     }
 
     /**
-     * Sets the authorName
+     * Name of the author
      *
-     * @param string $authorName
-     *
-     * @return void
+     * @return string Name, or an empty string without author
      */
-    public function setAuthorName($authorName)
+    public function getAuthorDisplayName(): string
     {
-        $this->authorName = $authorName;
+        return $this->author?->getName() ?? $this->authorName;
     }
 }

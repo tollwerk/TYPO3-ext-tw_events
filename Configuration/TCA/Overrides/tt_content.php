@@ -1,49 +1,39 @@
 <?php
 
+/**
+ * Plugins of tw_events as content elements
+ *
+ * @category  Tollwerk
+ * @package   Tollwerk\TwEvents
+ * @author    Joschi Kuphal <joschi@tollwerk.de>
+ * @copyright 2026 tollwerk GmbH
+ * @license   https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
+ * @link      https://code.tollwerk.net/tollwerk/typo3/extensions/tw-events
+ */
 
-if (!defined('TYPO3_MODE')) {
-    die('Access denied.');
+declare(strict_types=1);
+
+use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
+
+defined('TYPO3') || die();
+
+foreach (
+    [
+        'EventList' => 'FILE:EXT:tw_events/Configuration/FlexForms/EventList.xml',
+        'Event' => 'FILE:EXT:tw_events/Configuration/FlexForms/Event.xml',
+        'Person' => '',
+        'Organization' => '',
+        'PersonSelection' => 'FILE:EXT:tw_events/Configuration/FlexForms/PersonSelection.xml',
+        'OrganizationSelection' => 'FILE:EXT:tw_events/Configuration/FlexForms/OrganizationSelection.xml',
+    ] as $plugin => $flexForm
+) {
+    ExtensionUtility::registerPlugin(
+        'TwEvents',
+        $plugin,
+        'tw_events.plugins:' . lcfirst($plugin) . '.title',
+        'content-calendar',
+        'events',
+        'tw_events.plugins:' . lcfirst($plugin) . '.description',
+        $flexForm,
+    );
 }
-
-call_user_func(
-    function($extKey, $table) {
-        $columns = [
-            'tx_twevents_slug'   => [
-                'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tt_content.slug',
-                'exclude' => false,
-                'config'  => [
-                    'type'              => 'slug',
-                    'generatorOptions'  => [
-                        'fields'               => ['header'],
-                        'fieldSeparator'       => '-',
-                        'prefixParentPageSlug' => false,
-                    ],
-                    'fallbackCharacter' => '-',
-                ],
-            ],
-            'tx_twevents_stages' => [
-                'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tt_content.stages',
-                'exclude' => false,
-                'config'  => [
-                    'type'    => 'check',
-                    'items'   => [
-                        ['LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tt_content.stages.past', 0],
-                        ['LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tt_content.stages.running', 1],
-                        ['LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:tt_content.stages.future', 2],
-                    ],
-                    'default' => 7,
-                ],
-            ],
-        ];
-
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', $columns);
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
-            $table,
-            'tx_twevents_slug, tx_twevents_stages',
-            '',
-            'after:header'
-        );
-    },
-    'tw_events',
-    'tt_content'
-);

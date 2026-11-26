@@ -1,593 +1,346 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<xliff version="1.0">
-    <file source-language="en" datatype="plaintext" original="messages" date="2019-01-06T13:57:17Z"
-          product-name="tw_events">
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="EXT:tw_events/Resources/Private/Language/locallang_db.xlf" product-name="tw_events">
         <header/>
         <body>
-            <trans-unit id="file" xml:space="preserve">
-				<source>Files &amp; directories</source>
-			</trans-unit>
-            <trans-unit id="file.templateRootPath" xml:space="preserve">
-				<source>Path to template files (FE)</source>
-			</trans-unit>
-            <trans-unit id="file.partialRootPath" xml:space="preserve">
-				<source>Path to template partials (FE)</source>
-			</trans-unit>
-            <trans-unit id="file.layoutRootPath" xml:space="preserve">
-				<source>Path to template layouts (FE)</source>
-			</trans-unit>
-            <trans-unit id="ids" xml:space="preserve">
-				<source>Page IDs</source>
-			</trans-unit>
-            <trans-unit id="ids.storage" xml:space="preserve">
-				<source>Default storage PID</source>
-			</trans-unit>
-            <trans-unit id="ids.events.details" xml:space="preserve">
-				<source>Event details PID</source>
-			</trans-unit>
-            <trans-unit id="tabs.images">
-                <source>Images</source>
+            <trans-unit id="author" resname="author">
+                <source>Author</source>
             </trans-unit>
-            <trans-unit id="tabs.descriptions">
-                <source>Descriptions</source>
+            <trans-unit id="author_name" resname="author_name">
+                <source>Author name</source>
             </trans-unit>
-            <trans-unit id="tabs.note">
-                <source>Notes</source>
+            <trans-unit id="author_name.description" resname="author_name.description">
+                <source>Only if the author has no record of their own</source>
             </trans-unit>
-            <trans-unit id="tabs.coverage">
+            <trans-unit id="coordinate.description" resname="coordinate.description">
+                <source>Decimal degrees with up to six decimals, such as 49.475159</source>
+            </trans-unit>
+            <trans-unit id="coordinate.invalid" resname="coordinate.invalid">
+                <source>"%1$s" is no number from -%2$d to %2$d. The previous value stays.</source>
+            </trans-unit>
+            <trans-unit id="coverage" resname="coverage">
                 <source>Coverage</source>
             </trans-unit>
-            <trans-unit id="tabs.schedule">
-                <source>Schedule</source>
-            </trans-unit>
-            <trans-unit id="backendLayout.event">
-                <source>Event 2</source>
-            </trans-unit>
-            <trans-unit id="plugin.layout.basics">
-                <source>Basics</source>
-            </trans-unit>
-            <trans-unit id="plugin.layout.description">
+            <trans-unit id="description" resname="description">
                 <source>Description</source>
             </trans-unit>
-            <trans-unit id="plugin.layout.performers">
-                <source>Performers</source>
-            </trans-unit>
-            <trans-unit id="plugin.layout.schedule">
-                <source>Schedule</source>
-            </trans-unit>
-            <trans-unit id="plugin.layout.tickets">
-                <source>Tickets</source>
-            </trans-unit>
-            <trans-unit id="plugin.layout.location">
-                <source>Location</source>
-            </trans-unit>
-            <trans-unit id="plugin.layout.downloads">
-                <source>Downloads</source>
-            </trans-unit>
-            <trans-unit id="plugin.layout.hosts">
-                <source>Hosts</source>
-            </trans-unit>
-            <trans-unit id="plugin.layout.sponsors">
-                <source>Sponsors</source>
-            </trans-unit>
-            <trans-unit id="plugin.layout.coverage">
-                <source>Coverage</source>
-            </trans-unit>
-            <trans-unit id="plugin.layout.live">
-                <source>Live</source>
-            </trans-unit>
-            <trans-unit id="page.event">
-                <source>Event</source>
-            </trans-unit>
-            <trans-unit id="pages.tx_twevents_layout.past">
-                <source>Layout for past events</source>
-            </trans-unit>
-            <trans-unit id="pages.tx_twevents_layout.running">
-                <source>Layout for running events</source>
-            </trans-unit>
-            <trans-unit id="pages.tx_twevents_layout.future">
-                <source>Layout for future events</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_organization">
-                <source>Organization</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_organization.name">
-                <source>Name</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_organization.slug">
-                <source>Slug</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_organization.label">
-                <source>Label</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_organization.street_address">
-                <source>Street Address</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_organization.postal_code">
-                <source>Postal Code</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_organization.locality">
-                <source>Locality</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_organization.region">
-                <source>Region</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_organization.country">
-                <source>Country</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_organization.latitude">
-                <source>Latitude</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_organization.longitude">
-                <source>Longitude</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_organization.map_url">
-                <source>Map URL</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_organization.website">
-                <source>Website</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_organization.twitter">
-                <source>Twitter handle</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_organization.facebook">
-                <source>Facebook handle</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_organization.email">
-                <source>Email address</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_organization.phone">
-                <source>Phone</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_organization.logo">
-                <source>Logo</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_organization.photos">
-                <source>Photos</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_organization.description">
-                <source>Description</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event">
-                <source>Event</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event.name">
-                <source>Name</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event.slug">
-                <source>Slug</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event.event_start">
-                <source>Event Start</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event.event_end">
-                <source>Event End</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event.attendance_mode">
-                <source>Attendance Mode</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event.attendance_mode.offline">
-                <source>Offline</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event.attendance_mode.online">
-                <source>Online</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event.attendance_mode.mixed">
-                <source>Mixed</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event.status">
-                <source>Status</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event.status.scheduled">
-                <source>Scheduled</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event.status.rescheduled">
-                <source>Rescheduled</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event.status.postponed">
-                <source>Postponed</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event.status.movedOnline">
-                <source>Moved Online</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event.status.cancelled">
-                <source>Cancelled</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event.summary">
-                <source>Summary</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event.description">
-                <source>Description</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event.location_description">
-                <source>Location Description</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event.ticket_description">
-                <source>Ticket Description</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event.ticket_url">
-                <source>Ticket URL</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event.website">
-                <source>Website URL</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event.facebook">
-                <source>Facebook Event</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event.colloq">
-                <source>Colloq Event</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event.hashtag">
-                <source>Hashtag</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event.livestream_url">
-                <source>Livestream URL</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event.livestream_embed">
-                <source>Livestream Embed</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event.livestream_start">
-                <source>Livestream Start</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event.livestream_end">
-                <source>Livestream End</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event.downloads">
-                <source>Downloads</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event.location">
-                <source>Location</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event.location.tba">
-                <source>--- TBA ---</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event.sponsors">
-                <source>Sponsors</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event.organizers">
-                <source>Organizers</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event.presentations">
-                <source>Presentations</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event.coverage">
-                <source>Coverage</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_event.page">
-                <source>Presentation page</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_person">
-                <source>Person</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_person.given_name">
-                <source>Given Name</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_person.family_name">
-                <source>Family Name</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_person.slug">
-                <source>Slug</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_person.photo">
-                <source>Photo</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_person.summary">
-                <source>Summary</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_person.biography">
-                <source>Biography</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_person.teaser">
-                <source>Teaser</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_person.website">
-                <source>Website</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_person.twitter">
-                <source>Twitter</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_person.github">
-                <source>Github</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_person.facebook">
+            <trans-unit id="facebook" resname="facebook">
                 <source>Facebook</source>
             </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_person.email">
-                <source>Email</source>
+            <trans-unit id="github" resname="github">
+                <source>GitHub</source>
             </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_person.phone">
-                <source>Phone</source>
+            <trans-unit id="linkedin" resname="linkedin">
+                <source>LinkedIn</source>
             </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_sponsor">
-                <source>Sponsor</source>
+            <trans-unit id="local_time" resname="local_time">
+                <source>Local time at the event, in its time zone</source>
             </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_sponsor.label">
-                <source>Alternative label</source>
+            <trans-unit id="mastodon" resname="mastodon">
+                <source>Mastodon</source>
             </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_sponsor.organization">
-                <source>Organization</source>
+            <trans-unit id="slug" resname="slug">
+                <source>URL segment</source>
             </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_sponsor.type">
-                <source>Type</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_sponsor.type.initiator">
-                <source>Initiator</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_sponsor.type.sponsor">
-                <source>Sponsor</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_sponsor.type.organizer">
-                <source>Organizer</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_sponsor.type.supporter">
-                <source>Supporter</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_note">
-                <source>Note</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_note.content">
-                <source>Content</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_note.author">
-                <source>Author (Person)</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_note.author_name">
-                <source>Author (Name)</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_coverage">
-                <source>Coverage</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_coverage.title">
-                <source>title</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_coverage.type">
-                <source>Type</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_coverage.type.gallery">
-                <source>Photo Gallery</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_coverage.type.blog">
-                <source>Blog Post</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_coverage.type.tweet">
-                <source>Tweet</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_coverage.type.video">
-                <source>Video</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_coverage.type.talk">
-                <source>Talk documentation</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_coverage.url">
-                <source>Url</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_coverage.author">
-                <source>Author (Person)</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_coverage.author_name">
-                <source>Author (Name)</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_presentation">
-                <source>Presentation</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_presentation.title">
-                <source>Title</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_presentation.slug">
-                <source>Slug</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_presentation.type">
-                <source>Type</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_presentation.type.talk">
-                <source>Talk</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_presentation.type.session">
-                <source>Session</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_presentation.type.panel">
-                <source>Discussion Panel</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_presentation.type.break">
-                <source>Break</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_presentation.type.workshop">
-                <source>Workshop</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_presentation.type.other">
-                <source>Other</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_presentation.summary">
+            <trans-unit id="summary" resname="summary">
                 <source>Summary</source>
             </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_presentation.description">
-                <source>Description</source>
+            <trans-unit id="tabs.address" resname="tabs.address">
+                <source>Address</source>
             </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_presentation.hashtag">
-                <source>Hashtag</source>
+            <trans-unit id="tabs.links_coverage" resname="tabs.links_coverage">
+                <source>Links &amp; coverage</source>
             </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_presentation.start">
-                <source>Start</source>
+            <trans-unit id="tabs.links" resname="tabs.links">
+                <source>Links</source>
             </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_presentation.duration">
-                <source>Duration (minutes)</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_presentation.performers">
-                <source>Performers</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_presentation.coverage">
-                <source>Coverage</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_presentation.note">
-                <source>Note</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_presentation.page">
-                <source>Presentation page</source>
-            </trans-unit>
-            <trans-unit id="tx_twevents_domain_model_presentation.video">
-                <source>Video recording</source>
-            </trans-unit>
-            <trans-unit id="tx_tw_events_events.name">
-                <source>Events</source>
-            </trans-unit>
-            <trans-unit id="tx_tw_events_events.description">
-                <source>Event listing &amp; display</source>
-            </trans-unit>
-            <trans-unit id="tx_tw_events_event.name">
-                <source>Event detail</source>
-            </trans-unit>
-            <trans-unit id="tx_tw_events_event.description">
-                <source>Configurable event detail</source>
-            </trans-unit>
-            <trans-unit id="tx_tw_events_organizations.name">
-                <source>Organizations</source>
-            </trans-unit>
-            <trans-unit id="tx_tw_events_organizations.description">
-                <source>Organization listing &amp; display</source>
-            </trans-unit>
-            <trans-unit id="tx_tw_events_sponsors.name">
-                <source>Sponsors</source>
-            </trans-unit>
-            <trans-unit id="tx_tw_events_sponsors.description">
-                <source>Sponsor listing &amp; display</source>
-            </trans-unit>
-            <trans-unit id="tx_tw_events_presentations.name">
-                <source>Presentations</source>
-            </trans-unit>
-            <trans-unit id="tx_tw_events_presentations.description">
-                <source>Presentation listing &amp; display</source>
-            </trans-unit>
-            <trans-unit id="tx_tw_events_coverage.name">
-                <source>Coverage</source>
-            </trans-unit>
-            <trans-unit id="tx_tw_events_coverage.description">
-                <source>Coverage listing &amp; display</source>
-            </trans-unit>
-            <trans-unit id="tx_tw_events_note.name">
-                <source>Note</source>
-            </trans-unit>
-            <trans-unit id="tx_tw_events_note.description">
-                <source>Note listing &amp; display</source>
-            </trans-unit>
-            <trans-unit id="tx_tw_events_persons.name">
-                <source>Persons</source>
-            </trans-unit>
-            <trans-unit id="tx_tw_events_persons.description">
-                <source>Person listing &amp; display</source>
-            </trans-unit>
-            <trans-unit id="plugin.organizations.display">
-                <source>Display</source>
-            </trans-unit>
-            <trans-unit id="plugin.organizations.display.organization">
-                <source>Organization</source>
-            </trans-unit>
-            <trans-unit id="plugin.organizations.display.location">
+            <trans-unit id="tabs.location" resname="tabs.location">
                 <source>Location</source>
             </trans-unit>
-            <trans-unit id="plugin.organizations.selection_mode">
-                <source>Selection mode</source>
+            <trans-unit id="tabs.programme" resname="tabs.programme">
+                <source>Programme</source>
             </trans-unit>
-            <trans-unit id="plugin.organizations.selection_mode.categories">
-                <source>By categories</source>
+            <trans-unit id="tabs.organizers" resname="tabs.organizers">
+                <source>Organisers &amp; organisations</source>
             </trans-unit>
-            <trans-unit id="plugin.organizations.selection_mode.categories.ids">
-                <source>Categories</source>
+            <trans-unit id="tabs.tickets" resname="tabs.tickets">
+                <source>Tickets</source>
             </trans-unit>
-            <trans-unit id="plugin.organizations.selection_mode.manual">
-                <source>Manually</source>
+            <trans-unit id="twitter" resname="twitter">
+                <source>X (Twitter)</source>
             </trans-unit>
-            <trans-unit id="plugin.organizations.selection_mode.manual.ids">
-                <source>Selected organizations</source>
+            <trans-unit id="tx_twevents_coverage" resname="tx_twevents_coverage">
+                <source>Coverage</source>
             </trans-unit>
-            <trans-unit id="plugin.persons.selection_mode">
-                <source>Selection mode</source>
+            <trans-unit id="tx_twevents_coverage.title" resname="tx_twevents_coverage.title">
+                <source>Title</source>
             </trans-unit>
-            <trans-unit id="plugin.persons.selection_mode.categories">
-                <source>By categories</source>
+            <trans-unit id="tx_twevents_coverage.type" resname="tx_twevents_coverage.type">
+                <source>Type</source>
             </trans-unit>
-            <trans-unit id="plugin.persons.selection_mode.categories.ids">
-                <source>Categories</source>
+            <trans-unit id="tx_twevents_coverage.type.blog" resname="tx_twevents_coverage.type.blog">
+                <source>Blog post</source>
             </trans-unit>
-            <trans-unit id="plugin.persons.selection_mode.manual">
-                <source>Manually</source>
+            <trans-unit id="tx_twevents_coverage.type.gallery" resname="tx_twevents_coverage.type.gallery">
+                <source>Photo gallery</source>
             </trans-unit>
-            <trans-unit id="plugin.persons.selection_mode.manual.ids">
-                <source>Selected persons</source>
+            <trans-unit id="tx_twevents_coverage.type.post" resname="tx_twevents_coverage.type.post">
+                <source>Social media post</source>
             </trans-unit>
-            <trans-unit id="plugin.events.selection_mode">
-                <source>Selection mode</source>
+            <trans-unit id="tx_twevents_coverage.type.talk" resname="tx_twevents_coverage.type.talk">
+                <source>Talk documentation</source>
             </trans-unit>
-            <trans-unit id="plugin.events.selection_mode.categories">
-                <source>By categories</source>
+            <trans-unit id="tx_twevents_coverage.type.video" resname="tx_twevents_coverage.type.video">
+                <source>Video</source>
             </trans-unit>
-            <trans-unit id="plugin.events.selection_mode.categories.ids">
-                <source>Categories</source>
+            <trans-unit id="tx_twevents_coverage.url" resname="tx_twevents_coverage.url">
+                <source>URL</source>
             </trans-unit>
-            <trans-unit id="plugin.events.selection_mode.manual">
-                <source>Manually</source>
+            <trans-unit id="tx_twevents_event" resname="tx_twevents_event">
+                <source>Event</source>
             </trans-unit>
-            <trans-unit id="plugin.events.selection_mode.manual.ids">
-                <source>Selected events</source>
+            <trans-unit id="tx_twevents_event.attendance_mode" resname="tx_twevents_event.attendance_mode">
+                <source>Attendance</source>
             </trans-unit>
-            <trans-unit id="plugin.events.selection_mode.date">
-                <source>By date</source>
+            <trans-unit id="tx_twevents_event.attendance_mode.mixed" resname="tx_twevents_event.attendance_mode.mixed">
+                <source>On site and online</source>
             </trans-unit>
-            <trans-unit id="plugin.events.selection_mode.date.type">
-                <source>Date type</source>
+            <trans-unit id="tx_twevents_event.attendance_mode.offline" resname="tx_twevents_event.attendance_mode.offline">
+                <source>On site</source>
             </trans-unit>
-            <trans-unit id="plugin.events.selection_mode.date.past">
-                <source>Past events</source>
+            <trans-unit id="tx_twevents_event.attendance_mode.online" resname="tx_twevents_event.attendance_mode.online">
+                <source>Online</source>
             </trans-unit>
-            <trans-unit id="plugin.events.selection_mode.date.future">
-                <source>Future events</source>
+            <trans-unit id="tx_twevents_event.downloads" resname="tx_twevents_event.downloads">
+                <source>Downloads</source>
             </trans-unit>
-            <trans-unit id="plugin.events.selection_mode.date.cancelled">
-                <source>Cancelled events</source>
+            <trans-unit id="tx_twevents_event.end" resname="tx_twevents_event.end">
+                <source>End</source>
             </trans-unit>
-            <trans-unit id="plugin.event.block">
-                <source>Render detail block</source>
+            <trans-unit id="tx_twevents_event.livestream_url" resname="tx_twevents_event.livestream_url">
+                <source>Livestream URL</source>
             </trans-unit>
-            <trans-unit id="plugin.details">
-                <source>Show details</source>
+            <trans-unit id="tx_twevents_event.location" resname="tx_twevents_event.location">
+                <source>Venue</source>
             </trans-unit>
-            <trans-unit id="plugin.details.biography">
-                <source>Biography / Description</source>
+            <trans-unit id="tx_twevents_event.location_description" resname="tx_twevents_event.location_description">
+                <source>Directions and venue details</source>
             </trans-unit>
-            <trans-unit id="plugin.details.teaser">
-                <source>Teaser</source>
+            <trans-unit id="tx_twevents_event.organizers" resname="tx_twevents_event.organizers">
+                <source>Organisers</source>
             </trans-unit>
-            <trans-unit id="plugin.details.website">
+            <trans-unit id="tx_twevents_event.page" resname="tx_twevents_event.page">
+                <source>Page of its own</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_event.page.description" resname="tx_twevents_event.page.description">
+                <source>A page presenting this event; it then replaces the standard view</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_event.participations" resname="tx_twevents_event.participations">
+                <source>Organisations involved</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_event.series" resname="tx_twevents_event.series">
+                <source>Series</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_event.sessions" resname="tx_twevents_event.sessions">
+                <source>Sessions</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_event.start" resname="tx_twevents_event.start">
+                <source>Start</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_event.status" resname="tx_twevents_event.status">
+                <source>Status</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_event.status.cancelled" resname="tx_twevents_event.status.cancelled">
+                <source>Cancelled</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_event.status.moved_online" resname="tx_twevents_event.status.moved_online">
+                <source>Moved online</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_event.status.postponed" resname="tx_twevents_event.status.postponed">
+                <source>Postponed</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_event.status.rescheduled" resname="tx_twevents_event.status.rescheduled">
+                <source>Rescheduled</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_event.status.scheduled" resname="tx_twevents_event.status.scheduled">
+                <source>Scheduled</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_event.ticket_description" resname="tx_twevents_event.ticket_description">
+                <source>Ticket information</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_event.ticket_url" resname="tx_twevents_event.ticket_url">
+                <source>Ticket URL</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_event.hashtag" resname="tx_twevents_event.hashtag">
+                <source>Event hashtag</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_event.show_ticket_link" resname="tx_twevents_event.show_ticket_link">
+                <source>Show registration link</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_event.timezone" resname="tx_twevents_event.timezone">
+                <source>Time zone</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_event.timezone.description" resname="tx_twevents_event.timezone.description">
+                <source>Time zone at the place of the event</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_event.main_language" resname="tx_twevents_event.main_language">
+                <source>Main language</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_event.main_language.description" resname="tx_twevents_event.main_language.description">
+                <source>The language most sessions are held in</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_event.title" resname="tx_twevents_event.title">
+                <source>Title</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_note" resname="tx_twevents_note">
+                <source>Note</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_note.content" resname="tx_twevents_note.content">
+                <source>Note</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_organization" resname="tx_twevents_organization">
+                <source>Organisation</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_organization.country" resname="tx_twevents_organization.country">
+                <source>Country</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_organization.email" resname="tx_twevents_organization.email">
+                <source>Email</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_organization.latitude" resname="tx_twevents_organization.latitude">
+                <source>Latitude</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_organization.locality" resname="tx_twevents_organization.locality">
+                <source>Locality</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_organization.logo" resname="tx_twevents_organization.logo">
+                <source>Logo</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_organization.longitude" resname="tx_twevents_organization.longitude">
+                <source>Longitude</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_organization.map_url" resname="tx_twevents_organization.map_url">
+                <source>Map URL</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_organization.name" resname="tx_twevents_organization.name">
+                <source>Name</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_organization.phone" resname="tx_twevents_organization.phone">
+                <source>Phone</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_organization.photos" resname="tx_twevents_organization.photos">
+                <source>Photos</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_organization.postal_code" resname="tx_twevents_organization.postal_code">
+                <source>Postal code</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_organization.region" resname="tx_twevents_organization.region">
+                <source>Region</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_organization.short_name" resname="tx_twevents_organization.short_name">
+                <source>Short name</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_organization.short_name.description" resname="tx_twevents_organization.short_name.description">
+                <source>Shown where the full name is too long, e.g. as the name of a venue</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_organization.street_address" resname="tx_twevents_organization.street_address">
+                <source>Street address</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_participation" resname="tx_twevents_participation">
+                <source>Participation</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_participation.label" resname="tx_twevents_participation.label">
+                <source>Label</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_participation.label.description" resname="tx_twevents_participation.label.description">
+                <source>Shown instead of the role, e.g. "Location sponsor"</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_participation.organization" resname="tx_twevents_participation.organization">
+                <source>Organisation</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_participation.role" resname="tx_twevents_participation.role">
+                <source>Role</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_participation.role.initiator" resname="tx_twevents_participation.role.initiator">
+                <source>Initiator</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_participation.role.sponsor" resname="tx_twevents_participation.role.sponsor">
+                <source>Sponsor</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_participation.role.supporter" resname="tx_twevents_participation.role.supporter">
+                <source>Supporter</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_series" resname="tx_twevents_series">
+                <source>Series</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_series.title" resname="tx_twevents_series.title">
+                <source>Title</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_session" resname="tx_twevents_session">
+                <source>Session</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_participation.event" resname="tx_twevents_participation.event">
+                <source>Event</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_session.event" resname="tx_twevents_session.event">
+                <source>Event</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_session.duration" resname="tx_twevents_session.duration">
+                <source>Duration in minutes</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_session.duration.description" resname="tx_twevents_session.duration.description">
+                <source>From the start to the end of the session</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_session.notes" resname="tx_twevents_session.notes">
+                <source>Notes</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_session.language" resname="tx_twevents_session.language">
+                <source>Session language</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_session.language.event" resname="tx_twevents_session.language.event">
+                <source>Language of the event</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_session.hashtag" resname="tx_twevents_session.hashtag">
+                <source>Session hashtag</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_session.speakers" resname="tx_twevents_session.speakers">
+                <source>Performers</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_session.speakers.description" resname="tx_twevents_session.speakers.description">
+                <source>Everyone on stage, including moderators</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_session.start" resname="tx_twevents_session.start">
+                <source>Start</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_session.title" resname="tx_twevents_session.title">
+                <source>Title</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_session.type" resname="tx_twevents_session.type">
+                <source>Type</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_session.type.break" resname="tx_twevents_session.type.break">
+                <source>Break</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_session.type.other" resname="tx_twevents_session.type.other">
+                <source>Other</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_session.type.panel" resname="tx_twevents_session.type.panel">
+                <source>Panel</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_session.type.session" resname="tx_twevents_session.type.session">
+                <source>Session</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_session.type.talk" resname="tx_twevents_session.type.talk">
+                <source>Talk</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_session.type.workshop" resname="tx_twevents_session.type.workshop">
+                <source>Workshop</source>
+            </trans-unit>
+            <trans-unit id="tx_twevents_session.video" resname="tx_twevents_session.video">
+                <source>Video URL</source>
+            </trans-unit>
+            <trans-unit id="website" resname="website">
                 <source>Website</source>
-            </trans-unit>
-            <trans-unit id="plugin.details.twitter">
-                <source>Twitter profile</source>
-            </trans-unit>
-            <trans-unit id="plugin.details.github">
-                <source>Github profile</source>
-            </trans-unit>
-            <trans-unit id="plugin.details.facebook">
-                <source>Facebook profile</source>
-            </trans-unit>
-            <trans-unit id="plugin.details.email">
-                <source>Email address</source>
-            </trans-unit>
-            <trans-unit id="plugin.details.phone">
-                <source>Phone number</source>
-            </trans-unit>
-            <trans-unit id="tt_content.slug">
-                <source>Slug</source>
-            </trans-unit>
-            <trans-unit id="tt_content.stages">
-                <source>Stages</source>
-            </trans-unit>
-            <trans-unit id="tt_content.stages.past">
-                <source>Past events</source>
-            </trans-unit>
-            <trans-unit id="tt_content.stages.running">
-                <source>Running events</source>
-            </trans-unit>
-            <trans-unit id="tt_content.stages.future">
-                <source>Future events</source>
             </trans-unit>
         </body>
     </file>

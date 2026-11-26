@@ -1,0 +1,13 @@
+<f:comment>
+    Coverage of an event or a session, with links to addresses or files
+    @param iterable coverage Coverage
+</f:comment>
+<ul class="CoverageList">
+    <f:for each="{coverage}" as="item">
+        <li class="CoverageList__item CoverageList__item--{item.type}">
+            <f:variable name="url" value="{f:uri.typolink(parameter: item.url, absolute: 1)}" />
+            <a href="{url}">{f:if(condition: item.title, then: item.title, else: url)}</a>
+            <span class="CoverageList__meta">(<f:translate key="coverage.type.{item.type}" /><f:if condition="{item.authorDisplayName}">, <f:translate key="coverage.by" arguments="{0: item.authorDisplayName}" /></f:if>)</span>
+        </li>
+    </f:for>
+</ul>

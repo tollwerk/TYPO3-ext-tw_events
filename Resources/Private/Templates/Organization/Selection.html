@@ -1,0 +1,13 @@
+<f:comment>
+    Organisations chosen in the plugin, as cards with the details chosen in it or as venues
+    @param array organizations Organisations
+    @param bool venues Whether to show them as venues with their address
+    @param array details Details of the cards
+</f:comment>
+<f:if condition="{organizations}">
+    <ul class="OrganizationList{f:if(condition: venues, then: ' OrganizationList--venues')}">
+        <f:for each="{organizations}" as="organization">
+            <li class="OrganizationList__item"><f:render partial="Organization/{f:if(condition: venues, then: 'Venue', else: 'Card')}" arguments="{organization: organization, details: details}" /></li>
+        </f:for>
+    </ul>
+</f:if>

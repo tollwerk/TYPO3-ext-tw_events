@@ -1,0 +1,20 @@
+<f:comment>
+    Downloads of an event
+    @param Tollwerk\TwEvents\Domain\Model\Event event Event
+</f:comment>
+<f:if condition="{event.downloads}">
+    <section class="Event__downloads" id="downloads">
+        <base:heading content="{f:translate(key: 'event.heading.downloads')}">
+            <ul class="Downloads">
+                <f:for each="{event.downloads}" as="download">
+                    <f:variable name="file" value="{download.originalResource}" />
+                    <li class="Downloads__item">
+                        <a href="{file.publicUrl}">{f:if(condition: file.title, then: file.title, else: file.name)}</a>
+                        <span class="Downloads__meta">({file.extension -> f:format.case(mode: 'upper')}, {file.size -> f:format.bytes()})</span>
+                        <f:if condition="{file.description}"><p class="Downloads__description">{file.description}</p></f:if>
+                    </li>
+                </f:for>
+            </ul>
+        </base:heading>
+    </section>
+</f:if>

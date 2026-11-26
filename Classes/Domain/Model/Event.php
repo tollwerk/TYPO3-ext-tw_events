@@ -1,1012 +1,728 @@
 <?php
 
+/**
+ * An event with its programme, the people and organisations taking part and its documentation
+ *
+ * @category  Tollwerk
+ * @package   Tollwerk\TwEvents
+ * @author    Joschi Kuphal <joschi@tollwerk.de>
+ * @copyright 2026 tollwerk GmbH
+ * @license   https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
+ * @link      https://code.tollwerk.net/tollwerk/typo3/extensions/tw-events
+ */
+
+declare(strict_types=1);
+
 namespace Tollwerk\TwEvents\Domain\Model;
 
-use Tollwerk\TwEvents\Domain\Model\Traits\SlugTrait;
-use Tollwerk\TwEvents\Utility\DatetimeUtility;
+use DateTime;
+use DateTimeImmutable;
+use Tollwerk\TwEvents\Domain\LocalTime;
+use TYPO3\CMS\Extbase\Attribute\ORM\Lazy;
+use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
-
-/***
- *
- * This file is part of the "tollwerk Event Calendar" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- *  © 2020
- *
- ***/
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
- * Event
+ * An event with its programme, the people and organisations taking part and its documentation
+ *
+ * @category  Tollwerk
+ * @package   Tollwerk\TwEvents
+ * @author    Joschi Kuphal <joschi@tollwerk.de>
+ * @copyright 2026 tollwerk GmbH
+ * @license   https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
+ * @link      https://code.tollwerk.net/tollwerk/typo3/extensions/tw-events
  */
-class Event extends AbstractEntity
+final class Event extends AbstractEntity
 {
-    use SlugTrait;
     /**
-     * Event doktype
-     *
-     * @var int
-     */
-    const DOKTYPE = 150;
-    /**
-     * Past event
+     * Phase before the event starts
      *
      * @var string
      */
-    const STAGE_PAST = 'past';
+    public const string PHASE_UPCOMING = 'upcoming';
+
     /**
-     * Running event
+     * Phase while the event lasts
      *
      * @var string
      */
-    const STAGE_RUNNING = 'running';
+    public const string PHASE_RUNNING = 'running';
+
     /**
-     * Future event
+     * Phase after the event ends
      *
      * @var string
      */
-    const STAGE_FUTURE = 'future';
+    public const string PHASE_PAST = 'past';
+
     /**
-     * Unknown event stage
+     * Status of a cancelled event
      *
      * @var string
      */
-    const STAGE_UNKNOWN = 'unknown';
+    public const string STATUS_CANCELLED = 'cancelled';
+
     /**
-     * Attendance modes
-     *
-     * @var int
-     */
-    const ATTENDANCE_OFFLINE = 0;
-    const ATTENDANCE_ONLINE = 1;
-    const ATTENDANCE_MIXED = 2;
-    /**
-     * Event status
-     *
-     * @var int
-     */
-    const STATUS_SCHEDULED = 0;
-    const STATUS_RESCHEDULED = 1;
-    const STATUS_POSTPONED = 2;
-    const STATUS_MOVEDONLINE = 3;
-    const STATUS_CANCELLED = 4;
-    /**
-     * Presentation page
-     *
-     * @var \Tollwerk\TwEvents\Domain\Model\Page
-     */
-    protected $page = null;
-    /**
-     * Name
-     *
-     * @var string
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
-     */
-    protected $name = '';
-    /**
-     * Event Start
-     *
-     * @var \DateTime
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
-     */
-    protected $eventStart = null;
-    /**
-     * Event End
-     *
-     * @var \DateTime
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
-     */
-    protected $eventEnd = null;
-    /**
-     * Event status
-     *
-     * @var int
-     */
-    protected $status = self::STATUS_SCHEDULED;
-    /**
-     * Attendance mode
-     *
-     * @var int
-     */
-    protected $attendanceMode = self::ATTENDANCE_OFFLINE;
-    /**
-     * description
-     *
-     * @var string
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
-     */
-    protected $description = '';
-    /**
-     * Summary
-     *
-     * @var string
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
-     */
-    protected $summary = '';
-    /**
-     * Location Description
+     * Status of a postponed event, which has no new date yet
      *
      * @var string
      */
-    protected $locationDescription = '';
+    public const string STATUS_POSTPONED = 'postponed';
+
     /**
-     * Ticket Description
+     * Title
      *
      * @var string
      */
-    protected $ticketDescription = '';
+    protected string $title = '';
+
     /**
-     * Ticket URL
+     * Slug
      *
      * @var string
      */
-    protected $ticketUrl = '';
+    protected string $slug = '';
+
     /**
-     * Website URL
+     * Series
+     *
+     * @var Series|null
+     */
+    protected ?Series $series = null;
+
+    /**
+     * Start as local time of the event
+     *
+     * @var DateTime|null
+     */
+    protected ?DateTime $start = null;
+
+    /**
+     * End as local time of the event
+     *
+     * @var DateTime|null
+     */
+    protected ?DateTime $end = null;
+
+    /**
+     * Time zone
      *
      * @var string
      */
-    protected $website = '';
+    protected string $timezone = LocalTime::DEFAULT_TIMEZONE;
+
     /**
-     * Facebook URL
+     * Main language, as a language tag of BCP 47
      *
      * @var string
      */
-    protected $facebook = '';
+    protected string $mainLanguage = 'en';
+
     /**
-     * Colloq URL
+     * Status: scheduled, rescheduled, postponed, moved_online or cancelled
      *
      * @var string
      */
-    protected $colloq = '';
+    protected string $status = 'scheduled';
+
+    /**
+     * Attendance: offline, online or mixed
+     *
+     * @var string
+     */
+    protected string $attendanceMode = 'offline';
+
+    /**
+     * Summary as plain text
+     *
+     * @var string
+     */
+    protected string $summary = '';
+
+    /**
+     * Description
+     *
+     * @var string
+     */
+    protected string $description = '';
+
+    /**
+     * Venue
+     *
+     * @var Organization|null
+     */
+    protected ?Organization $location = null;
+
+    /**
+     * Directions to the venue
+     *
+     * @var string
+     */
+    protected string $locationDescription = '';
+
+    /**
+     * People who organise the event
+     *
+     * @var ObjectStorage<Person>
+     */
+    #[Lazy]
+    protected ObjectStorage $organizers;
+
+    /**
+     * Organisations taking part
+     *
+     * @var ObjectStorage<Participation>
+     */
+    #[Lazy]
+    protected ObjectStorage $participations;
+
+    /**
+     * Programme
+     *
+     * @var ObjectStorage<Session>
+     */
+    #[Lazy]
+    protected ObjectStorage $sessions;
+
+    /**
+     * Coverage
+     *
+     * @var ObjectStorage<Coverage>
+     */
+    #[Lazy]
+    protected ObjectStorage $coverage;
+
+    /**
+     * Uid of the page of the event
+     *
+     * @var integer
+     */
+    protected int $page = 0;
+
+    /**
+     * Website
+     *
+     * @var string
+     */
+    protected string $website = '';
+
     /**
      * Hashtag
      *
      * @var string
      */
-    protected $hashtag = '';
+    protected string $hashtag = '';
+
     /**
-     * Livestream URL
+     * Address of the tickets
      *
      * @var string
      */
-    protected $livestreamUrl = '';
+    protected string $ticketUrl = '';
+
     /**
-     * Livestream Embed Code
+     * Whether the link to register shows
+     *
+     * @var boolean
+     */
+    protected bool $showTicketLink = true;
+
+    /**
+     * Description of the tickets
      *
      * @var string
      */
-    protected $livestreamEmbed = '';
+    protected string $ticketDescription = '';
+
     /**
-     * Livestream Start
+     * Address of the livestream
      *
-     * @var \DateTime
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
+     * @var string
      */
-    protected $livestreamStart = null;
-    /**
-     * Livestream End
-     *
-     * @var \DateTime
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
-     */
-    protected $livestreamEnd = null;
+    protected string $livestreamUrl = '';
+
     /**
      * Downloads
      *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade remove
+     * @var ObjectStorage<FileReference>
      */
-    protected $downloads = null;
-    /**
-     * Location
-     *
-     * @var \Tollwerk\TwEvents\Domain\Model\Organization
-     */
-    protected $location = null;
-    /**
-     * Sponsors & Supporters
-     *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Tollwerk\TwEvents\Domain\Model\Sponsor>
-     */
-    protected $sponsors = null;
-    /**
-     * Organizers
-     *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Tollwerk\TwEvents\Domain\Model\Person>
-     */
-    protected $organizers = null;
-    /**
-     * Presentations
-     *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Tollwerk\TwEvents\Domain\Model\Presentation>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade remove
-     */
-    protected $presentations = null;
-    /**
-     * Coverage
-     *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Tollwerk\TwEvents\Domain\Model\Coverage>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade remove
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
-     */
-    protected $coverage = null;
+    #[Lazy]
+    protected ObjectStorage $downloads;
 
     /**
-     * __construct
+     * Constructor
      */
     public function __construct()
     {
-        //Do not remove the next line: It would break the functionality
-        $this->initStorageObjects();
+        $this->initializeObject();
     }
 
     /**
-     * Initializes all ObjectStorage properties
-     * Do not modify this method!
-     * It will be rewritten on each save in the extension builder
-     * You may modify the constructor of this class instead
+     * Whether people can register: the link is released, the event has not started yet, and it is neither cancelled
+     * nor postponed
+     *
+     * @param DateTimeImmutable|null $now Time, or NULL for now
+     *
+     * @return boolean
+     */
+    public function getIsRegistrationOpen(?DateTimeImmutable $now = null): bool
+    {
+        return $this->getShowTicketLink()
+            && !\in_array($this->status, [self::STATUS_CANCELLED, self::STATUS_POSTPONED], true)
+            && ($this->getPhase($now) === self::PHASE_UPCOMING);
+    }
+
+    /**
+     * Initialise the relations, also for objects the persistence creates without constructor
      *
      * @return void
      */
-    protected function initStorageObjects()
+    public function initializeObject(): void
     {
-        $this->downloads     = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-        $this->sponsors      = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-        $this->organizers    = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-        $this->presentations = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-        $this->coverage      = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $this->organizers = new ObjectStorage();
+        $this->participations = new ObjectStorage();
+        $this->sessions = new ObjectStorage();
+        $this->coverage = new ObjectStorage();
+        $this->downloads = new ObjectStorage();
     }
 
     /**
-     * Returns the name
+     * Title
      *
-     * @return string $name
+     * @return string
      */
-    public function getName()
+    public function getTitle(): string
     {
-        return $this->name;
+        return $this->title;
     }
 
     /**
-     * Sets the name
+     * Slug
      *
-     * @param string $name
-     *
-     * @return void
+     * @return string
      */
-    public function setName($name)
+    public function getSlug(): string
     {
-        $this->name = $name;
+        return $this->slug;
     }
 
     /**
-     * Returns the eventStart
+     * Series
      *
-     * @return \DateTimeInterface $eventStart
+     * @return Series|null Series, or NULL without one
      */
-    public function getEventStart(): \DateTime
+    public function getSeries(): ?Series
     {
-        return DatetimeUtility::fixTimezone($this->eventStart);
+        return $this->series;
     }
 
     /**
-     * Sets the eventStart
+     * Start as local time of the event
      *
-     * @param \DateTimeInterface $eventStart
-     *
-     * @return void
+     * @return DateTime|null Start as local time of the event, or NULL without one
      */
-    public function setEventStart(\DateTimeInterface $eventStart): void
+    public function getStart(): ?DateTime
     {
-        $this->eventStart = $eventStart;
+        return $this->start;
     }
 
     /**
-     * Returns the eventEnd
+     * End as local time of the event
      *
-     * @return \DateTimeInterface $eventEnd
+     * @return DateTime|null End as local time of the event, or NULL without one
      */
-    public function getEventEnd(): \DateTime
+    public function getEnd(): ?DateTime
     {
-        return DatetimeUtility::fixTimezone($this->eventEnd);
+        return $this->end;
     }
 
     /**
-     * Sets the eventEnd
+     * Time zone
      *
-     * @param \DateTime $eventEnd
-     *
-     * @return void
+     * @return string
      */
-    public function setEventEnd(\DateTime $eventEnd): void
+    public function getTimezone(): string
     {
-        $this->eventEnd = $eventEnd;
+        return $this->timezone;
     }
 
     /**
-     * Return the status
+     * Main language, the language most sessions are held in
      *
-     * @return int status
+     * @return string Language tag of BCP 47, such as "en"
      */
-    public function getStatus(): int
+    public function getMainLanguage(): string
+    {
+        return $this->mainLanguage;
+    }
+
+    /**
+     * Status: scheduled, rescheduled, postponed, moved_online or cancelled
+     *
+     * @return string
+     */
+    public function getStatus(): string
     {
         return $this->status;
     }
 
     /**
-     * Set the status
+     * Attendance: offline, online or mixed
      *
-     * @param int $status Status
+     * @return string
      */
-    public function setStatus(int $status): void
-    {
-        $this->status = $status;
-    }
-
-    /**
-     * Return the attendance mode
-     *
-     * @return int Attendance mode
-     */
-    public function getAttendanceMode(): int
+    public function getAttendanceMode(): string
     {
         return $this->attendanceMode;
     }
 
     /**
-     * Set the attendance mode
+     * Summary as plain text
      *
-     * @param int $attendanceMode Attendance mode
+     * @return string
      */
-    public function setAttendanceMode(int $attendanceMode): void
-    {
-        $this->attendanceMode = $attendanceMode;
-    }
-
-    /**
-     * Returns the description
-     *
-     * @return string $description
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * Sets the description
-     *
-     * @param string $description
-     *
-     * @return void
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-    }
-
-    /**
-     * Returns the summary
-     *
-     * @return string $summary
-     */
-    public function getSummary()
+    public function getSummary(): string
     {
         return $this->summary;
     }
 
     /**
-     * Sets the summary
+     * Description
      *
-     * @param string $summary
-     *
-     * @return void
+     * @return string
      */
-    public function setSummary($summary)
+    public function getDescription(): string
     {
-        $this->summary = $summary;
+        return $this->description;
     }
 
     /**
-     * Returns the locationDescription
+     * Venue
      *
-     * @return string $locationDescription
+     * @return Organization|null Venue, or NULL without one
      */
-    public function getLocationDescription()
-    {
-        return $this->locationDescription;
-    }
-
-    /**
-     * Sets the locationDescription
-     *
-     * @param string $locationDescription
-     *
-     * @return void
-     */
-    public function setLocationDescription($locationDescription)
-    {
-        $this->locationDescription = $locationDescription;
-    }
-
-    /**
-     * Returns the ticketDescription
-     *
-     * @return string $ticketDescription
-     */
-    public function getTicketDescription()
-    {
-        return $this->ticketDescription;
-    }
-
-    /**
-     * Sets the ticketDescription
-     *
-     * @param string $ticketDescription
-     *
-     * @return void
-     */
-    public function setTicketDescription($ticketDescription)
-    {
-        $this->ticketDescription = $ticketDescription;
-    }
-
-    /**
-     * Returns the ticketUrl
-     *
-     * @return string $ticketUrl
-     */
-    public function getTicketUrl()
-    {
-        return $this->ticketUrl;
-    }
-
-    /**
-     * Sets the ticketUrl
-     *
-     * @param string $ticketUrl
-     *
-     * @return void
-     */
-    public function setTicketUrl($ticketUrl)
-    {
-        $this->ticketUrl = $ticketUrl;
-    }
-
-    /**
-     * Returns the website
-     *
-     * @return string $website
-     */
-    public function getWebsite()
-    {
-        return $this->website;
-    }
-
-    /**
-     * Sets the website
-     *
-     * @param string $website
-     *
-     * @return void
-     */
-    public function setWebsite($website)
-    {
-        $this->website = $website;
-    }
-
-    /**
-     * Returns the facebook
-     *
-     * @return string $facebook
-     */
-    public function getFacebook()
-    {
-        return $this->facebook;
-    }
-
-    /**
-     * Sets the facebook
-     *
-     * @param string $facebook
-     *
-     * @return void
-     */
-    public function setFacebook($facebook)
-    {
-        $this->facebook = $facebook;
-    }
-
-    /**
-     * Returns the colloq
-     *
-     * @return string $colloq
-     */
-    public function getColloq()
-    {
-        return $this->colloq;
-    }
-
-    /**
-     * Sets the colloq
-     *
-     * @param string $colloq
-     *
-     * @return void
-     */
-    public function setColloq($colloq)
-    {
-        $this->colloq = $colloq;
-    }
-
-    /**
-     * Returns the hashtag
-     *
-     * @return string $hashtag
-     */
-    public function getHashtag()
-    {
-        return $this->hashtag;
-    }
-
-    /**
-     * Sets the hashtag
-     *
-     * @param string $hashtag
-     *
-     * @return void
-     */
-    public function setHashtag($hashtag)
-    {
-        $this->hashtag = $hashtag;
-    }
-
-    /**
-     * Returns the livestreamUrl
-     *
-     * @return string $livestreamUrl
-     */
-    public function getLivestreamUrl()
-    {
-        return $this->livestreamUrl;
-    }
-
-    /**
-     * Sets the livestreamUrl
-     *
-     * @param string $livestreamUrl
-     *
-     * @return void
-     */
-    public function setLivestreamUrl($livestreamUrl)
-    {
-        $this->livestreamUrl = $livestreamUrl;
-    }
-
-    /**
-     * Returns the livestreamEmbed
-     *
-     * @return string $livestreamEmbed
-     */
-    public function getLivestreamEmbed()
-    {
-        return $this->livestreamEmbed;
-    }
-
-    /**
-     * Sets the livestreamEmbed
-     *
-     * @param string $livestreamEmbed
-     *
-     * @return void
-     */
-    public function setLivestreamEmbed($livestreamEmbed)
-    {
-        $this->livestreamEmbed = $livestreamEmbed;
-    }
-
-    /**
-     * Returns the livestreamStart
-     *
-     * @return \DateTime $livestreamStart
-     */
-    public function getLivestreamStart()
-    {
-        return $this->livestreamStart;
-    }
-
-    /**
-     * Sets the livestreamStart
-     *
-     * @param \DateTime $livestreamStart
-     *
-     * @return void
-     */
-    public function setLivestreamStart(\DateTime $livestreamStart)
-    {
-        $this->livestreamStart = $livestreamStart;
-    }
-
-    /**
-     * Returns the livestreamEnd
-     *
-     * @return \DateTime $livestreamEnd
-     */
-    public function getLivestreamEnd()
-    {
-        return $this->livestreamEnd;
-    }
-
-    /**
-     * Sets the livestreamEnd
-     *
-     * @param \DateTime $livestreamEnd
-     *
-     * @return void
-     */
-    public function setLivestreamEnd(\DateTime $livestreamEnd)
-    {
-        $this->livestreamEnd = $livestreamEnd;
-    }
-
-    /**
-     * Adds a FileReference
-     *
-     * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $download
-     *
-     * @return void
-     */
-    public function addDownload(\TYPO3\CMS\Extbase\Domain\Model\FileReference $download)
-    {
-        $this->downloads->attach($download);
-    }
-
-    /**
-     * Removes a FileReference
-     *
-     * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $downloadToRemove The FileReference to be removed
-     *
-     * @return void
-     */
-    public function removeDownload(\TYPO3\CMS\Extbase\Domain\Model\FileReference $downloadToRemove)
-    {
-        $this->downloads->detach($downloadToRemove);
-    }
-
-    /**
-     * Returns the downloads
-     *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference> $downloads
-     */
-    public function getDownloads()
-    {
-        return $this->downloads;
-    }
-
-    /**
-     * Sets the downloads
-     *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference> $downloads
-     *
-     * @return void
-     */
-    public function setDownloads(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $downloads)
-    {
-        $this->downloads = $downloads;
-    }
-
-    /**
-     * Returns the location
-     *
-     * @return \Tollwerk\TwEvents\Domain\Model\Organization $location
-     */
-    public function getLocation()
+    public function getLocation(): ?Organization
     {
         return $this->location;
     }
 
     /**
-     * Sets the location
+     * Directions to the venue
      *
-     * @param \Tollwerk\TwEvents\Domain\Model\Organization $location
-     *
-     * @return void
+     * @return string
      */
-    public function setLocation(\Tollwerk\TwEvents\Domain\Model\Organization $location)
+    public function getLocationDescription(): string
     {
-        $this->location = $location;
+        return $this->locationDescription;
     }
 
     /**
-     * Adds a Person
+     * People who organise the event
      *
-     * @param \Tollwerk\TwEvents\Domain\Model\Person $organizer
-     *
-     * @return void
+     * @return ObjectStorage<Person>
      */
-    public function addOrganizer(\Tollwerk\TwEvents\Domain\Model\Person $organizer)
-    {
-        $this->organizers->attach($organizer);
-    }
-
-    /**
-     * Removes a Person
-     *
-     * @param \Tollwerk\TwEvents\Domain\Model\Person $organizerToRemove The Person to be removed
-     *
-     * @return void
-     */
-    public function removeOrganizer(\Tollwerk\TwEvents\Domain\Model\Person $organizerToRemove)
-    {
-        $this->organizers->detach($organizerToRemove);
-    }
-
-    /**
-     * Returns the organizers
-     *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Tollwerk\TwEvents\Domain\Model\Person> $organizers
-     */
-    public function getOrganizers()
+    public function getOrganizers(): ObjectStorage
     {
         return $this->organizers;
     }
 
     /**
-     * Sets the organizers
+     * Organisations taking part
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Tollwerk\TwEvents\Domain\Model\Person> $organizers
-     *
-     * @return void
+     * @return ObjectStorage<Participation>
      */
-    public function setOrganizers(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $organizers)
+    public function getParticipations(): ObjectStorage
     {
-        $this->organizers = $organizers;
+        return $this->participations;
     }
 
     /**
-     * Adds a Sponsor
+     * Programme
      *
-     * @param \Tollwerk\TwEvents\Domain\Model\Sponsor $sponsor
-     *
-     * @return void
+     * @return ObjectStorage<Session>
      */
-    public function addSponsor(\Tollwerk\TwEvents\Domain\Model\Sponsor $sponsor)
+    public function getSessions(): ObjectStorage
     {
-        $this->sponsors->attach($sponsor);
+        return $this->sessions;
     }
 
     /**
-     * Removes a Sponsor
+     * Coverage
      *
-     * @param \Tollwerk\TwEvents\Domain\Model\Sponsor $sponsorToRemove The Sponsor to be removed
-     *
-     * @return void
+     * @return ObjectStorage<Coverage>
      */
-    public function removeSponsor(\Tollwerk\TwEvents\Domain\Model\Sponsor $sponsorToRemove)
-    {
-        $this->sponsors->detach($sponsorToRemove);
-    }
-
-    /**
-     * Returns the sponsors
-     *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Tollwerk\TwEvents\Domain\Model\Sponsor> $sponsors
-     */
-    public function getSponsors()
-    {
-        return $this->sponsors;
-    }
-
-    /**
-     * Sets the sponsors
-     *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Tollwerk\TwEvents\Domain\Model\Sponsor> $sponsors
-     *
-     * @return void
-     */
-    public function setSponsors(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $sponsors)
-    {
-        $this->sponsors = $sponsors;
-    }
-
-    /**
-     * Adds a Coverage
-     *
-     * @param \Tollwerk\TwEvents\Domain\Model\Coverage $coverage
-     *
-     * @return void
-     */
-    public function addCoverage(\Tollwerk\TwEvents\Domain\Model\Coverage $coverage)
-    {
-        $this->coverage->attach($coverage);
-    }
-
-    /**
-     * Removes a Coverage
-     *
-     * @param \Tollwerk\TwEvents\Domain\Model\Coverage $coverageToRemove The Coverage to be removed
-     *
-     * @return void
-     */
-    public function removeCoverage(\Tollwerk\TwEvents\Domain\Model\Coverage $coverageToRemove)
-    {
-        $this->coverage->detach($coverageToRemove);
-    }
-
-    /**
-     * Returns the coverage
-     *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Tollwerk\TwEvents\Domain\Model\Coverage> $coverage
-     */
-    public function getCoverage()
+    public function getCoverage(): ObjectStorage
     {
         return $this->coverage;
     }
 
     /**
-     * Sets the coverage
+     * Uid of the page of the event
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Tollwerk\TwEvents\Domain\Model\Coverage> $coverage
-     *
-     * @return void
+     * @return integer
      */
-    public function setCoverage(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $coverage)
-    {
-        $this->coverage = $coverage;
-    }
-
-    /**
-     * Adds a Presentation
-     *
-     * @param \Tollwerk\TwEvents\Domain\Model\Presentation $presentation
-     *
-     * @return void
-     */
-    public function addPresentation(\Tollwerk\TwEvents\Domain\Model\Presentation $presentation)
-    {
-        $this->presentations->attach($presentation);
-    }
-
-    /**
-     * Removes a Presentation
-     *
-     * @param \Tollwerk\TwEvents\Domain\Model\Presentation $presentationToRemove The Presentation to be removed
-     *
-     * @return void
-     */
-    public function removePresentation(\Tollwerk\TwEvents\Domain\Model\Presentation $presentationToRemove)
-    {
-        $this->presentations->detach($presentationToRemove);
-    }
-
-    /**
-     * Returns the presentations
-     *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Tollwerk\TwEvents\Domain\Model\Presentation> $presentations
-     */
-    public function getPresentations()
-    {
-        return $this->presentations;
-    }
-
-    /**
-     * Sets the presentations
-     *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Tollwerk\TwEvents\Domain\Model\Presentation> $presentations
-     *
-     * @return void
-     */
-    public function setPresentations(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $presentations)
-    {
-        $this->presentations = $presentations;
-    }
-
-    /**
-     * Return all performers
-     *
-     * @return Person[] Performers
-     */
-    public function getPerformers(): array
-    {
-        $performers = [];
-        foreach ($this->presentations as $presentation) {
-            foreach ($presentation->getPerformers() as $performer) {
-                $performers[$performer->getUid()] = $performer;
-            }
-        }
-
-        return array_values($performers);
-    }
-
-    /**
-     * Return the current event stage
-     *
-     * @return string Event stage
-     * @throws \Exception
-     */
-    public function getStage(): string
-    {
-        if ($this->isPast()) {
-            return self::STAGE_PAST;
-        }
-        if ($this->isFuture()) {
-            return self::STAGE_FUTURE;
-        }
-        if ($this->isRunning()) {
-            return self::STAGE_RUNNING;
-        }
-
-        return self::STAGE_UNKNOWN;
-    }
-
-    /**
-     * Return whether this is a past event
-     *
-     * @return bool Is past event
-     * @throws \Exception
-     */
-    public function isPast(): bool
-    {
-        return $this->eventEnd < (new \DateTimeImmutable('now'));
-    }
-
-    /**
-     * Return whether this is a future event
-     *
-     * @return bool Is future event
-     * @throws \Exception
-     */
-    public function isFuture(): bool
-    {
-        return $this->eventStart > (new \DateTimeImmutable('now'));
-    }
-
-    /**
-     * Return whether this is a running event
-     *
-     * @return bool Is running event
-     * @throws \Exception
-     */
-    public function isRunning(): bool
-    {
-        $now = new \DateTimeImmutable('now');
-
-        return ($this->eventStart <= $now) && ($this->eventEnd > $now);
-    }
-
-    /**
-     * Return the alternative presentation page
-     *
-     * @return \Tollwerk\TwEvents\Domain\Model\Page Alternative presentation page
-     */
-    public function getPage(): ?Page
+    public function getPage(): int
     {
         return $this->page;
     }
 
     /**
-     * Set the alternative presentation page
+     * Website
      *
-     * @param \Tollwerk\TwEvents\Domain\Model\Page $page Alternative presentation page
+     * @return string
      */
-    public function setPage(Page $page): void
+    public function getWebsite(): string
     {
-        $this->page = $page;
+        return $this->website;
     }
 
     /**
-     * Return whether this event offers tickets
+     * Hashtag
      *
-     * @return bool Offers tickets
+     * @return string
      */
-    public function getOffersTickets(): bool
+    public function getHashtag(): string
     {
-        return strlen($this->getTicketUrl()) && in_array($this->getStatus(), [
-                self::STATUS_SCHEDULED,
-                self::STATUS_RESCHEDULED,
-                self::STATUS_MOVEDONLINE,
-            ]);
+        return $this->hashtag;
+    }
+
+    /**
+     * Address of the tickets
+     *
+     * @return string
+     */
+    public function getTicketUrl(): string
+    {
+        return $this->ticketUrl;
+    }
+
+    /**
+     * Whether the link to register shows: the ticket information shows with an address of the tickets, the link
+     * only once an editor releases it
+     *
+     * @return boolean
+     */
+    public function getShowTicketLink(): bool
+    {
+        return $this->showTicketLink && ($this->ticketUrl !== '');
+    }
+
+    /**
+     * Description of the tickets
+     *
+     * @return string
+     */
+    public function getTicketDescription(): string
+    {
+        return $this->ticketDescription;
+    }
+
+    /**
+     * Address of the livestream
+     *
+     * @return string
+     */
+    public function getLivestreamUrl(): string
+    {
+        return $this->livestreamUrl;
+    }
+
+    /**
+     * Downloads
+     *
+     * @return ObjectStorage<FileReference>
+     */
+    public function getDownloads(): ObjectStorage
+    {
+        return $this->downloads;
+    }
+
+    /**
+     * Start in the time zone of the event
+     *
+     * @return DateTimeImmutable|null Start, or NULL without one
+     */
+    public function getStartDate(): ?DateTimeImmutable
+    {
+        return LocalTime::of($this->start, $this->timezone);
+    }
+
+    /**
+     * End in the time zone of the event
+     *
+     * @return DateTimeImmutable|null End, or NULL without one
+     */
+    public function getEndDate(): ?DateTimeImmutable
+    {
+        return LocalTime::of($this->end, $this->timezone);
+    }
+
+    /**
+     * Whether the event lasts more than one day
+     *
+     * @return boolean
+     */
+    public function getIsMultiDay(): bool
+    {
+        $start = $this->getStartDate();
+        $end = $this->getEndDate();
+
+        if (!$start instanceof DateTimeImmutable || !$end instanceof DateTimeImmutable) {
+            return false;
+        }
+
+        return $start->format('Y-m-d') !== $end->format('Y-m-d');
+    }
+
+    /**
+     * Whether the event is over
+     *
+     * @return boolean
+     */
+    public function getIsPast(): bool
+    {
+        return $this->getPhase() === self::PHASE_PAST;
+    }
+
+    /**
+     * Phase of the event at a time: "upcoming" before it starts, "running" while it lasts and "past" after it ends
+     *
+     * An event without a start is upcoming, an event without an end ends when it starts.
+     *
+     * @param DateTimeImmutable|null $now Time, or NULL for now
+     *
+     * @return string Phase
+     */
+    public function getPhase(?DateTimeImmutable $now = null): string
+    {
+        $now ??= new DateTimeImmutable();
+        $start = $this->getStartDate();
+        $end = $this->getEndDate() ?? $start;
+        if (($end instanceof DateTimeImmutable) && ($end < $now)) {
+            return self::PHASE_PAST;
+        }
+
+        return (($start instanceof DateTimeImmutable) && ($start <= $now)) ? self::PHASE_RUNNING : self::PHASE_UPCOMING;
+    }
+
+    /**
+     * Time the event enters its next phase
+     *
+     * @param DateTimeImmutable|null $now Time, or NULL for now
+     *
+     * @return DateTimeImmutable|null Time, or NULL if the event is over or has no start
+     */
+    public function getNextPhaseChange(?DateTimeImmutable $now = null): ?DateTimeImmutable
+    {
+        $now ??= new DateTimeImmutable();
+        foreach ([$this->getStartDate(), $this->getEndDate() ?? $this->getStartDate()] as $change) {
+            if (($change instanceof DateTimeImmutable) && ($change >= $now)) {
+                return $change;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Whether the event is cancelled
+     *
+     * @return boolean
+     */
+    public function getIsCancelled(): bool
+    {
+        return $this->status === self::STATUS_CANCELLED;
+    }
+
+    /**
+     * Sessions in the order of the programme: by start, and by title if they start at the same time
+     *
+     * Titles compare as the legacy website compared them, in natural order and regardless of case. Sessions without a
+     * start come last.
+     *
+     * @return list<Session>
+     */
+    public function getProgramme(): array
+    {
+        $sessions = $this->sessions->toArray();
+        usort($sessions, static function (Session $first, Session $second): int {
+            $firstStart = $first->getStart()?->getTimestamp() ?? PHP_INT_MAX;
+            $secondStart = $second->getStart()?->getTimestamp() ?? PHP_INT_MAX;
+
+            $order = $firstStart <=> $secondStart;
+
+            return ($order !== 0) ? $order : strnatcasecmp($first->getTitle(), $second->getTitle());
+        });
+
+        return $sessions;
+    }
+
+    /**
+     * Speakers of all sessions, in the order their sessions were created, as on the legacy website
+     *
+     * @return list<Person>
+     */
+    public function getSpeakers(): array
+    {
+        $sessions = $this->sessions->toArray();
+        usort($sessions, static fn(Session $first, Session $second): int => $first->getUid() <=> $second->getUid());
+        $speakers = [];
+        foreach ($sessions as $session) {
+            foreach ($session->getSpeakers() as $speaker) {
+                $speakers[spl_object_id($speaker)] = $speaker;
+            }
+        }
+
+        return array_values($speakers);
+    }
+
+    /**
+     * Organisations taking part, by role: initiators, sponsors and supporters
+     *
+     * @return array<string, list<Participation>>
+     */
+    public function getParticipationsByRole(): array
+    {
+        $roles = ['initiator' => [], 'sponsor' => [], 'supporter' => []];
+        foreach ($this->participations as $participation) {
+            if (($participation->getOrganization() === null) || !isset($roles[$participation->getRole()])) {
+                continue;
+            }
+
+            $roles[$participation->getRole()][] = $participation;
+        }
+
+        return array_filter($roles, static fn(array $participations): bool => $participations !== []);
+    }
+
+    /**
+     * Status as a value of schema.org
+     *
+     * @return string
+     */
+    public function getSchemaStatus(): string
+    {
+        return 'https://schema.org/' . match ($this->status) {
+            'rescheduled' => 'EventRescheduled',
+            'postponed' => 'EventPostponed',
+            'moved_online' => 'EventMovedOnline',
+            'cancelled' => 'EventCancelled',
+            default => 'EventScheduled',
+        };
+    }
+
+    /**
+     * Attendance mode as a value of schema.org
+     *
+     * @return string
+     */
+    public function getSchemaAttendanceMode(): string
+    {
+        return 'https://schema.org/' . match ($this->attendanceMode) {
+            'online' => 'OnlineEventAttendanceMode',
+            'mixed' => 'MixedEventAttendanceMode',
+            default => 'OfflineEventAttendanceMode',
+        };
     }
 }

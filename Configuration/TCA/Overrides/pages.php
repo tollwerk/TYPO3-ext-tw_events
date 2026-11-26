@@ -1,84 +1,32 @@
 <?php
 
+/**
+ * Pages that contain the plugins of tw_events
+ *
+ * @category  Tollwerk
+ * @package   Tollwerk\TwEvents
+ * @author    Joschi Kuphal <joschi@tollwerk.de>
+ * @copyright 2026 tollwerk GmbH
+ * @license   https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
+ * @link      https://code.tollwerk.net/tollwerk/typo3/extensions/tw-events
+ */
 
-if (!defined('TYPO3_MODE')) {
-    die('Access denied.');
+declare(strict_types=1);
+
+use Tollwerk\TwEvents\Page\PluginPages;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+
+defined('TYPO3') || die();
+
+// "Contains plugin" marks the pages that records link to and whose routes show them
+foreach ([PluginPages::EVENTS, PluginPages::PEOPLE, PluginPages::ORGANIZATIONS] as $module) {
+    ExtensionManagementUtility::addTcaSelectItem(
+        'pages',
+        'module',
+        [
+            'label' => 'tw_events.plugins:module.' . $module,
+            'value' => $module,
+            'icon' => 'content-calendar',
+        ],
+    );
 }
-
-call_user_func(
-    function($extKey, $table) {
-        $eventDoktype                                    = \Tollwerk\TwEvents\Domain\Model\Event::DOKTYPE;
-        $GLOBALS['TCA']['pages']['types'][$eventDoktype] = $GLOBALS['TCA']['pages']['types'][1];
-
-        $columns = [
-            'tx_twevents_layout_past'    => [
-                'exclude' => true,
-                'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:pages.tx_twevents_layout.past',
-                'config'  => [
-                    'type'       => 'select',
-                    'renderType' => 'selectMultipleSideBySide',
-                    'items'      => \Tollwerk\TwEvents\Utility\Tca::layoutBlockItems(),
-                    'size'       => 10,
-                    'default'    => 'basics,description,performers,schedule,tickets,location,coverage,downloads,hosts,sponsors'
-                ]
-            ],
-            'tx_twevents_layout_running' => [
-                'exclude' => true,
-                'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:pages.tx_twevents_layout.running',
-                'config'  => [
-                    'type'       => 'select',
-                    'renderType' => 'selectMultipleSideBySide',
-                    'items'      => \Tollwerk\TwEvents\Utility\Tca::layoutBlockItems(),
-                    'size'       => 10,
-                    'default'    => 'basics,live,coverage,description,performers,schedule,tickets,location,downloads,hosts,sponsors'
-                ]
-            ],
-            'tx_twevents_layout_future'  => [
-                'exclude' => true,
-                'label'   => 'LLL:EXT:tw_events/Resources/Private/Language/locallang_db.xlf:pages.tx_twevents_layout.future',
-                'config'  => [
-                    'type'       => 'select',
-                    'renderType' => 'selectMultipleSideBySide',
-                    'items'      => \Tollwerk\TwEvents\Utility\Tca::layoutBlockItems(),
-                    'size'       => 10,
-                    'default'    => 'basics,coverage,description,performers,schedule,location,hosts,sponsors'
-                ]
-            ],
-        ];
-
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('pages', $columns);
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
-            'pages',
-            'tx_twevents_layout_past, tx_twevents_layout_running, tx_twevents_layout_future',
-            $eventDoktype,
-            'after:subtitle'
-        );
-
-        // Add new page type as possible select item:
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
-            $table,
-            'doktype',
-            [
-                'LLL:EXT:'.$extKey.'/Resources/Private/Language/locallang_db.xlf:page.event',
-                $eventDoktype,
-                'EXT:'.$extKey.'/Resources/Public/Icons/Extension/apps-pagetree-page-event.svg'
-            ],
-            '1',
-            'after'
-        );
-
-        // Add icon for new page type:
-        \TYPO3\CMS\Core\Utility\ArrayUtility::mergeRecursiveWithOverrule(
-            $GLOBALS['TCA']['pages'],
-            [
-                'ctrl' => [
-                    'typeicon_classes' => [
-                        $eventDoktype => 'apps-pagetree-page-event',
-                    ],
-                ],
-            ]
-        );
-    },
-    'tw_events',
-    'pages'
-);

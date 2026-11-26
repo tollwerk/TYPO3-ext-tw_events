@@ -1,0 +1,22 @@
+<f:comment>
+    Organisations that initiate, sponsor and support an event, with the details of the site settings "twEvents.sponsors"
+    @param Tollwerk\TwEvents\Domain\Model\Event event Event
+</f:comment>
+<f:if condition="{event.participationsByRole}">
+    <section class="Event__participations" id="sponsors">
+        <base:heading content="{f:translate(key: 'event.heading.participations')}">
+            <f:variable name="details" value="{events:details(of: 'sponsors')}" />
+            <f:for each="{event.participationsByRole}" as="participations" key="role">
+                <section class="Event__role Event__role--{role}">
+                    <base:heading content="{f:translate(key: 'participation.role.{role}')}">
+                        <ul class="OrganizationList">
+                            <f:for each="{participations}" as="participation">
+                                <li class="OrganizationList__item"><f:render partial="Organization/Card" arguments="{organization: participation.organization, details: details, label: participation.label}" /></li>
+                            </f:for>
+                        </ul>
+                    </base:heading>
+                </section>
+            </f:for>
+        </base:heading>
+    </section>
+</f:if>

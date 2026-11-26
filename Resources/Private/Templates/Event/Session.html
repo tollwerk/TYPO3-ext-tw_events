@@ -1,0 +1,47 @@
+<f:comment>
+    A session of an event
+    @param Tollwerk\TwEvents\Domain\Model\Event event Event
+    @param Tollwerk\TwEvents\Domain\Model\Session session Session
+</f:comment>
+<events:structuredData record="{session}" />
+<f:comment>Title and descriptions in the language of the session, if it differs from that of the page</f:comment>
+<f:variable name="lang" value="{events:session.language(session: session)}" />
+<article class="Session h-event">
+    <data class="p-name" value="{session.title}"{f:if(condition: lang, then: ' lang="{lang}"')}></data>
+    <f:variable name="eventUri" value="{events:uri.event(event: event)}" />
+    <p class="Session__context"><f:translate key="session.type.{session.type}" />, <f:translate key="session.at" />
+        <f:if condition="{eventUri}"><f:then><a href="{eventUri}">{event.title}</a></f:then><f:else>{event.title}</f:else></f:if></p>
+    <p class="Session__when"><f:render partial="Date/Range" arguments="{start: session.startDate, end: session.endDate}" /></p>
+    <f:if condition="{session.description}">
+        <f:then><div class="Session__description e-content"{f:if(condition: lang, then: ' lang="{lang}"')}><f:format.html>{session.description}</f:format.html></div></f:then>
+        <f:else if="{session.summary}"><p class="Session__summary p-summary"{f:if(condition: lang, then: ' lang="{lang}"')}>{session.summary}</p></f:else>
+    </f:if>
+    <f:if condition="{session.video}">
+        <p class="Session__video"><a href="{session.video}"><f:translate key="session.video" /></a></p>
+    </f:if>
+    <f:if condition="{session.speakers}">
+        <section class="Session__speakers">
+            <base:heading content="{f:translate(key: 'session.heading.speakers')}">
+                <f:variable name="details" value="{events:details(of: 'speakers')}" />
+                <f:render partial="Person/List" arguments="{people: session.speakers, details: details, class: 'p-performer'}" />
+            </base:heading>
+        </section>
+    </f:if>
+    <f:if condition="{session.coverage}">
+        <section class="Session__coverage">
+            <base:heading content="{f:translate(key: 'session.heading.coverage')}">
+                <f:render partial="Coverage/List" arguments="{coverage: session.coverage}" />
+            </base:heading>
+        </section>
+    </f:if>
+    <f:if condition="{session.notes}">
+        <section class="Session__notes">
+            <base:heading content="{f:translate(key: 'session.heading.notes')}">
+                <f:for each="{session.notes}" as="note">
+                    <blockquote class="Note"><f:format.html>{note.content}</f:format.html>
+                        <f:if condition="{note.authorDisplayName}"><footer class="Note__author">{note.authorDisplayName}</footer></f:if></blockquote>
+                </f:for>
+            </base:heading>
+        </section>
+    </f:if>
+</article>

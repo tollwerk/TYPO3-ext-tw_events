@@ -1,0 +1,95 @@
+categories:
+  twEvents:
+    label: 'Events'
+  twEvents.parts:
+    label: 'Parts of an event by phase'
+    parent: twEvents
+  twEvents.hosts:
+    label: 'Hosts of an event'
+    parent: twEvents
+  twEvents.speakers:
+    label: 'Speakers of an event and a session'
+    parent: twEvents
+  twEvents.sponsors:
+    label: 'Sponsors of an event'
+    parent: twEvents
+
+settings:
+  twEvents.parts.upcoming:
+    label: 'Before the event'
+    description: 'Parts that an event plugin without a choice of parts shows before the event starts, in their order: basics, description, tickets, livestream, schedule, coverage, downloads, speakers, location, organizers, participations'
+    category: twEvents.parts
+    type: stringlist
+    default: [basics, description, tickets, livestream, schedule, coverage, downloads, speakers, location, organizers, participations]
+  twEvents.parts.running:
+    label: 'While the event lasts'
+    description: 'Parts that an event plugin without a choice of parts shows while the event lasts, in their order'
+    category: twEvents.parts
+    type: stringlist
+    default: [basics, description, tickets, livestream, schedule, coverage, downloads, speakers, location, organizers, participations]
+  twEvents.parts.past:
+    label: 'After the event'
+    description: 'Parts that an event plugin without a choice of parts shows after the event ends, in their order'
+    category: twEvents.parts
+    type: stringlist
+    default: [basics, description, tickets, livestream, schedule, coverage, downloads, speakers, location, organizers, participations]
+  twEvents.hosts.photo:
+    label: 'Photo'
+    description: 'Whether the hosts show their photo'
+    category: twEvents.hosts
+    type: bool
+    default: true
+  twEvents.hosts.texts:
+    label: 'Texts'
+    description: 'Texts of the hosts, in their order: summary, teaser, biography'
+    category: twEvents.hosts
+    type: stringlist
+    default: [summary, biography]
+  twEvents.hosts.contacts:
+    label: 'Addresses'
+    description: 'Addresses of the hosts, in their order: website, email, mastodon, linkedin, github, twitter, facebook, instagram'
+    category: twEvents.hosts
+    type: stringlist
+    default: [website, twitter, mastodon, linkedin, github]
+  twEvents.speakers.photo:
+    label: 'Photo'
+    description: 'Whether the speakers show their photo'
+    category: twEvents.speakers
+    type: bool
+    default: true
+  twEvents.speakers.texts:
+    label: 'Texts'
+    description: 'Texts of the speakers, in their order: summary, teaser, biography'
+    category: twEvents.speakers
+    type: stringlist
+    default: [summary, teaser]
+  twEvents.speakers.contacts:
+    label: 'Addresses'
+    description: 'Addresses of the speakers, in their order: website, email, mastodon, linkedin, github, twitter, facebook, instagram'
+    category: twEvents.speakers
+    type: stringlist
+    default: [website, twitter, mastodon, linkedin, facebook]
+  twEvents.sponsors.logo:
+    label: 'Logo'
+    description: 'Whether the sponsors show their logo'
+    category: twEvents.sponsors
+    type: bool
+    default: true
+  twEvents.sponsors.address:
+    label: 'Address'
+    description: 'Whether the sponsors show their address'
+    category: twEvents.sponsors
+    type: bool
+    default: true
+  twEvents.sponsors.contacts:
+    label: 'Addresses'
+    description: 'Addresses of the sponsors, in their order: website, email, phone, mastodon, linkedin, twitter, facebook'
+    category: twEvents.sponsors
+    type: stringlist
+    default: [website, twitter, facebook, mastodon, linkedin, email]
+  twEvents.sponsors.description:
+    label: 'Description'
+    description: 'Whether the sponsors show their description'
+    category: twEvents.sponsors
+    type: bool
+    default: true

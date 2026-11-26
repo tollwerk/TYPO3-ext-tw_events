@@ -1,606 +1,473 @@
 <?php
 
+/**
+ * An organisation that takes part in events or hosts them
+ *
+ * @category  Tollwerk
+ * @package   Tollwerk\TwEvents
+ * @author    Joschi Kuphal <joschi@tollwerk.de>
+ * @copyright 2026 tollwerk GmbH
+ * @license   https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
+ * @link      https://code.tollwerk.net/tollwerk/typo3/extensions/tw-events
+ */
+
+declare(strict_types=1);
+
 namespace Tollwerk\TwEvents\Domain\Model;
 
-use SJBR\StaticInfoTables\Domain\Model\Country;
-use Tollwerk\TwEvents\Domain\Model\Traits\SlugTrait;
+use Locale;
+use TYPO3\CMS\Extbase\Attribute\ORM\Lazy;
+use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
-
-/***
- *
- * This file is part of the "tollwerk Event Calendar" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- *  © 2020
- *
- ***/
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
- * Organization
+ * An organisation that takes part in events or hosts them
+ *
+ * @category  Tollwerk
+ * @package   Tollwerk\TwEvents
+ * @author    Joschi Kuphal <joschi@tollwerk.de>
+ * @copyright 2026 tollwerk GmbH
+ * @license   https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
+ * @link      https://code.tollwerk.net/tollwerk/typo3/extensions/tw-events
  */
-class Organization extends AbstractEntity
+final class Organization extends AbstractEntity
 {
-    use SlugTrait;
     /**
      * Name
      *
      * @var string
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
-    protected $name = '';
+    protected string $name = '';
 
     /**
-     * Label
-     *
-     * @var string
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
-     */
-    protected $label = '';
-
-    /**
-     * Street Address
-     *
-     * @var string
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
-     */
-    protected $streetAddress = '';
-
-    /**
-     * Postal Code
-     *
-     * @var string
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
-     */
-    protected $postalCode = '';
-
-    /**
-     * Locality
-     *
-     * @var string
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
-     */
-    protected $locality = '';
-
-    /**
-     * Region
-     *
-     * @var string
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
-     */
-    protected $region = '';
-
-    /**
-     * Country
-     *
-     * @var \SJBR\StaticInfoTables\Domain\Model\Country
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
-     */
-    protected $country = 0;
-
-    /**
-     * Latitude
-     *
-     * @var float
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
-     */
-    protected $latitude = 0.0;
-
-    /**
-     * Longitude
-     *
-     * @var float
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
-     */
-    protected $longitude = 0.0;
-
-    /**
-     * Map URL
+     * Short name
      *
      * @var string
      */
-    protected $mapUrl = '';
+    protected string $shortName = '';
 
     /**
-     * Website URL
+     * Slug
      *
      * @var string
      */
-    protected $website = '';
-
-    /**
-     * Twitter Handle
-     *
-     * @var string
-     */
-    protected $twitter = '';
-
-    /**
-     * Facebook Profile URL
-     *
-     * @var string
-     */
-    protected $facebook = '';
-
-    /**
-     * Email Address
-     *
-     * @var string
-     */
-    protected $email = '';
-
-    /**
-     * Phone Number
-     *
-     * @var string
-     */
-    protected $phone = '';
+    protected string $slug = '';
 
     /**
      * Logo
      *
-     * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade  remove
+     * @var FileReference|null
      */
-    protected $logo = null;
-
-    /**
-     * Photos
-     *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade remove
-     */
-    protected $photos = null;
+    protected ?FileReference $logo = null;
 
     /**
      * Description
      *
      * @var string
      */
-    protected $description = '';
+    protected string $description = '';
 
     /**
-     * __construct
+     * Street address
+     *
+     * @var string
+     */
+    protected string $streetAddress = '';
+
+    /**
+     * Postal code
+     *
+     * @var string
+     */
+    protected string $postalCode = '';
+
+    /**
+     * Locality
+     *
+     * @var string
+     */
+    protected string $locality = '';
+
+    /**
+     * Region
+     *
+     * @var string
+     */
+    protected string $region = '';
+
+    /**
+     * Country as ISO 3166 code
+     *
+     * @var string
+     */
+    protected string $country = '';
+
+    /**
+     * Latitude
+     *
+     * @var float|null
+     */
+    protected ?float $latitude = null;
+
+    /**
+     * Longitude
+     *
+     * @var float|null
+     */
+    protected ?float $longitude = null;
+
+    /**
+     * Address of a map
+     *
+     * @var string
+     */
+    protected string $mapUrl = '';
+
+    /**
+     * Website
+     *
+     * @var string
+     */
+    protected string $website = '';
+
+    /**
+     * Email address
+     *
+     * @var string
+     */
+    protected string $email = '';
+
+    /**
+     * Phone number
+     *
+     * @var string
+     */
+    protected string $phone = '';
+
+    /**
+     * Mastodon profile
+     *
+     * @var string
+     */
+    protected string $mastodon = '';
+
+    /**
+     * LinkedIn profile
+     *
+     * @var string
+     */
+    protected string $linkedin = '';
+
+    /**
+     * Twitter profile
+     *
+     * @var string
+     */
+    protected string $twitter = '';
+
+    /**
+     * Facebook profile
+     *
+     * @var string
+     */
+    protected string $facebook = '';
+
+    /**
+     * Photos, such as of a venue
+     *
+     * @var ObjectStorage<FileReference>
+     */
+    #[Lazy]
+    protected ObjectStorage $photos;
+
+    /**
+     * Constructor
      */
     public function __construct()
     {
-
-        //Do not remove the next line: It would break the functionality
-        $this->initStorageObjects();
+        $this->initializeObject();
     }
 
     /**
-     * Initializes all ObjectStorage properties
-     * Do not modify this method!
-     * It will be rewritten on each save in the extension builder
-     * You may modify the constructor of this class instead
+     * Initialise the relations, also for objects the persistence creates without constructor
      *
      * @return void
      */
-    protected function initStorageObjects()
+    public function initializeObject(): void
     {
-        $this->photos = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $this->photos = new ObjectStorage();
     }
 
     /**
-     * Returns the name
+     * Name
      *
-     * @return string $name
+     * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
     /**
-     * Sets the name
+     * Short name
      *
-     * @param string $name
-     *
-     * @return void
+     * @return string
      */
-    public function setName($name)
+    public function getShortName(): string
     {
-        $this->name = $name;
+        return $this->shortName;
     }
 
     /**
-     * Returns the label
+     * Fragment of the organisation as venue on the page of an event, from its short name or its name
      *
-     * @return string $label
+     * @return string Fragment, such as "the-valley"
      */
-    public function getLabel()
+    public function getAnchor(): string
     {
-        return $this->label ?: preg_replace('/\W+/', '-', $this->name);
+        $name = ($this->shortName !== '') ? $this->shortName : $this->name;
+
+        return trim(strtolower((string) preg_replace('/\W+/u', '-', $name)), '-');
     }
 
     /**
-     * Sets the label
+     * Slug
      *
-     * @param string $label
-     *
-     * @return void
+     * @return string
      */
-    public function setLabel($label)
+    public function getSlug(): string
     {
-        $this->label = $label;
+        return $this->slug;
     }
 
     /**
-     * Returns the streetAddress
+     * Logo
      *
-     * @return string $streetAddress
+     * @return FileReference|null Logo, or NULL without one
      */
-    public function getStreetAddress()
-    {
-        return $this->streetAddress;
-    }
-
-    /**
-     * Sets the streetAddress
-     *
-     * @param string $streetAddress
-     *
-     * @return void
-     */
-    public function setStreetAddress($streetAddress)
-    {
-        $this->streetAddress = $streetAddress;
-    }
-
-    /**
-     * Returns the postalCode
-     *
-     * @return string $postalCode
-     */
-    public function getPostalCode()
-    {
-        return $this->postalCode;
-    }
-
-    /**
-     * Sets the postalCode
-     *
-     * @param string $postalCode
-     *
-     * @return void
-     */
-    public function setPostalCode($postalCode)
-    {
-        $this->postalCode = $postalCode;
-    }
-
-    /**
-     * Returns the locality
-     *
-     * @return string $locality
-     */
-    public function getLocality()
-    {
-        return $this->locality;
-    }
-
-    /**
-     * Sets the locality
-     *
-     * @param string $locality
-     *
-     * @return void
-     */
-    public function setLocality($locality)
-    {
-        $this->locality = $locality;
-    }
-
-    /**
-     * Returns the region
-     *
-     * @return string $region
-     */
-    public function getRegion()
-    {
-        return $this->region;
-    }
-
-    /**
-     * Sets the region
-     *
-     * @param string $region
-     *
-     * @return void
-     */
-    public function setRegion($region)
-    {
-        $this->region = $region;
-    }
-
-    /**
-     * Returns the country
-     *
-     * @return Country $country
-     */
-    public function getCountry(): Country
-    {
-        return $this->country;
-    }
-
-    /**
-     * Sets the country
-     *
-     * @param Country $country
-     *
-     * @return void
-     */
-    public function setCountry(Country $country)
-    {
-        $this->country = $country;
-    }
-
-    /**
-     * Returns the latitude
-     *
-     * @return float $latitude
-     */
-    public function getLatitude()
-    {
-        return $this->latitude;
-    }
-
-    /**
-     * Sets the latitude
-     *
-     * @param float $latitude
-     *
-     * @return void
-     */
-    public function setLatitude($latitude)
-    {
-        $this->latitude = $latitude;
-    }
-
-    /**
-     * Returns the longitude
-     *
-     * @return float $longitude
-     */
-    public function getLongitude()
-    {
-        return $this->longitude;
-    }
-
-    /**
-     * Sets the longitude
-     *
-     * @param float $longitude
-     *
-     * @return void
-     */
-    public function setLongitude($longitude)
-    {
-        $this->longitude = $longitude;
-    }
-
-    /**
-     * Returns the mapUrl
-     *
-     * @return string $mapUrl
-     */
-    public function getMapUrl()
-    {
-        return $this->mapUrl;
-    }
-
-    /**
-     * Sets the mapUrl
-     *
-     * @param string $mapUrl
-     *
-     * @return void
-     */
-    public function setMapUrl($mapUrl)
-    {
-        $this->mapUrl = $mapUrl;
-    }
-
-    /**
-     * Returns the website
-     *
-     * @return string $website
-     */
-    public function getWebsite()
-    {
-        return $this->website;
-    }
-
-    /**
-     * Sets the website
-     *
-     * @param string $website
-     *
-     * @return void
-     */
-    public function setWebsite($website)
-    {
-        $this->website = $website;
-    }
-
-    /**
-     * Returns the twitter
-     *
-     * @return string $twitter
-     */
-    public function getTwitter()
-    {
-        return $this->twitter;
-    }
-
-    /**
-     * Sets the twitter
-     *
-     * @param string $twitter
-     *
-     * @return void
-     */
-    public function setTwitter($twitter)
-    {
-        $this->twitter = $twitter;
-    }
-
-    /**
-     * Returns the facebook
-     *
-     * @return string $facebook
-     */
-    public function getFacebook()
-    {
-        return $this->facebook;
-    }
-
-    /**
-     * Sets the facebook
-     *
-     * @param string $facebook
-     *
-     * @return void
-     */
-    public function setFacebook($facebook)
-    {
-        $this->facebook = $facebook;
-    }
-
-    /**
-     * Returns the email
-     *
-     * @return string $email
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * Sets the email
-     *
-     * @param string $email
-     *
-     * @return void
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-    }
-
-    /**
-     * Returns the phone
-     *
-     * @return string $phone
-     */
-    public function getPhone()
-    {
-        return $this->phone;
-    }
-
-    /**
-     * Sets the phone
-     *
-     * @param string $phone
-     *
-     * @return void
-     */
-    public function setPhone($phone)
-    {
-        $this->phone = $phone;
-    }
-
-    /**
-     * Returns the logo
-     *
-     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $logo
-     */
-    public function getLogo()
+    public function getLogo(): ?FileReference
     {
         return $this->logo;
     }
 
     /**
-     * Sets the logo
+     * Description
      *
-     * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $logo
-     *
-     * @return void
+     * @return string
      */
-    public function setLogo(\TYPO3\CMS\Extbase\Domain\Model\FileReference $logo)
-    {
-        $this->logo = $logo;
-    }
-
-    /**
-     * Adds a FileReference
-     *
-     * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $photo
-     *
-     * @return void
-     */
-    public function addPhoto(\TYPO3\CMS\Extbase\Domain\Model\FileReference $photo)
-    {
-        $this->photos->attach($photo);
-    }
-
-    /**
-     * Removes a FileReference
-     *
-     * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $photoToRemove The FileReference to be removed
-     *
-     * @return void
-     */
-    public function removePhoto(\TYPO3\CMS\Extbase\Domain\Model\FileReference $photoToRemove)
-    {
-        $this->photos->detach($photoToRemove);
-    }
-
-    /**
-     * Returns the photos
-     *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference> $photos
-     */
-    public function getPhotos()
-    {
-        return $this->photos;
-    }
-
-    /**
-     * Sets the photos
-     *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference> $photos
-     *
-     * @return void
-     */
-    public function setPhotos(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $photos)
-    {
-        $this->photos = $photos;
-    }
-
-    /**
-     * Returns the description
-     *
-     * @return string $description
-     */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
 
     /**
-     * Sets the description
+     * Street address
      *
-     * @param string $description
-     *
-     * @return void
+     * @return string
      */
-    public function setDescription($description)
+    public function getStreetAddress(): string
     {
-        $this->description = $description;
+        return $this->streetAddress;
+    }
+
+    /**
+     * Postal code
+     *
+     * @return string
+     */
+    public function getPostalCode(): string
+    {
+        return $this->postalCode;
+    }
+
+    /**
+     * Locality
+     *
+     * @return string
+     */
+    public function getLocality(): string
+    {
+        return $this->locality;
+    }
+
+    /**
+     * Region
+     *
+     * @return string
+     */
+    public function getRegion(): string
+    {
+        return $this->region;
+    }
+
+    /**
+     * Country as ISO 3166 code
+     *
+     * @return string
+     */
+    public function getCountry(): string
+    {
+        return $this->country;
+    }
+
+    /**
+     * Latitude
+     *
+     * @return float|null Latitude, or NULL without one
+     */
+    public function getLatitude(): ?float
+    {
+        return $this->latitude;
+    }
+
+    /**
+     * Longitude
+     *
+     * @return float|null Longitude, or NULL without one
+     */
+    public function getLongitude(): ?float
+    {
+        return $this->longitude;
+    }
+
+    /**
+     * Address of a map
+     *
+     * @return string
+     */
+    public function getMapUrl(): string
+    {
+        return $this->mapUrl;
+    }
+
+    /**
+     * Website
+     *
+     * @return string
+     */
+    public function getWebsite(): string
+    {
+        return $this->website;
+    }
+
+    /**
+     * Email address
+     *
+     * @return string
+     */
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    /**
+     * Phone number
+     *
+     * @return string
+     */
+    public function getPhone(): string
+    {
+        return $this->phone;
+    }
+
+    /**
+     * Mastodon profile
+     *
+     * @return string
+     */
+    public function getMastodon(): string
+    {
+        return $this->mastodon;
+    }
+
+    /**
+     * LinkedIn profile
+     *
+     * @return string
+     */
+    public function getLinkedin(): string
+    {
+        return $this->linkedin;
+    }
+
+    /**
+     * Twitter profile
+     *
+     * @return string
+     */
+    public function getTwitter(): string
+    {
+        return $this->twitter;
+    }
+
+    /**
+     * Facebook profile
+     *
+     * @return string
+     */
+    public function getFacebook(): string
+    {
+        return $this->facebook;
+    }
+
+    /**
+     * Photos, such as of a venue
+     *
+     * @return ObjectStorage<FileReference>
+     */
+    public function getPhotos(): ObjectStorage
+    {
+        return $this->photos;
+    }
+
+    /**
+     * Whether the organisation has an address, as a venue does
+     *
+     * @return boolean
+     */
+    public function getHasAddress(): bool
+    {
+        return ($this->streetAddress !== '') || ($this->locality !== '');
+    }
+
+    /**
+     * Whether the organisation has coordinates
+     *
+     * @return boolean
+     */
+    public function getHasGeo(): bool
+    {
+        return ($this->latitude !== null) && ($this->longitude !== null);
+    }
+
+    /**
+     * Name of the country in English
+     *
+     * @return string Name, or an empty string without country
+     */
+    public function getCountryName(): string
+    {
+        $name = ($this->country === '') ? '' : Locale::getDisplayRegion('-' . $this->country, 'en');
+
+        return \is_string($name) ? $name : '';
+    }
+
+    /**
+     * Profiles on other websites, by network
+     *
+     * @return array<string, string> Addresses, such as ['mastodon' => 'https://…']
+     */
+    public function getProfiles(): array
+    {
+        return array_filter(
+            [
+                'mastodon' => $this->mastodon,
+                'linkedin' => $this->linkedin,
+                'twitter' => $this->twitter,
+                'facebook' => $this->facebook,
+            ],
+            static fn(string $url): bool => $url !== '',
+        );
     }
 }

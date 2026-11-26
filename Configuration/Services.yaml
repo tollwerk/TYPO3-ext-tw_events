@@ -1,0 +1,26 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Tollwerk\TwEvents\:
+    resource: '../Classes/*'
+    exclude:
+      - '../Classes/Domain/Model/*'
+      - '../Classes/Domain/LocalTime.php'
+
+  # The page title providers of TYPO3 are fetched from the container
+  Tollwerk\TwEvents\Page\RecordTitleProvider:
+    public: true
+
+  # Sitemaps and other objects that TYPO3 creates with arguments fetch the addresses of records from the container
+  Tollwerk\TwEvents\Page\RecordUris:
+    public: true
+
+  # TYPO3 creates the evaluations of fields with GeneralUtility::makeInstance()
+  Tollwerk\TwEvents\Tca\LatitudeEvaluation:
+    public: true
+
+  Tollwerk\TwEvents\Tca\LongitudeEvaluation:
+    public: true

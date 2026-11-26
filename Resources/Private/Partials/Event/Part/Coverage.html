@@ -1,0 +1,11 @@
+<f:comment>
+    Coverage of an event
+    @param Tollwerk\TwEvents\Domain\Model\Event event Event
+</f:comment>
+<f:if condition="{event.coverage}">
+    <section class="Event__coverage" id="coverage">
+        <base:heading content="{f:translate(key: 'event.heading.coverage')}">
+            <f:render partial="Coverage/List" arguments="{coverage: event.coverage}" />
+        </base:heading>
+    </section>
+</f:if>

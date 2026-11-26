@@ -1,18 +1,15 @@
-<f:comment><!--
-
-    @param Event event		Event
-
---></f:comment>
-<html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
-    <f:if condition="{event.future}">
-        <f:then>
-            <f:render partial="Event/Future" arguments="{_all}"/>
-        </f:then>
-        <f:else if="{event.past}">
-            <f:render partial="Event/Past" arguments="{_all}"/>
-        </f:else>
-        <f:else>
-            <f:render partial="Event/Current" arguments="{_all}"/>
-        </f:else>
-    </f:if>
-</html>
+<f:comment>
+    An event with the parts chosen in the plugin
+    @param Tollwerk\TwEvents\Domain\Model\Event event Event
+    @param array parts Parts in their order, such as "basics"
+    @param array hasPart The same parts as keys, such as {basics: 1}, for parts that refer to others
+</f:comment>
+<events:structuredData record="{event}" />
+<article class="Event h-event">
+    <data class="p-name" value="{event.title}"></data>
+    <f:variable name="uri" value="{events:uri.event(event: event)}" />
+    <f:if condition="{uri}"><data class="u-url" value="{uri}"></data></f:if>
+    <f:for each="{parts}" as="part">
+        <f:render partial="Event/Part/{part -> f:format.case(mode: 'capital')}" arguments="{event: event, hasPart: hasPart}" />
+    </f:for>
+</article>

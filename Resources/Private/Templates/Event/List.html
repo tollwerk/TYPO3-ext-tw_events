@@ -1,34 +1,17 @@
-<f:comment><!--
-
-    @param Event[] events   Events
-
---></f:comment>
-<html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
-    <f:if condition="{events}">
-        <f:then>
-            <f:render partial="Event/List" arguments="{events: events}"/>
-        </f:then>
-        <f:else>
-            <p>
-                <f:switch expression="{settings.selection_mode}">
-                    <f:case value="categories">
-                        <f:translate key="events.none.categories"/>
-                    </f:case>
-                    <f:case value="manual">
-                        <f:translate key="events.none.manual"/>
-                    </f:case>
-                    <f:case value="date">
-                        <f:if condition="{settings.date} == 'future'">
-                            <f:then>
-                                <f:translate key="events.none.date.future"/>
-                            </f:then>
-                            <f:else>
-                                <f:translate key="events.none.date.past"/>
-                            </f:else>
-                        </f:if>
-                    </f:case>
-                </f:switch>
-            </p>
-        </f:else>
-    </f:if>
-</html>
+<f:comment>
+    List of events
+    @param iterable events Events
+    @param string scope "upcoming", "cancelled", "past" or "all"
+</f:comment>
+<f:if condition="{events}">
+    <f:then>
+        <ol class="EventList">
+            <f:for each="{events}" as="event">
+                <li class="EventList__item"><f:render partial="Event/Teaser" arguments="{event: event}" /></li>
+            </f:for>
+        </ol>
+    </f:then>
+    <f:else>
+        <p class="EventList__empty"><f:switch expression="{scope}"><f:case value="upcoming"><f:translate key="events.none.upcoming" /></f:case><f:case value="cancelled"><f:translate key="events.none.cancelled" /></f:case><f:case value="past"><f:translate key="events.none.past" /></f:case><f:defaultCase><f:translate key="events.none.all" /></f:defaultCase></f:switch></p>
+    </f:else>
+</f:if>

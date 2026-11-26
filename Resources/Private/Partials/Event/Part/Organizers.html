@@ -1,0 +1,12 @@
+<f:comment>
+    People who organise an event, with the details of the site settings "twEvents.hosts"
+    @param Tollwerk\TwEvents\Domain\Model\Event event Event
+</f:comment>
+<f:if condition="{event.organizers}">
+    <section class="Event__organizers" id="hosts">
+        <base:heading content="{f:translate(key: 'event.heading.organizers')}">
+            <f:variable name="details" value="{events:details(of: 'hosts')}" />
+            <f:render partial="Person/List" arguments="{people: event.organizers, details: details, class: 'p-organizer'}" />
+        </base:heading>
+    </section>
+</f:if>

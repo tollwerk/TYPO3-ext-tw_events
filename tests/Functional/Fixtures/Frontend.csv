@@ -1,0 +1,56 @@
+"pages"
+,"uid","pid","title","slug","doktype","is_siteroot","module","sorting"
+,1,0,"Accessibility Club","/",1,1,"",1
+,2,1,"Events","/event",1,0,"events",2
+,3,1,"People","/people",1,0,"people",3
+,4,1,"Organizations","/organizations",1,0,"organizations",4
+,5,2,"Summit 2099","/event/summit-2099",1,0,"",5
+,6,1,"Records","/records",254,0,"",6
+,7,1,"Initiative","/initiative",1,0,"",7
+,404,1,"Page not found","/page-not-found",1,0,"",8
+"tt_content"
+,"uid","pid","CType","header","colPos","sorting","pi_flexform"
+,1,1,"twevents_eventlist","",0,1,"<?xml version=""1.0"" encoding=""utf-8"" standalone=""yes"" ?><T3FlexForms><data><sheet index=""sDEF""><language index=""lDEF""><field index=""settings.scope""><value index=""vDEF"">upcoming</value></field></language></sheet></data></T3FlexForms>"
+,2,2,"twevents_eventlist","",0,1,""
+,3,2,"twevents_event","",0,2,""
+,4,3,"twevents_person","",0,1,""
+,5,4,"twevents_organization","",0,1,""
+,6,5,"twevents_event","",0,1,"<?xml version=""1.0"" encoding=""utf-8"" standalone=""yes"" ?><T3FlexForms><data><sheet index=""sDEF""><language index=""lDEF""><field index=""settings.parts""><value index=""vDEF"">basics,tickets,schedule</value></field></language></sheet></data></T3FlexForms>"
+,7,7,"twevents_personselection","",0,1,"<?xml version=""1.0"" encoding=""utf-8"" standalone=""yes"" ?><T3FlexForms><data><sheet index=""sDEF""><language index=""lDEF""><field index=""settings.people""><value index=""vDEF"">2,1</value></field></language></sheet></data></T3FlexForms>"
+,8,7,"twevents_organizationselection","",0,2,"<?xml version=""1.0"" encoding=""utf-8"" standalone=""yes"" ?><T3FlexForms><data><sheet index=""sDEF""><language index=""lDEF""><field index=""settings.organizations""><value index=""vDEF"">1</value></field><field index=""settings.display""><value index=""vDEF"">venue</value></field></language></sheet></data></T3FlexForms>"
+,9,7,"twevents_eventlist","",0,3,"<?xml version=""1.0"" encoding=""utf-8"" standalone=""yes"" ?><T3FlexForms><data><sheet index=""sDEF""><language index=""lDEF""><field index=""settings.scope""><value index=""vDEF"">cancelled</value></field></language></sheet></data></T3FlexForms>"
+"tx_twevents_series"
+,"uid","pid","title","slug"
+,1,6,"Meetup","meetup"
+"tx_twevents_organization"
+,"uid","pid","name","slug","street_address","postal_code","locality","country","latitude","longitude","website","mastodon","map_url"
+,1,6,"tollwerk","tollwerk","Klingenhofstraße 5","90411","Nürnberg","DE",49.452031,11.076751,"https://tollwerk.de","https://mastodon.social/@tollwerk","https://www.google.com/maps/place/tollwerk"
+"fe_users"
+,"uid","pid","username","password","first_name","last_name","tx_twaccounts_slug","tx_twaccounts_public","tx_twaccounts_summary","www","tx_twaccounts_github","tx_twaccounts_instagram"
+,1,6,"person-0123456789abcdef","x","Ada","Lovelace","ada-lovelace",1,"Writes the first programs.","https://example.org/ada","https://github.com/ada","https://www.instagram.com/ada.lovelace/"
+,2,6,"person-fedcba9876543210","x","Grace","Hopper","grace-hopper",1,"Finds the first bug.","","",""
+"tx_twevents_event"
+,"uid","pid","title","slug","series","start","end","timezone","status","attendance_mode","summary","description","location","organizers","participations","sessions","coverage","page","ticket_url"
+,1,6,"Meetup #8","meetup-8",1,"2019-05-15 18:30:00","2019-05-15 22:00:00","Europe/Berlin","scheduled","offline","An evening of accessibility.","<p>Talks &amp; drinks.</p>",1,1,1,2,1,0,""
+,2,6,"Summit 2099","summit",0,"2099-06-01 09:00:00","2099-06-02 18:00:00","Europe/Berlin","cancelled","mixed","","",0,0,0,1,0,5,"https://tickets.example.org"
+"tx_twevents_event_organizer_mm"
+,"uid_local","uid_foreign","sorting","sorting_foreign"
+,1,1,1,0
+"tx_twevents_participation"
+,"uid","pid","event","organization","role","label","sorting"
+,1,6,1,1,"sponsor","Location sponsor",1
+"tx_twevents_session"
+,"uid","pid","event","title","slug","type","start","duration","speakers","notes","coverage","language"
+,1,6,1,"Accessible forms","accessible-forms","talk","2019-05-15 19:00:00",30,1,1,1,"de"
+,2,6,1,"Break","break-1","break","2019-05-15 19:30:00",15,0,0,0,""
+,3,6,2,"Opening","opening","other","2099-06-01 09:00:00",15,0,0,0,""
+"tx_twevents_session_speaker_mm"
+,"uid_local","uid_foreign","sorting","sorting_foreign"
+,1,2,1,0
+"tx_twevents_note"
+,"uid","pid","session","author","author_name","content","sorting"
+,1,6,1,1,"","<p>Use labels.</p>",1
+"tx_twevents_coverage"
+,"uid","pid","event","session","type","title","url","author","author_name","sorting"
+,1,6,0,1,"talk","Slides","https://example.org/slides.pdf",0,"Ada Lovelace",1
+,2,6,1,0,"blog","Recap","https://example.org/recap",1,"",2

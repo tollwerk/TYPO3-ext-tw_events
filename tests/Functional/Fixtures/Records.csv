@@ -1,0 +1,30 @@
+"tx_twevents_series"
+,"uid","pid","title","slug"
+,1,1,"Meetup","meetup"
+"tx_twevents_organization"
+,"uid","pid","name","slug","locality","country","latitude","longitude"
+,1,1,"tollwerk","tollwerk","Nürnberg","DE",49.452031,11.076751
+"fe_users"
+,"uid","pid","username","password","first_name","last_name","tx_twaccounts_slug"
+,1,1,"person-0123456789abcdef","x","Ada","Lovelace","ada-lovelace"
+"tx_twevents_event"
+,"uid","pid","title","slug","series","start","end","timezone","status","attendance_mode","location","organizers","participations","sessions","coverage"
+,1,1,"Meetup #8","meetup-8",1,"2019-05-15 18:30:00","2019-05-15 22:00:00","Europe/Berlin","scheduled","offline",1,1,1,1,1
+"tx_twevents_event_organizer_mm"
+,"uid_local","uid_foreign","sorting","sorting_foreign"
+,1,1,1,0
+"tx_twevents_participation"
+,"uid","pid","event","organization","role","label","sorting"
+,1,1,1,1,"sponsor","Location sponsor",1
+"tx_twevents_session"
+,"uid","pid","event","title","slug","type","start","duration","speakers","notes","coverage"
+,1,1,1,"Accessible forms","accessible-forms","talk","2019-05-15 19:00:00",30,1,1,1
+"tx_twevents_session_speaker_mm"
+,"uid_local","uid_foreign","sorting","sorting_foreign"
+,1,1,1,0
+"tx_twevents_note"
+,"uid","pid","session","author","author_name","content","sorting"
+,1,1,1,1,"","<p>Use labels.</p>",1
+"tx_twevents_coverage"
+,"uid","pid","event","session","type","title","url","author","author_name","sorting"
+,1,1,0,1,"talk","Slides","https://example.org/slides.pdf",0,"Ada Lovelace",1

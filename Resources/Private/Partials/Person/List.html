@@ -1,22 +1,15 @@
-<f:comment><!--
-
-    @param Person[] persons         Persons
-    @param string listId            List ID
-    @param string personItemProp    Person itemprop value
-    @param array settings           Settings
-
---></f:comment>
-<html xmlns:f="https://xsd.helhum.io/ns/typo3/cms-fluid/master/ViewHelpers" data-namespace-typo3-fluid="true">
-    <ul class="PersonList" id="{f:if(condition: listId, then: listId, else: 'persons')}">
-        <f:for each="{persons}" as="person">
-            <li>
-                <f:render partial="Person/Single" arguments="{
-                        settings: settings,
-                        person: person,
-                        itemprop: personItemProp,
-                        settings: settings
-                    }"/>
-            </li>
-        </f:for>
-    </ul>
-</html>
+<f:comment>
+    People with the details chosen for the place they show in
+    @param iterable people People
+    @param array details Details, as for a card
+    @param string class Microformats property, such as "p-performer"
+    @param bool anchors Whether every person gets their slug as anchor
+</f:comment>
+<ul class="PersonList">
+    <f:for each="{people}" as="person">
+        <f:if condition="{anchors}">
+            <f:then><li class="PersonList__item" id="{person.slug}"><f:render partial="Person/Card" arguments="{person: person, details: details, class: class}" /></li></f:then>
+            <f:else><li class="PersonList__item"><f:render partial="Person/Card" arguments="{person: person, details: details, class: class}" /></li></f:else>
+        </f:if>
+    </f:for>
+</ul>

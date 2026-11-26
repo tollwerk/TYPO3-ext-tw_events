@@ -1,29 +1,26 @@
 # tw_events
 
-> Event management for meetups and conferences (TYPO3 extension)
+`tw_events` ist der Baustein „Veranstaltungen“ des [Attendance Kit](https://code.tollwerk.net/tollwerk/typo3/attendance-kit): Veranstaltungen mit ihrem Programm, den beteiligten Personen und Organisationen und ihrer Dokumentation, für TYPO3 14. Personen sind Website-Benutzer mit den Feldern von [`tw-accounts`](https://code.tollwerk.net/tollwerk/typo3/extensions/tw-accounts). Die Planung steht bei der Website des Accessibility Club in [tw-events.md](https://code.tollwerk.net/a11yclub/website/-/blob/main/docs/tw-events.md), das gemeinsame Konzept im [Konzept des Kit](https://code.tollwerk.net/tollwerk/typo3/attendance-kit/-/blob/main/docs/konzept.md).
 
-About
------
+## Installation
 
-Contributing
-------------
+Für TYPO3 14 im Composer-Modus:
 
-Found a bug or have a feature request? [Please have a look at the known issues](https://github.com/tollwerk/TYPO3-ext-tw_events/issues) first and open a new issue if necessary. Please see [contributing](CONTRIBUTING.md) and [conduct](CONDUCT.md) for details.
+```sh
+composer require tollwerk/tw-events
+```
 
-Security
---------
+Die Fassung für ältere Versionen von TYPO3 liegt im Zweig `2.x`.
 
-If you discover any security related issues, please email info@tollwerk.de instead of using the issue tracker.
+## Entwicklung
 
-Credits
--------
+```sh
+composer install
+composer check
+```
 
-- [Joschi Kuphal][author-url]
-- [All Contributors](../../contributors)
+`composer check` führt alle Prüfungen der [tollwerk guidelines](https://code.tollwerk.net/tollwerk/guidelines) aus, wie die Pipeline. Die Functional-Tests bauen eine leere Instanz von TYPO3 auf SQLite und brauchen dafür `pdo_sqlite`.
 
-License
--------
+## Lizenz
 
-Copyright © 2020 [Joschi Kuphal / tollwerk GmbH][author-url] / info@tollwerk.de. Licensed under the terms of the  [GPL v2](LICENSE.txt) license.
-
-[author-url]: https://tollwerk.de
+GPL-2.0-or-later, siehe [LICENSE.md](LICENSE.md).

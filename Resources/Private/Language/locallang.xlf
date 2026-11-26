@@ -1,209 +1,175 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<xliff version="1.0">
-    <file source-language="en" datatype="plaintext" original="messages" date="2019-01-06T13:57:17Z"
-          product-name="tw_events">
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="EXT:tw_events/Resources/Private/Language/locallang.xlf" product-name="tw_events">
         <header/>
         <body>
-            <trans-unit id="tx_twevents_domain_model_organization">
-                <source>Organization</source>
+            <trans-unit id="coverage.by" resname="coverage.by">
+                <source>by %s</source>
             </trans-unit>
-            <trans-unit id="contact.website">
-                <source>Internet</source>
+            <trans-unit id="coverage.type.blog" resname="coverage.type.blog">
+                <source>Blog post</source>
             </trans-unit>
-            <trans-unit id="contact.twitter">
-                <source>Twitter</source>
+            <trans-unit id="coverage.type.gallery" resname="coverage.type.gallery">
+                <source>Photos</source>
             </trans-unit>
-            <trans-unit id="contact.github">
-                <source>Github</source>
+            <trans-unit id="coverage.type.post" resname="coverage.type.post">
+                <source>Social media post</source>
             </trans-unit>
-            <trans-unit id="contact.facebook">
-                <source>Facebook</source>
+            <trans-unit id="coverage.type.talk" resname="coverage.type.talk">
+                <source>Talk documentation</source>
             </trans-unit>
-            <trans-unit id="contact.email">
-                <source>Email</source>
+            <trans-unit id="coverage.type.video" resname="coverage.type.video">
+                <source>Video</source>
             </trans-unit>
-            <trans-unit id="contact.phone">
-                <source>Phone</source>
+            <trans-unit id="event.at" resname="event.at">
+                <source>At</source>
             </trans-unit>
-            <trans-unit id="person.photo">
-                <source>Photo of %s</source>
+            <trans-unit id="event.cancelled" resname="event.cancelled">
+                <source>This event was cancelled.</source>
             </trans-unit>
-            <trans-unit id="events.none.categories">
-                <source>Currently there are no events in these categories.</source>
+            <trans-unit id="event.heading.coverage" resname="event.heading.coverage">
+                <source>Coverage</source>
             </trans-unit>
-            <trans-unit id="events.none.manual">
-                <source>Currently there are no matching events.</source>
-            </trans-unit>
-            <trans-unit id="events.none.date.future">
-                <source>Currently there are no events scheduled.</source>
-            </trans-unit>
-            <trans-unit id="events.none.date.past">
-                <source>Currently there are no past scheduled.</source>
-            </trans-unit>
-            <trans-unit id="event.heading.description">
+            <trans-unit id="event.heading.description" resname="event.heading.description">
                 <source>About the event</source>
             </trans-unit>
-            <trans-unit id="event.heading.performers">
-                <source>Performers</source>
-            </trans-unit>
-            <trans-unit id="event.heading.schedule">
-                <source>Schedule</source>
-            </trans-unit>
-            <trans-unit id="event.heading.tickets">
-                <source>Tickets</source>
-            </trans-unit>
-            <trans-unit id="event.heading.location">
-                <source>Location</source>
-            </trans-unit>
-            <trans-unit id="event.heading.downloads">
+            <trans-unit id="event.heading.downloads" resname="event.heading.downloads">
                 <source>Downloads</source>
             </trans-unit>
-            <trans-unit id="event.heading.coverage">
-                <source>Coverage</source>
+            <trans-unit id="event.heading.livestream" resname="event.heading.livestream">
+                <source>Livestream</source>
             </trans-unit>
-            <trans-unit id="event.heading.hosts">
-                <source>Hosts</source>
+            <trans-unit id="event.heading.location" resname="event.heading.location">
+                <source>Venue</source>
             </trans-unit>
-            <trans-unit id="event.heading.livestream">
-                <source>Live stream</source>
+            <trans-unit id="event.heading.organizers" resname="event.heading.organizers">
+                <source>Organisers</source>
             </trans-unit>
-            <trans-unit id="event.heading.sponsors">
-                <source>Sponsors &amp; supporters</source>
+            <trans-unit id="event.heading.participations" resname="event.heading.participations">
+                <source>Supported by</source>
             </trans-unit>
-            <trans-unit id="event.heading.sponsors.type.0">
+            <trans-unit id="event.heading.schedule" resname="event.heading.schedule">
+                <source>Schedule</source>
+            </trans-unit>
+            <trans-unit id="event.heading.speakers" resname="event.heading.speakers">
+                <source>Speakers</source>
+            </trans-unit>
+            <trans-unit id="event.heading.tickets" resname="event.heading.tickets">
+                <source>Tickets</source>
+            </trans-unit>
+            <trans-unit id="event.livestream.link" resname="event.livestream.link">
+                <source>Watch the livestream</source>
+            </trans-unit>
+            <trans-unit id="event.schedule.unscheduled" resname="event.schedule.unscheduled">
+                <source>Not scheduled yet</source>
+            </trans-unit>
+            <trans-unit id="event.tickets.link" resname="event.tickets.link">
+                <source>Get your ticket</source>
+            </trans-unit>
+            <trans-unit id="events.none.all" resname="events.none.all">
+                <source>There are no events yet.</source>
+            </trans-unit>
+            <trans-unit id="events.none.cancelled" resname="events.none.cancelled">
+                <source>No upcoming event has been cancelled.</source>
+            </trans-unit>
+            <trans-unit id="events.none.past" resname="events.none.past">
+                <source>There are no past events yet.</source>
+            </trans-unit>
+            <trans-unit id="events.none.upcoming" resname="events.none.upcoming">
+                <source>There are no upcoming events at the moment.</source>
+            </trans-unit>
+            <trans-unit id="organization.heading.events" resname="organization.heading.events">
+                <source>Events at this venue</source>
+            </trans-unit>
+            <trans-unit id="organization.heading.participations" resname="organization.heading.participations">
+                <source>Events it supported</source>
+            </trans-unit>
+            <trans-unit id="organization.map" resname="organization.map">
+                <source>Show on a map</source>
+            </trans-unit>
+            <trans-unit id="participation.as.initiator" resname="participation.as.initiator">
+                <source>Initiator</source>
+            </trans-unit>
+            <trans-unit id="participation.as.sponsor" resname="participation.as.sponsor">
+                <source>Sponsor</source>
+            </trans-unit>
+            <trans-unit id="participation.as.supporter" resname="participation.as.supporter">
+                <source>Supporter</source>
+            </trans-unit>
+            <trans-unit id="participation.role.initiator" resname="participation.role.initiator">
                 <source>Initiators</source>
             </trans-unit>
-            <trans-unit id="event.heading.sponsors.type.0.label">
-                <source>By initiative of</source>
-            </trans-unit>
-            <trans-unit id="event.heading.sponsors.type.1">
+            <trans-unit id="participation.role.sponsor" resname="participation.role.sponsor">
                 <source>Sponsors</source>
             </trans-unit>
-            <trans-unit id="event.heading.sponsors.type.1.label">
-                <source>Kindly sponsored by</source>
-            </trans-unit>
-            <trans-unit id="event.heading.sponsors.type.2">
-                <source>Organizers</source>
-            </trans-unit>
-            <trans-unit id="event.heading.sponsors.type.2.label">
-                <source>With organizational support of</source>
-            </trans-unit>
-            <trans-unit id="event.heading.sponsors.type.3">
+            <trans-unit id="participation.role.supporter" resname="participation.role.supporter">
                 <source>Supporters</source>
             </trans-unit>
-            <trans-unit id="event.heading.sponsors.type.3.label">
-                <source>Kindly supported by</source>
+            <trans-unit id="person.heading.events" resname="person.heading.events">
+                <source>Organised events</source>
             </trans-unit>
-            <trans-unit id="event.sponsor.type.0">
-                <source>initiators</source>
+            <trans-unit id="person.heading.sessions" resname="person.heading.sessions">
+                <source>Talks and sessions</source>
             </trans-unit>
-            <trans-unit id="event.sponsor.type.1">
-                <source>sponsors</source>
+            <trans-unit id="profile.email" resname="profile.email">
+                <source>Email</source>
             </trans-unit>
-            <trans-unit id="event.sponsor.type.2">
-                <source>organizers</source>
+            <trans-unit id="profile.facebook" resname="profile.facebook">
+                <source>Facebook</source>
             </trans-unit>
-            <trans-unit id="event.sponsor.type.3">
-                <source>supporters</source>
+            <trans-unit id="profile.instagram" resname="profile.instagram">
+                <source>Instagram</source>
             </trans-unit>
-            <trans-unit id="event.cta.ticket">
-                <source>Register now</source>
+            <trans-unit id="profile.github" resname="profile.github">
+                <source>GitHub</source>
             </trans-unit>
-            <trans-unit id="event.intro.downloads">
-                <source>You might be interested in downloading any of these related resources:</source>
+            <trans-unit id="profile.linkedin" resname="profile.linkedin">
+                <source>LinkedIn</source>
             </trans-unit>
-            <trans-unit id="event.coverage.type.0">
-                <source>Photo gallery (%s)</source>
+            <trans-unit id="profile.mastodon" resname="profile.mastodon">
+                <source>Mastodon</source>
             </trans-unit>
-            <trans-unit id="event.coverage.type.0.by">
-                <source>Photo gallery by %s (%s)</source>
+            <trans-unit id="profile.phone" resname="profile.phone">
+                <source>Phone</source>
             </trans-unit>
-            <trans-unit id="event.coverage.type.1">
-                <source>Article (%s)</source>
+            <trans-unit id="profile.twitter" resname="profile.twitter">
+                <source>Twitter</source>
             </trans-unit>
-            <trans-unit id="event.coverage.type.1.by">
-                <source>Article by %s (%s)</source>
+            <trans-unit id="profile.website" resname="profile.website">
+                <source>Website</source>
             </trans-unit>
-            <trans-unit id="event.coverage.type.2">
-                <source>Tweet</source>
+            <trans-unit id="session.at" resname="session.at">
+                <source>part of</source>
             </trans-unit>
-            <trans-unit id="event.coverage.type.2.by">
-                <source>Tweet by %s</source>
-            </trans-unit>
-            <trans-unit id="event.coverage.type.3">
-                <source>Video (%s)</source>
-            </trans-unit>
-            <trans-unit id="event.coverage.type.3.by">
-                <source>Video by %s (%s)</source>
-            </trans-unit>
-            <trans-unit id="event.coverage.type.4">
-                <source>Talk documentation (%s)</source>
-            </trans-unit>
-            <trans-unit id="event.coverage.type.4.by">
-                <source>Talk documentation by %s (%s)</source>
-            </trans-unit>
-            <trans-unit id="event.livestream.at">
-                <source>Please visit our live stream at %s</source>
-            </trans-unit>
-            <trans-unit id="event.location.map">
-                <source>Open map view / route planning</source>
-            </trans-unit>
-            <trans-unit id="schedule.head.time">
-                <source>Time</source>
-            </trans-unit>
-            <trans-unit id="schedule.head.item">
-                <source>Agenda item</source>
-            </trans-unit>
-            <trans-unit id="schedule.presentation.title">
-                <source>Presentation title</source>
-            </trans-unit>
-            <trans-unit id="schedule.presentation.documented">
-                <source>documentation available</source>
-            </trans-unit>
-            <trans-unit id="schedule.presentation.tba">
-                <source>TBA</source>
-            </trans-unit>
-            <trans-unit id="schedule.presentation.details">
-                <source>Details</source>
-            </trans-unit>
-            <trans-unit id="schedule.presentation.notes">
-                <source>Notes</source>
-            </trans-unit>
-            <trans-unit id="schedule.presentation.coverage">
+            <trans-unit id="session.heading.coverage" resname="session.heading.coverage">
                 <source>Coverage</source>
             </trans-unit>
-            <trans-unit id="schedule.presentation.performed">
-                <source>Performed by</source>
-            </trans-unit>
-            <trans-unit id="schedule.presentation.workshop">
-                <source>Workshop by</source>
-            </trans-unit>
-            <trans-unit id="presentation.notes">
+            <trans-unit id="session.heading.notes" resname="session.heading.notes">
                 <source>Notes</source>
             </trans-unit>
-            <trans-unit id="presentation.notes.0">
-                <source>Talk notes</source>
+            <trans-unit id="session.heading.speakers" resname="session.heading.speakers">
+                <source>Speakers</source>
             </trans-unit>
-            <trans-unit id="presentation.notes.1">
-                <source>Session notes</source>
+            <trans-unit id="session.type.break" resname="session.type.break">
+                <source>Break</source>
             </trans-unit>
-            <trans-unit id="presentation.notes.2">
-                <source>Discussion panel notes</source>
+            <trans-unit id="session.type.other" resname="session.type.other">
+                <source>Other</source>
             </trans-unit>
-            <trans-unit id="presentation.notes.3">
-                <source>Break notes</source>
+            <trans-unit id="session.type.panel" resname="session.type.panel">
+                <source>Panel</source>
             </trans-unit>
-            <trans-unit id="presentation.note.author">
-                <source>Author: %s</source>
+            <trans-unit id="session.type.session" resname="session.type.session">
+                <source>Session</source>
             </trans-unit>
-            <trans-unit id="presentation.coverage">
-                <source>Coverage</source>
+            <trans-unit id="session.type.talk" resname="session.type.talk">
+                <source>Talk</source>
             </trans-unit>
-            <trans-unit id="presentation.videos">
-                <source>Video recordings</source>
+            <trans-unit id="session.type.workshop" resname="session.type.workshop">
+                <source>Workshop</source>
             </trans-unit>
-            <trans-unit id="date.format.schedule.caption">
-                <source>l, F jS, Y</source>
+            <trans-unit id="session.video" resname="session.video">
+                <source>Watch the recording</source>
             </trans-unit>
         </body>
     </file>

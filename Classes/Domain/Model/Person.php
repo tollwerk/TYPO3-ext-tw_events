@@ -1,377 +1,334 @@
 <?php
 
+/**
+ * A person who organises events or speaks in sessions: a frontend user with the fields of tw-accounts
+ *
+ * @category  Tollwerk
+ * @package   Tollwerk\TwEvents
+ * @author    Joschi Kuphal <joschi@tollwerk.de>
+ * @copyright 2026 tollwerk GmbH
+ * @license   https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
+ * @link      https://code.tollwerk.net/tollwerk/typo3/extensions/tw-events
+ */
+
+declare(strict_types=1);
+
 namespace Tollwerk\TwEvents\Domain\Model;
 
-use Tollwerk\TwEvents\Domain\Model\Traits\SlugTrait;
-
-/***
- *
- * This file is part of the "tollwerk Event Calendar" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- *  © 2020
- *
- ***/
+use TYPO3\CMS\Extbase\Domain\Model\FileReference;
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 /**
- * Person
+ * A person who organises events or speaks in sessions: a frontend user with the fields of tw-accounts
+ *
+ * @category  Tollwerk
+ * @package   Tollwerk\TwEvents
+ * @author    Joschi Kuphal <joschi@tollwerk.de>
+ * @copyright 2026 tollwerk GmbH
+ * @license   https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
+ * @link      https://code.tollwerk.net/tollwerk/typo3/extensions/tw-events
  */
-class Person extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+final class Person extends AbstractEntity
 {
-    use SlugTrait;
     /**
-     * Name
-     *
-     * @var string
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
-     */
-    protected $givenName = '';
-
-    /**
-     * Family Name
+     * Given name
      *
      * @var string
      */
-    protected $familyName = '';
+    protected string $givenName = '';
 
     /**
-     * photo
-     *
-     * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade  remove
-     */
-    protected $photo = null;
-
-    /**
-     * Summary
-     *
+     * Family name
      *
      * @var string
      */
-    protected $summary = '';
+    protected string $familyName = '';
 
     /**
-     * Biography
-     *
+     * Slug
      *
      * @var string
      */
-    protected $biography = '';
+    protected string $slug = '';
+
+    /**
+     * Whether the profile is public on its own, without events or sessions
+     *
+     * @var boolean
+     */
+    protected bool $public = false;
+
+    /**
+     * Photo
+     *
+     * @var FileReference|null
+     */
+    protected ?FileReference $photo = null;
+
+    /**
+     * Short biography as plain text
+     *
+     * @var string
+     */
+    protected string $summary = '';
 
     /**
      * Teaser
      *
+     * @var string
+     */
+    protected string $teaser = '';
+
+    /**
+     * Biography
      *
      * @var string
      */
-    protected $teaser = '';
+    protected string $biography = '';
 
     /**
-     * Website URL
+     * Website
      *
      * @var string
      */
-    protected $website = '';
+    protected string $website = '';
 
     /**
-     * Twitter Handle
+     * Email address
      *
      * @var string
      */
-    protected $twitter = '';
+    protected string $email = '';
 
     /**
-     * Github Handle
+     * Mastodon profile
      *
      * @var string
      */
-    protected $github = '';
+    protected string $mastodon = '';
 
     /**
-     * Facebook Profile URL
+     * GitHub profile
      *
      * @var string
      */
-    protected $facebook = '';
+    protected string $github = '';
 
     /**
-     * Email Address
+     * LinkedIn profile
      *
      * @var string
      */
-    protected $email = '';
+    protected string $linkedin = '';
 
     /**
-     * Phone Number
+     * Twitter profile
      *
      * @var string
      */
-    protected $phone = '';
+    protected string $twitter = '';
 
     /**
-     * Returns the givenName
+     * Facebook profile
      *
-     * @return string $givenName
+     * @var string
      */
-    public function getGivenName()
+    protected string $facebook = '';
+
+    /**
+     * Instagram profile
+     *
+     * @var string
+     */
+    protected string $instagram = '';
+
+    /**
+     * Given name
+     *
+     * @return string
+     */
+    public function getGivenName(): string
     {
         return $this->givenName;
     }
 
     /**
-     * Sets the givenName
+     * Family name
      *
-     * @param string $givenName
-     *
-     * @return void
+     * @return string
      */
-    public function setGivenName($givenName)
-    {
-        $this->givenName = $givenName;
-    }
-
-    /**
-     * Returns the familyName
-     *
-     * @return string $familyName
-     */
-    public function getFamilyName()
+    public function getFamilyName(): string
     {
         return $this->familyName;
     }
 
     /**
-     * Sets the familyName
+     * Slug
      *
-     * @param string $familyName
-     *
-     * @return void
+     * @return string
      */
-    public function setFamilyName($familyName)
+    public function getSlug(): string
     {
-        $this->familyName = $familyName;
+        return $this->slug;
     }
 
     /**
-     * Returns the photo
+     * Photo
      *
-     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $photo
+     * @return FileReference|null Photo, or NULL without one
      */
-    public function getPhoto()
+    public function getPhoto(): ?FileReference
     {
         return $this->photo;
     }
 
     /**
-     * Sets the photo
+     * Short biography as plain text
      *
-     * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $photo
-     *
-     * @return void
+     * @return string
      */
-    public function setPhoto(\TYPO3\CMS\Extbase\Domain\Model\FileReference $photo)
-    {
-        $this->photo = $photo;
-    }
-
-    /**
-     * Returns the summary
-     *
-     * @return string $summary
-     */
-    public function getSummary()
+    public function getSummary(): string
     {
         return $this->summary;
     }
 
     /**
-     * Sets the summary
+     * Teaser
      *
-     * @param string $summary
-     *
-     * @return void
+     * @return string
      */
-    public function setSummary($summary)
-    {
-        $this->summary = $summary;
-    }
-
-    /**
-     * Returns the biography
-     *
-     * @return string $biography
-     */
-    public function getBiography()
-    {
-        return $this->biography;
-    }
-
-    /**
-     * Sets the biography
-     *
-     * @param string $biography
-     *
-     * @return void
-     */
-    public function setBiography($biography)
-    {
-        $this->biography = $biography;
-    }
-
-    /**
-     * Returns the teaser
-     *
-     * @return string $teaser
-     */
-    public function getTeaser()
+    public function getTeaser(): string
     {
         return $this->teaser;
     }
 
     /**
-     * Sets the teaser
+     * Biography
      *
-     * @param string $teaser
-     *
-     * @return void
+     * @return string
      */
-    public function setTeaser($teaser)
+    public function getBiography(): string
     {
-        $this->teaser = $teaser;
+        return $this->biography;
     }
 
     /**
-     * Returns the website
+     * Website
      *
-     * @return string $website
+     * @return string
      */
-    public function getWebsite()
+    public function getWebsite(): string
     {
         return $this->website;
     }
 
     /**
-     * Sets the website
+     * Email address
      *
-     * @param string $website
-     *
-     * @return void
+     * @return string
      */
-    public function setWebsite($website)
-    {
-        $this->website = $website;
-    }
-
-    /**
-     * Returns the twitter
-     *
-     * @return string $twitter
-     */
-    public function getTwitter()
-    {
-        return $this->twitter;
-    }
-
-    /**
-     * Sets the twitter
-     *
-     * @param string $twitter
-     *
-     * @return void
-     */
-    public function setTwitter($twitter)
-    {
-        $this->twitter = $twitter;
-    }
-
-    /**
-     * Returns the github
-     *
-     * @return string $github
-     */
-    public function getGithub()
-    {
-        return $this->github;
-    }
-
-    /**
-     * Sets the github
-     *
-     * @param string $github
-     *
-     * @return void
-     */
-    public function setGithub($github)
-    {
-        $this->github = $github;
-    }
-
-    /**
-     * Returns the facebook
-     *
-     * @return string $facebook
-     */
-    public function getFacebook()
-    {
-        return $this->facebook;
-    }
-
-    /**
-     * Sets the facebook
-     *
-     * @param string $facebook
-     *
-     * @return void
-     */
-    public function setFacebook($facebook)
-    {
-        $this->facebook = $facebook;
-    }
-
-    /**
-     * Returns the email
-     *
-     * @return string $email
-     */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->email;
     }
 
     /**
-     * Sets the email
+     * Mastodon profile
      *
-     * @param string $email
-     *
-     * @return void
+     * @return string
      */
-    public function setEmail($email)
+    public function getMastodon(): string
     {
-        $this->email = $email;
+        return $this->mastodon;
     }
 
     /**
-     * Returns the phone
+     * GitHub profile
      *
-     * @return string $phone
+     * @return string
      */
-    public function getPhone()
+    public function getGithub(): string
     {
-        return $this->phone;
+        return $this->github;
     }
 
     /**
-     * Sets the phone
+     * LinkedIn profile
      *
-     * @param string $phone
-     *
-     * @return void
+     * @return string
      */
-    public function setPhone($phone)
+    public function getLinkedin(): string
     {
-        $this->phone = $phone;
+        return $this->linkedin;
+    }
+
+    /**
+     * Twitter profile
+     *
+     * @return string
+     */
+    public function getTwitter(): string
+    {
+        return $this->twitter;
+    }
+
+    /**
+     * Facebook profile
+     *
+     * @return string
+     */
+    public function getFacebook(): string
+    {
+        return $this->facebook;
+    }
+
+    /**
+     * Instagram profile
+     *
+     * @return string
+     */
+    public function getInstagram(): string
+    {
+        return $this->instagram;
+    }
+
+    /**
+     * Whether the profile is public on its own, without events or sessions
+     *
+     * @return boolean
+     */
+    public function isPublic(): bool
+    {
+        return $this->public;
+    }
+
+    /**
+     * Full name
+     *
+     * @return string
+     */
+    public function getName(): string
+    {
+        return trim($this->givenName . ' ' . $this->familyName);
+    }
+
+    /**
+     * Profiles on other websites, by network
+     *
+     * @return array<string, string> Addresses, such as ['mastodon' => 'https://…']
+     */
+    public function getProfiles(): array
+    {
+        return array_filter(
+            [
+                'mastodon' => $this->mastodon,
+                'github' => $this->github,
+                'linkedin' => $this->linkedin,
+                'twitter' => $this->twitter,
+                'facebook' => $this->facebook,
+                'instagram' => $this->instagram,
+            ],
+            static fn(string $url): bool => $url !== '',
+        );
     }
 }

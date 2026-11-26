@@ -1,0 +1,53 @@
+# Routes of the records, on the pages marked with "Contains plugin" in their properties
+routeEnhancers:
+  TwEventsEvent:
+    type: Extbase
+    limitToPages:
+      - 'page["module"] == "events"'
+    extension: TwEvents
+    plugin: Event
+    routes:
+      - routePath: '/{event}'
+        _controller: 'Event::show'
+      - routePath: '/{event}/{session}'
+        _controller: 'Event::session'
+    defaultController: 'Event::show'
+    aspects:
+      event:
+        type: PersistedAliasMapper
+        tableName: tx_twevents_event
+        routeFieldName: slug
+      session:
+        type: PersistedAliasMapper
+        tableName: tx_twevents_session
+        routeFieldName: slug
+  TwEventsPerson:
+    type: Extbase
+    limitToPages:
+      - 'page["module"] == "people"'
+    extension: TwEvents
+    plugin: Person
+    routes:
+      - routePath: '/{person}'
+        _controller: 'Person::show'
+    defaultController: 'Person::list'
+    aspects:
+      person:
+        type: PersistedAliasMapper
+        tableName: fe_users
+        routeFieldName: tx_twaccounts_slug
+  TwEventsOrganization:
+    type: Extbase
+    limitToPages:
+      - 'page["module"] == "organizations"'
+    extension: TwEvents
+    plugin: Organization
+    routes:
+      - routePath: '/{organization}'
+        _controller: 'Organization::show'
+    defaultController: 'Organization::list'
+    aspects:
+      organization:
+        type: PersistedAliasMapper
+        tableName: tx_twevents_organization
+        routeFieldName: slug

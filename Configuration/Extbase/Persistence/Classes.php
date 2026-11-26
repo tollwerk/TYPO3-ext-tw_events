@@ -1,34 +1,54 @@
 <?php
 
+/**
+ * Tables of the domain models
+ *
+ * @category  Tollwerk
+ * @package   Tollwerk\TwEvents
+ * @author    Joschi Kuphal <joschi@tollwerk.de>
+ * @copyright 2026 tollwerk GmbH
+ * @license   https://spdx.org/licenses/GPL-2.0-or-later.html GPL-2.0-or-later
+ * @link      https://code.tollwerk.net/tollwerk/typo3/extensions/tw-events
+ */
+
 declare(strict_types=1);
 
-/***********************************************************************************
- *  The MIT License (MIT)
- *
- *  Copyright © 2020 Joschi Kuphal <joschi@tollwerk.de>
- *
- *  Permission is hereby granted, free of charge, to any person obtaining a copy of
- *  this software and associated documentation files (the "Software"), to deal in
- *  the Software without restriction, including without limitation the rights to
- *  use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- *  the Software, and to permit persons to whom the Software is furnished to do so,
- *  subject to the following conditions:
- *
- *  The above copyright notice and this permission notice shall be included in all
- *  copies or substantial portions of the Software.
- *
- *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- *  FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- *  COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- *  IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- *  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- ***********************************************************************************/
-
-use Tollwerk\TwEvents\Domain\Model\Page;
+use Tollwerk\TwEvents\Domain\Model\Coverage;
+use Tollwerk\TwEvents\Domain\Model\Event;
+use Tollwerk\TwEvents\Domain\Model\Note;
+use Tollwerk\TwEvents\Domain\Model\Organization;
+use Tollwerk\TwEvents\Domain\Model\Participation;
+use Tollwerk\TwEvents\Domain\Model\Person;
+use Tollwerk\TwEvents\Domain\Model\Series;
+use Tollwerk\TwEvents\Domain\Model\Session;
 
 return [
-    Page::class => [
-        'tableName'  => 'pages',
+    Coverage::class => ['tableName' => 'tx_twevents_coverage'],
+    Event::class => ['tableName' => 'tx_twevents_event'],
+    Note::class => ['tableName' => 'tx_twevents_note'],
+    Organization::class => ['tableName' => 'tx_twevents_organization'],
+    Participation::class => ['tableName' => 'tx_twevents_participation'],
+    // Persons are frontend users with the fields of tw-accounts
+    Person::class => [
+        'tableName' => 'fe_users',
+        'properties' => [
+            'givenName' => ['fieldName' => 'first_name'],
+            'familyName' => ['fieldName' => 'last_name'],
+            'slug' => ['fieldName' => 'tx_twaccounts_slug'],
+            'public' => ['fieldName' => 'tx_twaccounts_public'],
+            'photo' => ['fieldName' => 'image'],
+            'summary' => ['fieldName' => 'tx_twaccounts_summary'],
+            'teaser' => ['fieldName' => 'tx_twaccounts_teaser'],
+            'biography' => ['fieldName' => 'tx_twaccounts_biography'],
+            'website' => ['fieldName' => 'www'],
+            'mastodon' => ['fieldName' => 'tx_twaccounts_mastodon'],
+            'github' => ['fieldName' => 'tx_twaccounts_github'],
+            'linkedin' => ['fieldName' => 'tx_twaccounts_linkedin'],
+            'twitter' => ['fieldName' => 'tx_twaccounts_twitter'],
+            'facebook' => ['fieldName' => 'tx_twaccounts_facebook'],
+            'instagram' => ['fieldName' => 'tx_twaccounts_instagram'],
+        ],
     ],
+    Series::class => ['tableName' => 'tx_twevents_series'],
+    Session::class => ['tableName' => 'tx_twevents_session'],
 ];
