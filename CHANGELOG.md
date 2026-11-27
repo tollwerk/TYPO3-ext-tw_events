@@ -4,6 +4,10 @@ Alle nennenswerten Änderungen an der Extension. Das Format folgt [Keep a Change
 
 ## Unreleased
 
+### Hinzugefügt
+
+- Löscht eine Person ihr Konto in `tw_accounts`, bleibt ihr Profil über `KeepProfileEvent`, wenn sie in einer Session spricht, eine Veranstaltung organisiert oder einen Bericht oder eine Notiz geschrieben hat; über `AccountDeletedEvent` verschwinden die Verweise einer gelöschten Person aus gelöschten Datensätzen.
+
 ### Geändert
 
 - Neu geschrieben für TYPO3 14, bisher als Pfad-Paket in der Website des Accessibility Club entwickelt. Die Fassung davor liegt im Zweig `2.x`.
