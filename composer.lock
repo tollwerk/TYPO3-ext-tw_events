@@ -6152,12 +6152,12 @@
             "source": {
                 "type": "git",
                 "url": "git@code.tollwerk.net:tollwerk/typo3/extensions/tw-base.git",
-                "reference": "e27c0f89c499ae39198e21da24d1bb54af0e75dd"
+                "reference": "d485057d60b3c759c9de9b0433fc56454465a87d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://code.tollwerk.net/api/v4/projects/tollwerk%2Ftypo3%2Fextensions%2Ftw-base/repository/archive.zip?sha=e27c0f89c499ae39198e21da24d1bb54af0e75dd",
-                "reference": "e27c0f89c499ae39198e21da24d1bb54af0e75dd",
+                "url": "https://code.tollwerk.net/api/v4/projects/tollwerk%2Ftypo3%2Fextensions%2Ftw-base/repository/archive.zip?sha=d485057d60b3c759c9de9b0433fc56454465a87d",
+                "reference": "d485057d60b3c759c9de9b0433fc56454465a87d",
                 "shasum": ""
             },
             "require": {
@@ -6213,7 +6213,7 @@
                 "source": "https://code.tollwerk.net/tollwerk/typo3/extensions/tw-base/-/tree/main",
                 "issues": "https://code.tollwerk.net/tollwerk/typo3/extensions/tw-base/-/issues"
             },
-            "time": "2026-11-27T14:45:23+01:00"
+            "time": "2026-11-28T00:04:06+01:00"
         },
         {
             "name": "tollwerk/tw-fields",

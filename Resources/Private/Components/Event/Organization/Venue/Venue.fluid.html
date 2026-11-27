@@ -1,0 +1,7 @@
+<f:argument name="organization" type="Tollwerk\TwEvents\Domain\Model\Organization" description="Organisation" />
+<f:comment>An organisation as venue, with its address</f:comment>
+<div class="Venue p-location h-card" id="{organization.anchor}">
+    <f:variable name="uri" value="{events:uri.organization(organization: organization)}" />
+    <p class="Venue__name"><f:if condition="{uri}"><f:then><a class="p-name u-url" href="{uri}">{organization.name}</a></f:then><f:else><span class="p-name">{organization.name}</span></f:else></f:if></p>
+    <twc:event.organization.address organization="{organization}" />
+</div>

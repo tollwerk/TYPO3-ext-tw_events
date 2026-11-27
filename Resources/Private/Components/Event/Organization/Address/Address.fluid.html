@@ -1,0 +1,10 @@
+<f:argument name="organization" type="Tollwerk\TwEvents\Domain\Model\Organization" description="Organisation" />
+<f:comment>Address of an organisation, with a link to a map</f:comment>
+<f:if condition="{organization.hasAddress}">
+    <p class="Address p-adr h-adr">
+        <f:if condition="{organization.streetAddress}"><span class="p-street-address">{organization.streetAddress}</span><br></f:if>
+        <span class="p-postal-code">{organization.postalCode}</span> <span class="p-locality">{organization.locality}</span><f:if condition="{organization.region}">, <span class="p-region">{organization.region}</span></f:if><f:if condition="{organization.countryName}"><br><span class="p-country-name">{organization.countryName}</span></f:if>
+        <f:if condition="{organization.hasGeo}"><data class="p-latitude" value="{organization.latitude}"></data><data class="p-longitude" value="{organization.longitude}"></data></f:if>
+    </p>
+    <f:if condition="{organization.mapUrl}"><p class="Address__map"><a href="{organization.mapUrl}"><f:translate domain="tw_events.messages" key="organization.map" /></a></p></f:if>
+</f:if>

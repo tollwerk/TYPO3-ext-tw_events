@@ -1,0 +1,50 @@
+<f:argument name="organization" type="Tollwerk\TwEvents\Domain\Model\Organization" description="Organisation" />
+<f:argument name="participations" type="Tollwerk\TwEvents\Domain\Model\Participation[]" optional="1" description="Its parts in events" />
+<f:argument name="hostedEvents" type="Tollwerk\TwEvents\Domain\Model\Event[]" optional="1" description="Events at its venue" />
+<f:comment>Profile of an organisation</f:comment>
+<article class="Organization h-card">
+    <data class="p-name" value="{organization.name}"></data>
+    <f:if condition="{organization.logo}">
+        <base:picture image="{organization.logo}" srcset="240w, 480w" sizes="240px" alt="" class="Organization__logo u-logo" />
+    </f:if>
+    <f:if condition="{organization.description}">
+        <div class="Organization__description p-note"><f:format.html>{organization.description}</f:format.html></div>
+    </f:if>
+    <twc:event.organization.address organization="{organization}" />
+    <f:if condition="{organization.website} || {organization.profiles}">
+        <ul class="Organization__links">
+            <f:if condition="{organization.website}"><li><a class="u-url" href="{organization.website}"><f:translate domain="tw_events.messages" key="profile.website" /></a></li></f:if>
+            <f:for each="{organization.profiles}" as="url" key="network">
+                <li><a class="u-url" href="{url}"><f:translate domain="tw_events.messages" key="profile.{network}" /></a></li>
+            </f:for>
+        </ul>
+    </f:if>
+    <f:if condition="{participations}">
+        <section class="Organization__participations">
+            <base:heading content="{f:translate(domain: 'tw_events.messages', key: 'organization.heading.participations')}">
+                <ul class="ParticipationList">
+                    <f:for each="{participations}" as="participation">
+                        <f:if condition="{participation.event}">
+                            <f:variable name="uri" value="{events:uri.event(event: participation.event)}" />
+                            <li class="ParticipationList__item">
+                                <f:if condition="{uri}"><f:then><a href="{uri}">{participation.event.title}</a></f:then><f:else>{participation.event.title}</f:else></f:if>:
+                                {f:if(condition: participation.label, then: participation.label, else: '{f:translate(domain: \'tw_events.messages\', key: \'participation.as.{participation.role}\')}')}
+                            </li>
+                        </f:if>
+                    </f:for>
+                </ul>
+            </base:heading>
+        </section>
+    </f:if>
+    <f:if condition="{hostedEvents}">
+        <section class="Organization__events">
+            <base:heading content="{f:translate(domain: 'tw_events.messages', key: 'organization.heading.events')}">
+                <ul class="EventList">
+                    <f:for each="{hostedEvents}" as="event">
+                        <li class="EventList__item"><twc:event.teaser event="{event}" /></li>
+                    </f:for>
+                </ul>
+            </base:heading>
+        </section>
+    </f:if>
+</article>

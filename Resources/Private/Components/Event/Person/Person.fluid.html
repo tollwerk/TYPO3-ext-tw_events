@@ -1,0 +1,48 @@
+<f:argument name="person" type="Tollwerk\TwEvents\Domain\Model\Person" description="Person" />
+<f:argument name="sessions" type="Tollwerk\TwEvents\Domain\Model\Session[]" optional="1" description="Sessions the person speaks in" />
+<f:argument name="organizedEvents" type="Tollwerk\TwEvents\Domain\Model\Event[]" optional="1" description="Events the person organises" />
+<f:comment>Profile of a person</f:comment>
+<article class="Person h-card">
+    <data class="p-name" value="{person.name}"></data>
+    <f:if condition="{person.photo}">
+        <base:picture image="{person.photo}" cropVariant="square" srcset="200w, 400w" sizes="200px" alt="" class="Person__photo u-photo" />
+    </f:if>
+    <f:if condition="{person.biography}">
+        <f:then><div class="Person__biography p-note"><f:format.html>{person.biography}</f:format.html></div></f:then>
+        <f:else if="{person.summary}"><p class="Person__summary p-note">{person.summary}</p></f:else>
+    </f:if>
+    <f:if condition="{person.website} || {person.profiles}">
+        <ul class="Person__links">
+            <f:if condition="{person.website}"><li><a class="u-url" href="{person.website}"><f:translate domain="tw_events.messages" key="profile.website" /></a></li></f:if>
+            <f:for each="{person.profiles}" as="url" key="network">
+                <li><a class="u-url" href="{url}"><f:translate domain="tw_events.messages" key="profile.{network}" /></a></li>
+            </f:for>
+        </ul>
+    </f:if>
+    <f:if condition="{sessions}">
+        <section class="Person__sessions">
+            <base:heading content="{f:translate(domain: 'tw_events.messages', key: 'person.heading.sessions')}">
+                <ul class="SessionList">
+                    <f:for each="{sessions}" as="session">
+                        <li class="SessionList__item">
+                            <f:variable name="uri" value="{events:uri.session(session: session)}" />
+                            <f:variable name="lang" value="{events:session.language(session: session)}" />
+                            <f:if condition="{uri}"><f:then><a href="{uri}"{f:if(condition: lang, then: ' lang="{lang}"')}>{session.title}</a></f:then><f:else><span{f:if(condition: lang, then: ' lang="{lang}"')}>{session.title}</span></f:else></f:if><f:if condition="{session.event}">, {session.event.title}<f:if condition="{session.startDate}">, <time datetime="{session.startDate -> f:format.date(format: 'c')}">{session.startDate -> f:format.date(format: 'F j, Y')}</time></f:if></f:if>
+                        </li>
+                    </f:for>
+                </ul>
+            </base:heading>
+        </section>
+    </f:if>
+    <f:if condition="{organizedEvents}">
+        <section class="Person__events">
+            <base:heading content="{f:translate(domain: 'tw_events.messages', key: 'person.heading.events')}">
+                <ul class="EventList">
+                    <f:for each="{organizedEvents}" as="event">
+                        <li class="EventList__item"><twc:event.teaser event="{event}" /></li>
+                    </f:for>
+                </ul>
+            </base:heading>
+        </section>
+    </f:if>
+</article>

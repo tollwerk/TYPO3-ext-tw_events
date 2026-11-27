@@ -1,0 +1,19 @@
+<f:argument name="event" type="Tollwerk\TwEvents\Domain\Model\Event" description="Event" />
+<f:comment>Venue of an event</f:comment>
+<f:if condition="{event.location}">
+    <section class="Event__location" id="location">
+        <base:heading content="{f:translate(domain: 'tw_events.messages', key: 'event.heading.location')}">
+            <twc:event.organization.venue organization="{event.location}" />
+            <f:if condition="{event.location.photos}">
+                <ul class="Venue__photos">
+                    <f:for each="{event.location.photos}" as="photo">
+                        <li class="Venue__photo"><base:picture image="{photo}" srcset="320w, 640w, 960w" sizes="(min-width: 60em) 30vw, 100vw" /></li>
+                    </f:for>
+                </ul>
+            </f:if>
+            <f:if condition="{event.locationDescription}">
+                <div class="Event__directions"><f:format.html>{event.locationDescription}</f:format.html></div>
+            </f:if>
+        </base:heading>
+    </section>
+</f:if>

@@ -1,0 +1,9 @@
+<f:argument name="organizations" type="Tollwerk\TwEvents\Domain\Model\Organization[]" description="Organisations" />
+<f:argument name="venues" type="bool" optional="1" default="0" description="Whether to show them as venues with their address" />
+<f:argument name="details" type="array" optional="1" default="{}" description="Details: &quot;logo&quot;, &quot;address&quot; and &quot;description&quot; (bool each), and &quot;contacts&quot; in their order" />
+<f:comment>Organisations as cards with the chosen details, or as venues</f:comment>
+<ul class="OrganizationList{f:if(condition: venues, then: ' OrganizationList--venues')}">
+    <f:for each="{organizations}" as="organization">
+        <li class="OrganizationList__item"><f:if condition="{venues}"><f:then><twc:event.organization.venue organization="{organization}" /></f:then><f:else><twc:event.organization.card organization="{organization}" details="{details}" /></f:else></f:if></li>
+    </f:for>
+</ul>

@@ -1,0 +1,12 @@
+<f:argument name="session" type="Tollwerk\TwEvents\Domain\Model\Session" description="Session" />
+<f:comment>A session in the programme of an event; the title in the language of the session, if it differs from that of the page</f:comment>
+<f:variable name="lang" value="{events:session.language(session: session)}" />
+<div class="SessionItem h-event">
+    <p class="SessionItem__when"><twc:event.dateRange start="{session.startDate}" end="{session.endDate}" timeOnly="1" /></p>
+    <f:variable name="uri" value="{f:if(condition: session.isBreak, else: '{events:uri.session(session: session)}')}" />
+    <p class="SessionItem__title"><f:if condition="{uri}"><f:then><a class="p-name u-url" href="{uri}"{f:if(condition: lang, then: ' lang="{lang}"')}>{session.title}</a></f:then><f:else><span class="p-name"{f:if(condition: lang, then: ' lang="{lang}"')}>{session.title}</span></f:else></f:if>
+        <f:if condition="!{session.isBreak}"><span class="SessionItem__type">(<f:translate domain="tw_events.messages" key="session.type.{session.type}" />)</span></f:if></p>
+    <f:if condition="{session.speakers}">
+        <p class="SessionItem__speakers"><f:for each="{session.speakers}" as="speaker" iteration="iterator"><f:variable name="speakerUri" value="{events:uri.person(person: speaker)}" /><span class="p-performer h-card"><f:if condition="{speakerUri}"><f:then><a class="p-name u-url" href="{speakerUri}">{speaker.name}</a></f:then><f:else><span class="p-name">{speaker.name}</span></f:else></f:if></span>{f:if(condition: iterator.isLast, else: ', ')}</f:for></p>
+    </f:if>
+</div>

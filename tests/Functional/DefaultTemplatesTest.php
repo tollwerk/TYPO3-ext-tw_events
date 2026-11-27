@@ -123,7 +123,7 @@ final class DefaultTemplatesTest extends FunctionalTestCase
     {
         $event = $this->get(EventRepository::class)->findByUid(2);
 
-        $page = $this->render('Partials/Event/Part/Schedule.html', ['event' => $event]);
+        $page = $this->render('<twc:event.part.schedule event="{event}" />', ['event' => $event], true);
 
         self::assertSame(['Schedule', 'Monday, June 1', 'Not scheduled yet'], $this->texts($page, 'h1, h2, h3'));
         self::assertSame(
@@ -204,11 +204,12 @@ final class DefaultTemplatesTest extends FunctionalTestCase
      */
     public function testCardsShowTheChosenDetails(): void
     {
-        $person = $this->render('Partials/Person/Card.html', [
+        $person = $this->render('<twc:event.person.card person="{person}" details="{details}" />', [
             'person' => $this->get(PersonRepository::class)->findByUid(1),
             'details' => ['photo' => false, 'texts' => ['summary'], 'contacts' => ['github', 'website']],
-        ]);
-        $organization = $this->render('Partials/Organization/Card.html', [
+        ], true);
+        $card = '<twc:event.organization.card organization="{organization}" details="{details}" />';
+        $organization = $this->render($card, [
             'organization' => $this->get(OrganizationRepository::class)->findByUid(1),
             'details' => [
                 'logo' => false,
@@ -216,7 +217,7 @@ final class DefaultTemplatesTest extends FunctionalTestCase
                 'contacts' => ['mastodon', 'website'],
                 'description' => true,
             ],
-        ]);
+        ], true);
 
         self::assertSame(['Writes the first programs.'], $this->texts($person, '.PersonCard__summary'));
         self::assertSame(['GitHub', 'Website'], $this->texts($person, '.Contacts a'));
@@ -236,7 +237,8 @@ final class DefaultTemplatesTest extends FunctionalTestCase
     {
         $event = $this->get(EventRepository::class)->findByUid(1);
 
-        $page = $this->render('Partials/Event/Part/Organizers.html', ['event' => $event]);
+        $variables = ['event' => $event, 'parts' => ['organizers'], 'hasPart' => []];
+        $page = $this->render('Templates/Event/Show.html', $variables);
 
         self::assertSame(['Writes the first programs.'], $this->texts($page, '.PersonCard__summary'));
         self::assertSame(['Website', 'GitHub'], $this->texts($page, '.Contacts a'));
@@ -269,7 +271,7 @@ final class DefaultTemplatesTest extends FunctionalTestCase
     }
 
     /**
-     * Render a template or partial of tw-events, with its partials
+     * Render a template of tw-events, or the source of one
      *
      * @param string               $template  Path below "Resources/Private", such as "Templates/Event/Show.html"
      * @param array<string, mixed> $variables Variables
@@ -292,7 +294,6 @@ final class DefaultTemplatesTest extends FunctionalTestCase
         $context = $this->get(RenderingContextFactory::class)->create([], $request);
         $context->setAttribute(ServerRequestInterface::class, $request);
         $paths = $context->getTemplatePaths();
-        $paths->setPartialRootPaths([self::TEMPLATES . 'Partials/']);
         if ($isSource) {
             $paths->setTemplateSource($template);
         } else {

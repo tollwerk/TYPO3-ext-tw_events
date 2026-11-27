@@ -1,15 +1,12 @@
 <f:comment>
-    An event with the parts chosen in the plugin
+    An event with the parts chosen in the plugin and the details of the cards from the site settings
+    "twEvents.speakers", "twEvents.hosts" and "twEvents.sponsors"
     @param Tollwerk\TwEvents\Domain\Model\Event event Event
     @param array parts Parts in their order, such as "basics"
     @param array hasPart The same parts as keys, such as {basics: 1}, for parts that refer to others
 </f:comment>
 <events:structuredData record="{event}" />
-<article class="Event h-event">
-    <data class="p-name" value="{event.title}"></data>
-    <f:variable name="uri" value="{events:uri.event(event: event)}" />
-    <f:if condition="{uri}"><data class="u-url" value="{uri}"></data></f:if>
-    <f:for each="{parts}" as="part">
-        <f:render partial="Event/Part/{part -> f:format.case(mode: 'capital')}" arguments="{event: event, hasPart: hasPart}" />
-    </f:for>
-</article>
+<f:variable name="speakers" value="{events:details(of: 'speakers')}" />
+<f:variable name="hosts" value="{events:details(of: 'hosts')}" />
+<f:variable name="sponsors" value="{events:details(of: 'sponsors')}" />
+<twc:event.event event="{event}" parts="{parts}" hasPart="{hasPart}" details="{speakers: speakers, hosts: hosts, sponsors: sponsors}" />

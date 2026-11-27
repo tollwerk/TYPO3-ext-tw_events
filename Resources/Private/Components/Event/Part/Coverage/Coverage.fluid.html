@@ -1,0 +1,9 @@
+<f:argument name="event" type="Tollwerk\TwEvents\Domain\Model\Event" description="Event" />
+<f:comment>Coverage of an event</f:comment>
+<f:if condition="{event.coverage}">
+    <section class="Event__coverage" id="coverage">
+        <base:heading content="{f:translate(domain: 'tw_events.messages', key: 'event.heading.coverage')}">
+            <twc:event.coverage coverage="{event.coverage}" />
+        </base:heading>
+    </section>
+</f:if>

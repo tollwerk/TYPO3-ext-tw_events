@@ -1,0 +1,15 @@
+<f:argument name="events" type="Tollwerk\TwEvents\Domain\Model\Event[]" description="Events" />
+<f:argument name="scope" type="string" optional="1" default="all" description="Scope, for the text without events: &quot;upcoming&quot;, &quot;cancelled&quot;, &quot;past&quot; or &quot;all&quot;" />
+<f:comment>List of events</f:comment>
+<f:if condition="{events}">
+    <f:then>
+        <ol class="EventList">
+            <f:for each="{events}" as="event">
+                <li class="EventList__item"><twc:event.teaser event="{event}" /></li>
+            </f:for>
+        </ol>
+    </f:then>
+    <f:else>
+        <p class="EventList__empty"><f:switch expression="{scope}"><f:case value="upcoming"><f:translate domain="tw_events.messages" key="events.none.upcoming" /></f:case><f:case value="cancelled"><f:translate domain="tw_events.messages" key="events.none.cancelled" /></f:case><f:case value="past"><f:translate domain="tw_events.messages" key="events.none.past" /></f:case><f:defaultCase><f:translate domain="tw_events.messages" key="events.none.all" /></f:defaultCase></f:switch></p>
+    </f:else>
+</f:if>

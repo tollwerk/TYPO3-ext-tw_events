@@ -1,0 +1,20 @@
+<f:argument name="event" type="Tollwerk\TwEvents\Domain\Model\Event" description="Event" />
+<f:argument name="details" type="array" optional="1" default="{}" description="Details of the organisations, as for a card" />
+<f:comment>Organisations that initiate, sponsor and support an event</f:comment>
+<f:if condition="{event.participationsByRole}">
+    <section class="Event__participations" id="sponsors">
+        <base:heading content="{f:translate(domain: 'tw_events.messages', key: 'event.heading.participations')}">
+            <f:for each="{event.participationsByRole}" as="participations" key="role">
+                <section class="Event__role Event__role--{role}">
+                    <base:heading content="{f:translate(domain: 'tw_events.messages', key: 'participation.role.{role}')}">
+                        <ul class="OrganizationList">
+                            <f:for each="{participations}" as="participation">
+                                <li class="OrganizationList__item"><twc:event.organization.card organization="{participation.organization}" details="{details}" label="{participation.label}" /></li>
+                            </f:for>
+                        </ul>
+                    </base:heading>
+                </section>
+            </f:for>
+        </base:heading>
+    </section>
+</f:if>

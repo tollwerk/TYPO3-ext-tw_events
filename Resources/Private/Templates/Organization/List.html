@@ -2,8 +2,4 @@
     All organisations
     @param iterable organizations Organisations
 </f:comment>
-<ul class="OrganizationList">
-    <f:for each="{organizations}" as="organization">
-        <li class="OrganizationList__item"><f:render partial="Organization/Card" arguments="{organization: organization, details: {logo: 1}}" /></li>
-    </f:for>
-</ul>
+<twc:event.organization.list organizations="{organizations}" details="{logo: 1}" />

@@ -47,6 +47,20 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 final class SessionLanguageTest extends FunctionalTestCase
 {
     /**
+     * Template with the item of a session in the programme
+     *
+     * @var string
+     */
+    private const string ITEM = __DIR__ . '/Fixtures/Templates/SessionItem.html';
+
+    /**
+     * Template of the page of a session
+     *
+     * @var string
+     */
+    private const string SESSION = __DIR__ . '/../../Resources/Private/Templates/Event/Session.html';
+
+    /**
      * System extensions tw_base needs
      *
      * @var non-empty-string[]
@@ -80,11 +94,11 @@ final class SessionLanguageTest extends FunctionalTestCase
     {
         $session = $this->session('Barrierefreie Farbkontraste', 'de', 'en');
 
-        $item = $this->render('Partials/Session/Item.html', $session);
+        $item = $this->render(self::ITEM, $session);
         self::assertSame('de', $item->querySelector('.SessionItem__title .p-name')?->getAttribute('lang'));
         self::assertSame(['de'], $this->languages($item));
 
-        $page = $this->render('Templates/Event/Session.html', $session);
+        $page = $this->render(self::SESSION, $session);
         self::assertSame('de', $page->querySelector('.Session > .p-name')?->getAttribute('lang'));
         self::assertSame('de', $page->querySelector('.Session__summary')?->getAttribute('lang'));
         self::assertFalse($page->querySelector('.Session__context')?->hasAttribute('lang') ?? true);
@@ -100,7 +114,7 @@ final class SessionLanguageTest extends FunctionalTestCase
      */
     public function testSessionInTheLanguageOfItsEvent(): void
     {
-        $item = 'Partials/Session/Item.html';
+        $item = self::ITEM;
         self::assertSame(['de'], $this->languages($this->render($item, $this->session('Eröffnung', '', 'de'))));
         self::assertSame([], $this->languages($this->render($item, $this->session('Opening', '', 'en'))));
         self::assertSame([], $this->languages($this->render($item, $this->session('Opening', 'en-GB', 'en'))));
@@ -132,9 +146,9 @@ final class SessionLanguageTest extends FunctionalTestCase
     }
 
     /**
-     * Render a template of tw_events on an English page
+     * Render a template on an English page
      *
-     * @param string  $path    Path below "Resources/Private"
+     * @param string  $path    Absolute path of the template
      * @param Session $session Session
      *
      * @return HTMLDocument
@@ -144,14 +158,12 @@ final class SessionLanguageTest extends FunctionalTestCase
      */
     private function render(string $path, Session $session): HTMLDocument
     {
-        $base = __DIR__ . '/../../Resources/Private/';
         $request = new ServerRequest('http://localhost/')
             ->withAttribute('applicationType', SystemEnvironmentBuilder::REQUESTTYPE_FE)
             ->withAttribute('language', new SiteLanguage(0, 'en-US', new Uri('http://localhost/'), []))
             ->withAttribute('extbase', new ExtbaseRequestParameters()->setControllerExtensionName('TwEvents'));
         $view = $this->get(ViewFactoryInterface::class)->create(new ViewFactoryData(
-            partialRootPaths: [$base . 'Partials/'],
-            templatePathAndFilename: $base . $path,
+            templatePathAndFilename: $path,
             request: new Request($request),
         ));
         $view->assignMultiple(['session' => $session, 'event' => $session->getEvent()]);

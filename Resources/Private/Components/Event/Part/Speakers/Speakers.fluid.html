@@ -1,0 +1,10 @@
+<f:argument name="event" type="Tollwerk\TwEvents\Domain\Model\Event" description="Event" />
+<f:argument name="details" type="array" optional="1" default="{}" description="Details of the people, as for a card" />
+<f:comment>Speakers of an event, each with their slug as anchor</f:comment>
+<f:if condition="{event.speakers}">
+    <section class="Event__speakers" id="performers">
+        <base:heading content="{f:translate(domain: 'tw_events.messages', key: 'event.heading.speakers')}">
+            <twc:event.person.list people="{event.speakers}" details="{details}" class="p-performer" anchors="1" />
+        </base:heading>
+    </section>
+</f:if>

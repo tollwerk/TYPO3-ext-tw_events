@@ -1,0 +1,13 @@
+<f:argument name="people" type="Tollwerk\TwEvents\Domain\Model\Person[]" description="People" />
+<f:argument name="details" type="array" optional="1" default="{}" description="Details: &quot;photo&quot; (bool), &quot;texts&quot; (&quot;summary&quot;, &quot;teaser&quot;, &quot;biography&quot;) and &quot;contacts&quot;, both in their order" />
+<f:argument name="class" type="string" optional="1" default="" description="Microformats property, such as &quot;p-performer&quot;" />
+<f:argument name="anchors" type="bool" optional="1" default="0" description="Whether every person gets their slug as anchor" />
+<f:comment>People with the details chosen for the place they show in</f:comment>
+<ul class="PersonList">
+    <f:for each="{people}" as="person">
+        <f:if condition="{anchors}">
+            <f:then><li class="PersonList__item" id="{person.slug}"><twc:event.person.card person="{person}" details="{details}" class="{class}" /></li></f:then>
+            <f:else><li class="PersonList__item"><twc:event.person.card person="{person}" details="{details}" class="{class}" /></li></f:else>
+        </f:if>
+    </f:for>
+</ul>

@@ -5,9 +5,5 @@
     @param array details Details of the cards
 </f:comment>
 <f:if condition="{organizations}">
-    <ul class="OrganizationList{f:if(condition: venues, then: ' OrganizationList--venues')}">
-        <f:for each="{organizations}" as="organization">
-            <li class="OrganizationList__item"><f:render partial="Organization/{f:if(condition: venues, then: 'Venue', else: 'Card')}" arguments="{organization: organization, details: details}" /></li>
-        </f:for>
-    </ul>
+    <twc:event.organization.list organizations="{organizations}" venues="{venues}" details="{details}" />
 </f:if>

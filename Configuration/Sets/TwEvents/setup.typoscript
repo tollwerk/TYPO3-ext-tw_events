@@ -1,7 +1,6 @@
 plugin.tx_twevents {
     view {
         templateRootPaths.0 = EXT:tw_events/Resources/Private/Templates/
-        partialRootPaths.0 = EXT:tw_events/Resources/Private/Partials/
         layoutRootPaths.0 = EXT:tw_events/Resources/Private/Layouts/
     }
 }

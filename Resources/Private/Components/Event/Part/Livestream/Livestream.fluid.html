@@ -1,0 +1,9 @@
+<f:argument name="event" type="Tollwerk\TwEvents\Domain\Model\Event" description="Event" />
+<f:comment>Livestream of an event, as long as it is not over</f:comment>
+<f:if condition="{event.livestreamUrl} && !{event.isPast}">
+    <section class="Event__livestream" id="livestream">
+        <base:heading content="{f:translate(domain: 'tw_events.messages', key: 'event.heading.livestream')}">
+            <p><a href="{event.livestreamUrl}"><f:translate domain="tw_events.messages" key="event.livestream.link" /></a></p>
+        </base:heading>
+    </section>
+</f:if>

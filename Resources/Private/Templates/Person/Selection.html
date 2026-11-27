@@ -4,5 +4,5 @@
     @param array details Details, as for a card
 </f:comment>
 <f:if condition="{people}">
-    <f:render partial="Person/List" arguments="{people: people, details: details}" />
+    <twc:event.person.list people="{people}" details="{details}" />
 </f:if>

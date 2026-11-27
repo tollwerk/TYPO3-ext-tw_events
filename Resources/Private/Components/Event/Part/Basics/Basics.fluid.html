@@ -1,0 +1,15 @@
+<f:argument name="event" type="Tollwerk\TwEvents\Domain\Model\Event" description="Event" />
+<f:argument name="hasPart" type="array" optional="1" default="{}" description="Parts the page shows, as keys with the value 1, such as &quot;location&quot;" />
+<f:comment>Date, time, status and summary of an event; the venue links the part with its location if the page shows it</f:comment>
+<div class="Event__basics" id="basics">
+    <p class="Event__when"><twc:event.dateRange start="{event.startDate}" end="{event.endDate}" /></p>
+    <f:if condition="{event.isCancelled}">
+        <p class="Event__status"><strong><f:translate domain="tw_events.messages" key="event.cancelled" /></strong></p>
+    </f:if>
+    <f:if condition="{event.location}">
+        <p class="Event__where"><f:translate domain="tw_events.messages" key="event.at" /> <f:if condition="{hasPart.location}"><f:then><a href="#location">{event.location.name}</a></f:then><f:else>{event.location.name}</f:else></f:if><f:if condition="{event.location.locality}">, {event.location.locality}</f:if></p>
+    </f:if>
+    <f:if condition="{event.summary}">
+        <p class="Event__summary p-summary">{event.summary}</p>
+    </f:if>
+</div>

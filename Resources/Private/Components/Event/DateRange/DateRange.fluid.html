@@ -1,0 +1,10 @@
+<f:argument name="start" type="DateTimeInterface" optional="1" description="Start" />
+<f:argument name="end" type="DateTimeInterface" optional="1" description="End" />
+<f:argument name="timeOnly" type="bool" optional="1" default="0" description="Whether to leave out the date" />
+<f:comment>Start and end of an event or a session, in the time zone of the event</f:comment>
+<f:if condition="{start}">
+    <f:variable name="sameDay" value="{f:if(condition: '{end -> f:format.date(format: \'Y-m-d\')} == {start -> f:format.date(format: \'Y-m-d\')}', then: 1, else: 0)}" />
+    <time class="dt-start" datetime="{start -> f:format.date(format: 'c')}">{f:if(condition: timeOnly, else: '{start -> f:format.date(format: \'F j, Y\')}, ')}{start -> f:format.date(format: 'g:i a')}</time><f:if condition="{end}">
+        – <time class="dt-end" datetime="{end -> f:format.date(format: 'c')}">{f:if(condition: '{timeOnly} || {sameDay}', else: '{end -> f:format.date(format: \'F j, Y\')}, ')}{end -> f:format.date(format: 'g:i a')}</time></f:if>
+    <f:if condition="{timeOnly}"><f:else><abbr title="{start -> f:format.date(format: 'e')}">{start -> f:format.date(format: 'T')}</abbr></f:else></f:if>
+</f:if>

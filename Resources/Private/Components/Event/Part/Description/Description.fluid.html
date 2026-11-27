@@ -1,0 +1,9 @@
+<f:argument name="event" type="Tollwerk\TwEvents\Domain\Model\Event" description="Event" />
+<f:comment>Description of an event</f:comment>
+<f:if condition="{event.description}">
+    <section class="Event__description" id="description">
+        <base:heading content="{f:translate(domain: 'tw_events.messages', key: 'event.heading.description')}">
+            <div class="e-content"><f:format.html>{event.description}</f:format.html></div>
+        </base:heading>
+    </section>
+</f:if>

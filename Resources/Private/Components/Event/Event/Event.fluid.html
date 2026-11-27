@@ -1,0 +1,25 @@
+<f:argument name="event" type="Tollwerk\TwEvents\Domain\Model\Event" description="Event" />
+<f:argument name="parts" type="string[]" description="Parts in their order: &quot;basics&quot;, &quot;tickets&quot;, &quot;livestream&quot;, &quot;description&quot;, &quot;schedule&quot;, &quot;speakers&quot;, &quot;organizers&quot;, &quot;participations&quot;, &quot;location&quot;, &quot;downloads&quot; or &quot;coverage&quot;" />
+<f:argument name="hasPart" type="array" optional="1" default="{}" description="Parts the page shows, as keys with the value 1, such as &quot;location&quot;" />
+<f:argument name="details" type="array" optional="1" default="{}" description="Details of the cards by group: &quot;speakers&quot;, &quot;hosts&quot; and &quot;sponsors&quot;" />
+<f:comment>An event with the chosen parts</f:comment>
+<article class="Event h-event">
+    <data class="p-name" value="{event.title}"></data>
+    <f:variable name="uri" value="{events:uri.event(event: event)}" />
+    <f:if condition="{uri}"><data class="u-url" value="{uri}"></data></f:if>
+    <f:for each="{parts}" as="part">
+        <f:switch expression="{part}">
+            <f:case value="basics"><twc:event.part.basics event="{event}" hasPart="{hasPart}" /></f:case>
+            <f:case value="tickets"><twc:event.part.tickets event="{event}" /></f:case>
+            <f:case value="livestream"><twc:event.part.livestream event="{event}" /></f:case>
+            <f:case value="description"><twc:event.part.description event="{event}" /></f:case>
+            <f:case value="schedule"><twc:event.part.schedule event="{event}" /></f:case>
+            <f:case value="speakers"><twc:event.part.speakers event="{event}" details="{details.speakers}" /></f:case>
+            <f:case value="organizers"><twc:event.part.organizers event="{event}" details="{details.hosts}" /></f:case>
+            <f:case value="participations"><twc:event.part.participations event="{event}" details="{details.sponsors}" /></f:case>
+            <f:case value="location"><twc:event.part.location event="{event}" /></f:case>
+            <f:case value="downloads"><twc:event.part.downloads event="{event}" /></f:case>
+            <f:case value="coverage"><twc:event.part.coverage event="{event}" /></f:case>
+        </f:switch>
+    </f:for>
+</article>

@@ -15,4 +15,5 @@ declare(strict_types=1);
 
 return [
     'events' => ['Tollwerk\\TwEvents\\ViewHelpers'],
+    'twc' => ['Tollwerk\\Components'],
 ];

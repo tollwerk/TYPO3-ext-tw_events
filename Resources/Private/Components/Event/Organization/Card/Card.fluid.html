@@ -1,0 +1,17 @@
+<f:argument name="organization" type="Tollwerk\TwEvents\Domain\Model\Organization" description="Organisation" />
+<f:argument name="details" type="array" optional="1" default="{}" description="Details: &quot;logo&quot;, &quot;address&quot; and &quot;description&quot; (bool each), and &quot;contacts&quot; in their order" />
+<f:argument name="label" type="string" optional="1" default="" description="Label of its part in an event, such as &quot;Caption Sponsor&quot;" />
+<f:comment>An organisation with the details chosen for the place it shows in, linked to its profile</f:comment>
+<div class="OrganizationCard h-card">
+    <f:variable name="uri" value="{events:uri.organization(organization: organization)}" />
+    <f:if condition="{details.logo} && {organization.logo}">
+        <base:picture image="{organization.logo}" srcset="160w, 320w" sizes="160px" alt="" class="OrganizationCard__logo u-logo" />
+    </f:if>
+    <p class="OrganizationCard__name"><f:if condition="{uri}"><f:then><a class="p-name u-url" href="{uri}">{organization.name}</a></f:then><f:else><span class="p-name">{organization.name}</span></f:else></f:if></p>
+    <f:if condition="{label}"><p class="OrganizationCard__label">{label}</p></f:if>
+    <f:if condition="{details.address}"><twc:event.organization.address organization="{organization}" /></f:if>
+    <twc:event.contacts record="{organization}" contacts="{details.contacts}" class="OrganizationCard__contacts" />
+    <f:if condition="{details.description} && {organization.description}">
+        <div class="OrganizationCard__description p-note"><f:format.html>{organization.description}</f:format.html></div>
+    </f:if>
+</div>
