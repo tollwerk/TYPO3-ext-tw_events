@@ -6,7 +6,7 @@
 </f:comment>
 <div class="PersonCard {class} h-card">
     <f:if condition="{details.photo} && {person.photo}">
-        <base:picture image="{person.photo}" srcset="96w, 192w" sizes="96px" alt="" class="PersonCard__photo u-photo" />
+        <base:picture image="{person.photo}" cropVariant="square" srcset="96w, 192w" sizes="96px" alt="" class="PersonCard__photo u-photo" />
     </f:if>
     <f:variable name="uri" value="{events:uri.person(person: person)}" />
     <p class="PersonCard__name"><f:if condition="{uri}"><f:then><a class="p-name u-url" href="{uri}">{person.name}</a></f:then><f:else><span class="p-name">{person.name}</span></f:else></f:if></p>

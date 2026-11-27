@@ -7,3 +7,4 @@ Alle nennenswerten Änderungen an der Extension. Das Format folgt [Keep a Change
 ### Geändert
 
 - Neu geschrieben für TYPO3 14, bisher als Pfad-Paket in der Website des Accessibility Club entwickelt. Die Fassung davor liegt im Zweig `2.x`.
+- Das Foto einer Person zeigt den Zuschnitt `square` aus `tw_accounts`, die ganze Fotografie nur ohne Zuschnitt.

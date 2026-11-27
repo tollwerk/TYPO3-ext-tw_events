@@ -8,7 +8,7 @@
 <article class="Person h-card">
     <data class="p-name" value="{person.name}"></data>
     <f:if condition="{person.photo}">
-        <base:picture image="{person.photo}" srcset="200w, 400w" sizes="200px" alt="" class="Person__photo u-photo" />
+        <base:picture image="{person.photo}" cropVariant="square" srcset="200w, 400w" sizes="200px" alt="" class="Person__photo u-photo" />
     </f:if>
     <f:if condition="{person.biography}">
         <f:then><div class="Person__biography p-note"><f:format.html>{person.biography}</f:format.html></div></f:then>
