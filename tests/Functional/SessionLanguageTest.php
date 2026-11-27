@@ -52,7 +52,7 @@ final class SessionLanguageTest extends FunctionalTestCase
      * @var non-empty-string[]
      */
     #[Override]
-    protected array $coreExtensionsToLoad = ['filemetadata', 'felogin'];
+    protected array $coreExtensionsToLoad = ['filemetadata', 'felogin', 'rte_ckeditor'];
 
     /**
      * Extensions of the project
@@ -60,7 +60,13 @@ final class SessionLanguageTest extends FunctionalTestCase
      * @var non-empty-string[]
      */
     #[Override]
-    protected array $testExtensionsToLoad = ['tollwerk/tw-base', 'tollwerk/tw-accounts', 'tollwerk/tw-events'];
+    protected array $testExtensionsToLoad = [
+        'tollwerk/tw-base',
+        'tollwerk/tw-fields',
+        'tollwerk/tw-antibot',
+        'tollwerk/tw-accounts',
+        'tollwerk/tw-events',
+    ];
 
     /**
      * A session in German on an English page marks its title and description, nothing else

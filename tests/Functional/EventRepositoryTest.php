@@ -46,7 +46,7 @@ final class EventRepositoryTest extends FunctionalTestCase
      * @var non-empty-string[]
      */
     #[Override]
-    protected array $coreExtensionsToLoad = ['filemetadata', 'felogin'];
+    protected array $coreExtensionsToLoad = ['filemetadata', 'felogin', 'rte_ckeditor'];
 
     /**
      * Extensions of the project
@@ -54,7 +54,13 @@ final class EventRepositoryTest extends FunctionalTestCase
      * @var non-empty-string[]
      */
     #[Override]
-    protected array $testExtensionsToLoad = ['tollwerk/tw-base', 'tollwerk/tw-accounts', 'tollwerk/tw-events'];
+    protected array $testExtensionsToLoad = [
+        'tollwerk/tw-base',
+        'tollwerk/tw-fields',
+        'tollwerk/tw-antibot',
+        'tollwerk/tw-accounts',
+        'tollwerk/tw-events',
+    ];
 
     /**
      * Set up the events: Meetup #8 is over, Summit 2099 is cancelled and ends on 2 June 2099 at 18:00

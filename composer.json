@@ -33,6 +33,16 @@
             "url": "git@code.tollwerk.net:tollwerk/typo3/extensions/tw-base.git"
         },
         {
+            "name": "tollwerk-tw-antibot",
+            "type": "vcs",
+            "url": "git@code.tollwerk.net:tollwerk/typo3/extensions/tw-antibot.git"
+        },
+        {
+            "name": "tollwerk-tw-fields",
+            "type": "vcs",
+            "url": "git@code.tollwerk.net:tollwerk/typo3/extensions/tw-fields.git"
+        },
+        {
             "name": "tollwerk-guidelines",
             "type": "vcs",
             "url": "git@code.tollwerk.net:tollwerk/guidelines.git"

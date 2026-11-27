@@ -50,7 +50,7 @@ final class RecordUrisTest extends FunctionalTestCase
      * @var non-empty-string[]
      */
     #[Override]
-    protected array $coreExtensionsToLoad = ['filemetadata', 'felogin'];
+    protected array $coreExtensionsToLoad = ['filemetadata', 'felogin', 'rte_ckeditor'];
 
     /**
      * Extensions of the project
@@ -58,7 +58,13 @@ final class RecordUrisTest extends FunctionalTestCase
      * @var non-empty-string[]
      */
     #[Override]
-    protected array $testExtensionsToLoad = ['tollwerk/tw-base', 'tollwerk/tw-accounts', 'tollwerk/tw-events'];
+    protected array $testExtensionsToLoad = [
+        'tollwerk/tw-base',
+        'tollwerk/tw-fields',
+        'tollwerk/tw-antibot',
+        'tollwerk/tw-accounts',
+        'tollwerk/tw-events',
+    ];
 
     /**
      * Set up the records, and a site in English and in German at "/de/" with the routes of tw-events

@@ -43,7 +43,7 @@ final class FrontendTest extends FunctionalTestCase
      * @var array<non-empty-string>
      */
     #[Override]
-    protected array $coreExtensionsToLoad = ['filemetadata', 'felogin', 'fluid_styled_content'];
+    protected array $coreExtensionsToLoad = ['filemetadata', 'felogin', 'rte_ckeditor', 'fluid_styled_content'];
 
     /**
      * Extensions to load
@@ -51,7 +51,13 @@ final class FrontendTest extends FunctionalTestCase
      * @var array<non-empty-string>
      */
     #[Override]
-    protected array $testExtensionsToLoad = ['tollwerk/tw-base', 'tollwerk/tw-accounts', 'tollwerk/tw-events'];
+    protected array $testExtensionsToLoad = [
+        'tollwerk/tw-base',
+        'tollwerk/tw-fields',
+        'tollwerk/tw-antibot',
+        'tollwerk/tw-accounts',
+        'tollwerk/tw-events',
+    ];
 
     /**
      * Set up the records and a site that renders the content of its pages with the sets of tw-events

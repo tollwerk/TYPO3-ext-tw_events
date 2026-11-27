@@ -44,7 +44,7 @@ final class OrganizationCoordinatesTest extends FunctionalTestCase
      * @var non-empty-string[]
      */
     #[Override]
-    protected array $coreExtensionsToLoad = ['filemetadata', 'felogin'];
+    protected array $coreExtensionsToLoad = ['filemetadata', 'felogin', 'rte_ckeditor'];
 
     /**
      * Extensions of the project
@@ -52,7 +52,13 @@ final class OrganizationCoordinatesTest extends FunctionalTestCase
      * @var non-empty-string[]
      */
     #[Override]
-    protected array $testExtensionsToLoad = ['tollwerk/tw-base', 'tollwerk/tw-accounts', 'tollwerk/tw-events'];
+    protected array $testExtensionsToLoad = [
+        'tollwerk/tw-base',
+        'tollwerk/tw-fields',
+        'tollwerk/tw-antibot',
+        'tollwerk/tw-accounts',
+        'tollwerk/tw-events',
+    ];
 
     /**
      * Set up an editor and the venue tollwerk at 49.452031, 11.076751

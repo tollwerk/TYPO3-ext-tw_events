@@ -57,7 +57,7 @@ final class DatabaseSchemaTest extends FunctionalTestCase
      * @var non-empty-string[]
      */
     #[Override]
-    protected array $coreExtensionsToLoad = ['filemetadata', 'felogin'];
+    protected array $coreExtensionsToLoad = ['filemetadata', 'felogin', 'rte_ckeditor'];
 
     /**
      * Extensions under test, with tw-base, which tw-events needs
@@ -65,7 +65,13 @@ final class DatabaseSchemaTest extends FunctionalTestCase
      * @var non-empty-string[]
      */
     #[Override]
-    protected array $testExtensionsToLoad = ['tollwerk/tw-base', 'tollwerk/tw-accounts', 'tollwerk/tw-events'];
+    protected array $testExtensionsToLoad = [
+        'tollwerk/tw-base',
+        'tollwerk/tw-fields',
+        'tollwerk/tw-antibot',
+        'tollwerk/tw-accounts',
+        'tollwerk/tw-events',
+    ];
 
     /**
      * Every record type of tw_events has a TCA schema

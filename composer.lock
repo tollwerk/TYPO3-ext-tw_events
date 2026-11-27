@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6e3610ee4ee3410e97b727af6d6d8231",
+    "content-hash": "9c255445809144b70e3afe5fe69e9059",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -1223,6 +1223,70 @@
             ],
             "time": "2026-11-22T00:00:35+00:00",
             "published-time": "2026-11-22T00:01:04+00:00"
+        },
+        {
+            "name": "jkphl/antibot",
+            "version": "v2.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jkphl/antibot.git",
+                "reference": "682c595b9aac41954f67200fa66473eaa69d41e0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jkphl/antibot/zipball/682c595b9aac41954f67200fa66473eaa69d41e0",
+                "reference": "682c595b9aac41954f67200fa66473eaa69d41e0",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4 || ^8.0",
+                "psr/http-message": "^1.1 || ^2.0",
+                "psr/log": "^1.1 || ^2.0 || ^3.0"
+            },
+            "require-dev": {
+                "monolog/monolog": "^2.9",
+                "nyholm/psr7": "^1.8",
+                "nyholm/psr7-server": "^1.1",
+                "phpmd/phpmd": "^2.15",
+                "phpunit/phpunit": "^9.6",
+                "squizlabs/php_codesniffer": "^3.13"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jkphl\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joschi Kuphal",
+                    "email": "joschi@tollwerk.de",
+                    "homepage": "https://jkphl.is",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Death to spambots! CAPTCHA-less form validation",
+            "homepage": "https://github.com/jkphl/antibot",
+            "keywords": [
+                "Honeypot",
+                "accessibility",
+                "form",
+                "hmac",
+                "spam",
+                "spambot",
+                "validation"
+            ],
+            "support": {
+                "email": "joschi@tollwerk.de",
+                "issues": "https://github.com/jkphl/antibot/issues",
+                "source": "https://github.com/jkphl/antibot"
+            },
+            "time": "2026-11-27T15:20:11+00:00",
+            "published-time": "2026-11-27T15:26:15+00:00"
         },
         {
             "name": "lolli42/finediff",
@@ -2561,6 +2625,76 @@
             ],
             "time": "2026-11-24T15:38:27+00:00",
             "published-time": "2026-11-25T09:25:19+00:00"
+        },
+        {
+            "name": "symfony/css-selector",
+            "version": "v8.1.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/css-selector.git",
+                "reference": "9cfd588b8b07cf83e3426b030dbafd2291c132d9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/css-selector/zipball/9cfd588b8b07cf83e3426b030dbafd2291c132d9",
+                "reference": "9cfd588b8b07cf83e3426b030dbafd2291c132d9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.4.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\CssSelector\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Jean-François Simon",
+                    "email": "jeanfrancois.simon@sensiolabs.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Converts CSS selectors to XPath expressions",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/css-selector/tree/v8.1.10"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/nicolas-grekas",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2026-10-18T14:56:39+00:00",
+            "published-time": "2026-10-28T18:24:46+00:00"
         },
         {
             "name": "symfony/dependency-injection",
@@ -5799,23 +5933,84 @@
             "published-time": "2026-11-25T09:24:23+00:00"
         },
         {
+            "name": "tijsverkoyen/css-to-inline-styles",
+            "version": "v2.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tijsverkoyen/CssToInlineStyles.git",
+                "reference": "f0292ccf0ec75843d65027214426b6b163b48b41"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tijsverkoyen/CssToInlineStyles/zipball/f0292ccf0ec75843d65027214426b6b163b48b41",
+                "reference": "f0292ccf0ec75843d65027214426b6b163b48b41",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-libxml": "*",
+                "php": "^7.4 || ^8.0",
+                "symfony/css-selector": "^5.4 || ^6.0 || ^7.0 || ^8.0"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^2.0",
+                "phpstan/phpstan-phpunit": "^2.0",
+                "phpunit/phpunit": "^8.5.21 || ^9.5.10"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TijsVerkoyen\\CssToInlineStyles\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Tijs Verkoyen",
+                    "email": "css_to_inline_styles@verkoyen.eu",
+                    "role": "Developer"
+                }
+            ],
+            "description": "CssToInlineStyles is a class that enables you to convert HTML-pages/files into HTML-pages/files with inline styles. This is very useful when you're sending emails.",
+            "homepage": "https://github.com/tijsverkoyen/CssToInlineStyles",
+            "support": {
+                "issues": "https://github.com/tijsverkoyen/CssToInlineStyles/issues",
+                "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/v2.4.0"
+            },
+            "time": "2025-12-02T11:56:42+00:00",
+            "published-time": "2025-12-11T21:29:16+00:00"
+        },
+        {
             "name": "tollwerk/tw-accounts",
             "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "git@code.tollwerk.net:tollwerk/typo3/extensions/tw-accounts.git",
-                "reference": "4c410e772ccb02f728105036f2a69de115a1ddd3"
+                "reference": "245ac8864ac3515ab36d657c07784a5ed660aa28"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://code.tollwerk.net/api/v4/projects/tollwerk%2Ftypo3%2Fextensions%2Ftw-accounts/repository/archive.zip?sha=4c410e772ccb02f728105036f2a69de115a1ddd3",
-                "reference": "4c410e772ccb02f728105036f2a69de115a1ddd3",
+                "url": "https://code.tollwerk.net/api/v4/projects/tollwerk%2Ftypo3%2Fextensions%2Ftw-accounts/repository/archive.zip?sha=245ac8864ac3515ab36d657c07784a5ed660aa28",
+                "reference": "245ac8864ac3515ab36d657c07784a5ed660aa28",
                 "shasum": ""
             },
             "require": {
+                "ext-gd": "*",
                 "php": "^8.5",
+                "tollwerk/tw-antibot": "^14.0",
+                "tollwerk/tw-base": "^14.0",
+                "tollwerk/tw-fields": "^14.0",
                 "typo3/cms-core": "^14.3",
-                "typo3/cms-felogin": "^14.3"
+                "typo3/cms-felogin": "^14.3",
+                "typo3/cms-rte-ckeditor": "^14.3"
             },
             "require-dev": {
                 "phpunit/phpunit": "^13",
@@ -5837,6 +6032,11 @@
             "autoload": {
                 "psr-4": {
                     "Tollwerk\\TwAccounts\\": "Classes/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Tollwerk\\TwAccounts\\Tests\\": "tests/"
                 }
             },
             "scripts": {
@@ -5861,7 +6061,90 @@
                 "source": "https://code.tollwerk.net/tollwerk/typo3/extensions/tw-accounts/-/tree/main",
                 "issues": "https://code.tollwerk.net/tollwerk/typo3/extensions/tw-accounts/-/issues"
             },
-            "time": "2026-11-26T22:12:54+01:00"
+            "time": "2026-11-27T22:19:33+01:00"
+        },
+        {
+            "name": "tollwerk/tw-antibot",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "git@code.tollwerk.net:tollwerk/typo3/extensions/tw-antibot.git",
+                "reference": "23b4018d03948f2b36752d487fdbc2b2b4d03a6d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://code.tollwerk.net/api/v4/projects/tollwerk%2Ftypo3%2Fextensions%2Ftw-antibot/repository/archive.zip?sha=23b4018d03948f2b36752d487fdbc2b2b4d03a6d",
+                "reference": "23b4018d03948f2b36752d487fdbc2b2b4d03a6d",
+                "shasum": ""
+            },
+            "require": {
+                "jkphl/antibot": "^2.2.1",
+                "php": "^8.5",
+                "psr/http-message": "^2.0",
+                "psr/log": "^3.0",
+                "tollwerk/tw-base": "^14.0",
+                "typo3/cms-backend": "^14.3",
+                "typo3/cms-core": "^14.3",
+                "typo3/cms-fluid": "^14.3",
+                "typo3/cms-frontend": "^14.3"
+            },
+            "replace": {
+                "typo3-ter/tw_antibot": "self.version"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^13",
+                "saschaegerer/phpstan-typo3": "*",
+                "ssch/typo3-rector": "*",
+                "tollwerk/guidelines": "dev-main",
+                "typo3/cms-form": "^14.3",
+                "typo3/testing-framework": "^9.7"
+            },
+            "suggest": {
+                "typo3/cms-form": "Protects the forms of the form framework through a rendering option"
+            },
+            "default-branch": true,
+            "type": "typo3-cms-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "14.x-dev"
+                },
+                "typo3/cms": {
+                    "extension-key": "tw_antibot"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Tollwerk\\TwAntibot\\": "Classes/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Tollwerk\\TwAntibot\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "post-install-cmd": [
+                    "test ! -x vendor/bin/guidelines || vendor/bin/guidelines install"
+                ],
+                "post-update-cmd": [
+                    "test ! -x vendor/bin/guidelines || vendor/bin/guidelines install"
+                ],
+                "check": [
+                    "guidelines gate"
+                ],
+                "fix": [
+                    "guidelines fix"
+                ]
+            },
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Spam protection for TYPO3 forms without a task for the person who fills them in: hidden fields, signed timing, honeypots and content checks, bans and stopwords",
+            "support": {
+                "source": "https://code.tollwerk.net/tollwerk/typo3/extensions/tw-antibot/-/tree/main",
+                "issues": "https://code.tollwerk.net/tollwerk/typo3/extensions/tw-antibot/-/issues"
+            },
+            "time": "2026-11-27T20:11:51+01:00"
         },
         {
             "name": "tollwerk/tw-base",
@@ -5869,16 +6152,17 @@
             "source": {
                 "type": "git",
                 "url": "git@code.tollwerk.net:tollwerk/typo3/extensions/tw-base.git",
-                "reference": "8e6558dfa128be254dbae08a43fb984766cb1eed"
+                "reference": "e27c0f89c499ae39198e21da24d1bb54af0e75dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://code.tollwerk.net/api/v4/projects/tollwerk%2Ftypo3%2Fextensions%2Ftw-base/repository/archive.zip?sha=8e6558dfa128be254dbae08a43fb984766cb1eed",
-                "reference": "8e6558dfa128be254dbae08a43fb984766cb1eed",
+                "url": "https://code.tollwerk.net/api/v4/projects/tollwerk%2Ftypo3%2Fextensions%2Ftw-base/repository/archive.zip?sha=e27c0f89c499ae39198e21da24d1bb54af0e75dd",
+                "reference": "e27c0f89c499ae39198e21da24d1bb54af0e75dd",
                 "shasum": ""
             },
             "require": {
                 "php": "^8.5",
+                "tijsverkoyen/css-to-inline-styles": "^2.4",
                 "typo3/cms-core": "^14.3",
                 "typo3/cms-extbase": "^14.3",
                 "typo3/cms-filemetadata": "^14.3",
@@ -5924,12 +6208,83 @@
             "license": [
                 "GPL-2.0-or-later"
             ],
-            "description": "Headings, structured data, responsive images, link information and file attribution for TYPO3",
+            "description": "Headings, structured data, responsive images, link information, file attribution, components and accessible mails for TYPO3",
             "support": {
                 "source": "https://code.tollwerk.net/tollwerk/typo3/extensions/tw-base/-/tree/main",
                 "issues": "https://code.tollwerk.net/tollwerk/typo3/extensions/tw-base/-/issues"
             },
-            "time": "2026-11-26T22:50:27+01:00"
+            "time": "2026-11-27T14:45:23+01:00"
+        },
+        {
+            "name": "tollwerk/tw-fields",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "git@code.tollwerk.net:tollwerk/typo3/extensions/tw-fields.git",
+                "reference": "a5a7688e46328297f7d81a79c7ba45ab6897cf17"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://code.tollwerk.net/api/v4/projects/tollwerk%2Ftypo3%2Fextensions%2Ftw-fields/repository/archive.zip?sha=a5a7688e46328297f7d81a79c7ba45ab6897cf17",
+                "reference": "a5a7688e46328297f7d81a79c7ba45ab6897cf17",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.5",
+                "tollwerk/tw-base": "^14.0",
+                "typo3/cms-core": "^14.3",
+                "typo3/cms-fluid": "^14.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^13",
+                "saschaegerer/phpstan-typo3": "*",
+                "ssch/typo3-rector": "*",
+                "tollwerk/guidelines": "dev-main",
+                "typo3/testing-framework": "^9.7"
+            },
+            "default-branch": true,
+            "type": "typo3-cms-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "14.x-dev"
+                },
+                "typo3/cms": {
+                    "extension-key": "tw_fields"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Tollwerk\\TwFields\\": "Classes/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Tollwerk\\TwFields\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "post-install-cmd": [
+                    "test ! -x vendor/bin/guidelines || vendor/bin/guidelines install"
+                ],
+                "post-update-cmd": [
+                    "test ! -x vendor/bin/guidelines || vendor/bin/guidelines install"
+                ],
+                "check": [
+                    "guidelines gate"
+                ],
+                "fix": [
+                    "guidelines fix"
+                ]
+            },
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Accessible form fields for TYPO3: components, validation in the browser and on the server with the same messages, and an error summary",
+            "support": {
+                "source": "https://code.tollwerk.net/tollwerk/typo3/extensions/tw-fields/-/tree/main",
+                "issues": "https://code.tollwerk.net/tollwerk/typo3/extensions/tw-fields/-/issues"
+            },
+            "time": "2026-11-27T14:46:26+01:00"
         },
         {
             "name": "typo3/class-alias-loader",
@@ -6729,6 +7084,74 @@
             ],
             "time": "2026-11-17T10:54:13+00:00",
             "published-time": "2026-11-17T10:58:39+00:00"
+        },
+        {
+            "name": "typo3/cms-rte-ckeditor",
+            "version": "v14.3.12",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TYPO3-CMS/rte_ckeditor.git",
+                "reference": "db50c75a0dcc28315de1cdd8786051b68b79a3c5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TYPO3-CMS/rte_ckeditor/zipball/db50c75a0dcc28315de1cdd8786051b68b79a3c5",
+                "reference": "db50c75a0dcc28315de1cdd8786051b68b79a3c5",
+                "shasum": ""
+            },
+            "require": {
+                "typo3/cms-core": "14.3.12"
+            },
+            "conflict": {
+                "typo3/cms": "*"
+            },
+            "type": "typo3-cms-framework",
+            "extra": {
+                "typo3/cms": {
+                    "Package": {
+                        "partOfFactoryDefault": true
+                    },
+                    "extension-key": "rte_ckeditor"
+                },
+                "branch-alias": {
+                    "dev-main": "14.3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TYPO3\\CMS\\RteCKEditor\\": "Classes/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "TYPO3 Core Team",
+                    "email": "typo3cms@typo3.org",
+                    "role": "Developer"
+                }
+            ],
+            "description": "TYPO3 CMS RTE CKEditor - Integration of CKEditor as a Rich Text Editor for the TYPO3 backend.",
+            "homepage": "https://typo3.community/",
+            "support": {
+                "chat": "https://typo3.community/meet/slack/",
+                "docs": "https://docs.typo3.org/c/typo3/cms-rte-ckeditor/main/en-us/",
+                "forum": "https://talk.typo3.org/",
+                "issues": "https://forge.typo3.org/issues/",
+                "rss": "https://news.typo3.com/rss/",
+                "security": "https://typo3.org/security/",
+                "source": "https://github.com/TYPO3/typo3/"
+            },
+            "funding": [
+                {
+                    "url": "https://typo3.org/membership",
+                    "type": "membership"
+                }
+            ],
+            "time": "2026-11-17T10:54:13+00:00",
+            "published-time": "2026-11-17T10:59:51+00:00"
         },
         {
             "name": "typo3/html-sanitizer",
