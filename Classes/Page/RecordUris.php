@@ -21,6 +21,7 @@ use Tollwerk\TwEvents\Domain\Model\Event;
 use Tollwerk\TwEvents\Domain\Model\Organization;
 use Tollwerk\TwEvents\Domain\Model\Person;
 use Tollwerk\TwEvents\Domain\Model\Session;
+use Tollwerk\TwEvents\Domain\Repository\PersonRepository;
 use TYPO3\CMS\Core\Domain\Repository\PageRepository;
 use TYPO3\CMS\Core\Routing\InvalidRouteArgumentsException;
 use TYPO3\CMS\Core\Site\Entity\Site;
@@ -45,10 +46,15 @@ final readonly class RecordUris
     /**
      * Constructor
      *
-     * @param PluginPages    $pluginPages    Pages that show the records
-     * @param PageRepository $pageRepository Pages that visitors can reach
+     * @param PluginPages      $pluginPages      Pages that show the records
+     * @param PageRepository   $pageRepository   Pages that visitors can reach
+     * @param PersonRepository $personRepository People, for whether a profile is public
      */
-    public function __construct(private PluginPages $pluginPages, private PageRepository $pageRepository) {}
+    public function __construct(
+        private PluginPages $pluginPages,
+        private PageRepository $pageRepository,
+        private PersonRepository $personRepository,
+    ) {}
 
     /**
      * Page of its own that an event lives on
@@ -175,16 +181,16 @@ final readonly class RecordUris
      * @param ServerRequestInterface $request Current request
      * @param Person                 $person  Person
      *
-     * @return string Address, or an empty string without a page for people
+     * @return string Address, or an empty string without a page for people or a public profile
      *
-     * @throws Exception If the query for the page fails
+     * @throws Exception If the query for the page or the profile fails
      * @throws InvalidRouteArgumentsException If the route cannot be built
      */
     public function person(ServerRequestInterface $request, Person $person): string
     {
         $site = $request->getAttribute('site');
 
-        return ($site instanceof Site)
+        return ($site instanceof Site) && $this->personRepository->hasPublicProfile($person)
             ? $this->personByUid($site, (int) $person->getUid(), $this->language($request))
             : '';
     }

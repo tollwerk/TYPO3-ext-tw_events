@@ -94,13 +94,6 @@ final class Person extends AbstractEntity
     protected string $website = '';
 
     /**
-     * Email address
-     *
-     * @var string
-     */
-    protected string $email = '';
-
-    /**
      * Mastodon profile
      *
      * @var string
@@ -220,16 +213,6 @@ final class Person extends AbstractEntity
     public function getWebsite(): string
     {
         return $this->website;
-    }
-
-    /**
-     * Email address
-     *
-     * @return string
-     */
-    public function getEmail(): string
-    {
-        return $this->email;
     }
 
     /**

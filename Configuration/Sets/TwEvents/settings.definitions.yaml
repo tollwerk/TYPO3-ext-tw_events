@@ -47,7 +47,7 @@ settings:
     default: [summary, biography]
   twEvents.hosts.contacts:
     label: 'Addresses'
-    description: 'Addresses of the hosts, in their order: website, email, mastodon, linkedin, github, twitter, facebook, instagram'
+    description: 'Addresses of the hosts, in their order: website, mastodon, linkedin, github, twitter, facebook, instagram'
     category: twEvents.hosts
     type: stringlist
     default: [website, twitter, mastodon, linkedin, github]
@@ -65,7 +65,7 @@ settings:
     default: [summary, teaser]
   twEvents.speakers.contacts:
     label: 'Addresses'
-    description: 'Addresses of the speakers, in their order: website, email, mastodon, linkedin, github, twitter, facebook, instagram'
+    description: 'Addresses of the speakers, in their order: website, mastodon, linkedin, github, twitter, facebook, instagram'
     category: twEvents.speakers
     type: stringlist
     default: [website, twitter, mastodon, linkedin, facebook]

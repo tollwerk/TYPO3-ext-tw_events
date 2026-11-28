@@ -2,7 +2,8 @@
 <f:comment>An event in a list</f:comment>
 <article class="EventTeaser h-event">
     <f:variable name="uri" value="{events:uri.event(event: event)}" />
-    <f:variable name="title"><f:if condition="{uri}"><f:then><a class="p-name u-url" href="{uri}">{event.title}</a></f:then><f:else><span class="p-name">{event.title}</span></f:else></f:if></f:variable>
+    <f:comment>The children of f:variable are not escaped, and the heading takes its content as markup</f:comment>
+    <f:variable name="title"><f:if condition="{uri}"><f:then><a class="p-name u-url" href="{uri -> f:format.htmlspecialchars()}">{event.title -> f:format.htmlspecialchars()}</a></f:then><f:else><span class="p-name">{event.title -> f:format.htmlspecialchars()}</span></f:else></f:if></f:variable>
     <base:heading content="{title}" class="EventTeaser__title">
         <p class="EventTeaser__when"><twc:event.dateRange start="{event.startDate}" end="{event.endDate}" /></p>
         <f:if condition="{event.location}">

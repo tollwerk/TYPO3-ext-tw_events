@@ -22,7 +22,9 @@ use Doctrine\DBAL\Exception as DBALException;
 use InvalidArgumentException;
 use Override;
 use Tollwerk\TwEvents\Domain\Model\Person;
+use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
@@ -96,6 +98,30 @@ final class PersonRepository extends Repository
     }
 
     /**
+     * Whether the profile of a person is public: the page of the person shows it, and others may link to it
+     *
+     * A profile is public if the person says so, speaks in a visible session or organises a visible event. Everything
+     * else about the person stays private, and only the name may appear where the person takes part.
+     *
+     * @param Person $person Person
+     *
+     * @return boolean
+     *
+     * @throws DBALException If the database cannot be read
+     */
+    public function hasPublicProfile(Person $person): bool
+    {
+        $uid = (int) $person->getUid();
+        if ($person->isPublic()) {
+            return true;
+        }
+
+        $finds = static fn(QueryBuilder $query): bool => false !== $query->setMaxResults(1)->executeQuery()->fetchOne();
+
+        return array_any(\array_slice($this->publicQueries($uid), 1), $finds);
+    }
+
+    /**
      * UIDs of the people with a public profile, without regard to whether the person is visible
      *
      * @return list<integer>
@@ -103,6 +129,28 @@ final class PersonRepository extends Repository
      * @throws DBALException If the database cannot be read
      */
     public function publicUids(): array
+    {
+        $uids = [];
+        foreach ($this->publicQueries() as $query) {
+            foreach ($query->executeQuery()->fetchFirstColumn() as $uid) {
+                $uids[] = is_numeric($uid) ? (int) $uid : 0;
+            }
+        }
+
+        $uids = array_unique(array_filter($uids, static fn(int $uid): bool => $uid > 0));
+        sort($uids);
+
+        return $uids;
+    }
+
+    /**
+     * Queries of the people with a public profile: by their own choice, as speakers and as organisers
+     *
+     * @param integer $uid UID of one person to ask about; all people if 0
+     *
+     * @return array{QueryBuilder, QueryBuilder, QueryBuilder}
+     */
+    private function publicQueries(int $uid = 0): array
     {
         $flagged = $this->connectionPool->getQueryBuilderForTable('fe_users');
         $flagged->getRestrictions()->removeAll();
@@ -119,17 +167,19 @@ final class PersonRepository extends Repository
         $organizers = $this->connectionPool->getQueryBuilderForTable('tx_twevents_event');
         $organizers->select('mm.uid_foreign AS uid')->from('tx_twevents_event_organizer_mm', 'mm')
             ->join('mm', 'tx_twevents_event', 'event', 'event.uid = mm.uid_local');
-
-        $uids = [];
-        foreach ([$flagged, $speakers, $organizers] as $query) {
-            foreach ($query->executeQuery()->fetchFirstColumn() as $uid) {
-                $uids[] = is_numeric($uid) ? (int) $uid : 0;
+        if (0 !== $uid) {
+            $flagged->andWhere($flagged->expr()->eq(
+                'uid',
+                $flagged->createNamedParameter($uid, Connection::PARAM_INT),
+            ));
+            foreach ([$speakers, $organizers] as $query) {
+                $query->andWhere($query->expr()->eq(
+                    'mm.uid_foreign',
+                    $query->createNamedParameter($uid, Connection::PARAM_INT),
+                ));
             }
         }
 
-        $uids = array_unique(array_filter($uids, static fn(int $uid): bool => $uid > 0));
-        sort($uids);
-
-        return $uids;
+        return [$flagged, $speakers, $organizers];
     }
 }

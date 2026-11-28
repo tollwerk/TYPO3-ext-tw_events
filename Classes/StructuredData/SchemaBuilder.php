@@ -27,6 +27,7 @@ use Tollwerk\TwEvents\Domain\Model\Participation;
 use Tollwerk\TwEvents\Domain\Model\Person;
 use Tollwerk\TwEvents\Domain\Model\Series;
 use Tollwerk\TwEvents\Domain\Model\Session;
+use Tollwerk\TwEvents\Domain\Repository\PersonRepository;
 use Tollwerk\TwEvents\Page\RecordUris;
 use TYPO3\CMS\Core\Routing\InvalidRouteArgumentsException;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -68,14 +69,16 @@ final readonly class SchemaBuilder
     /**
      * Constructor
      *
-     * @param StructuredDataGraph $graph       JSON-LD graph of the page
-     * @param RecordUris          $recordUris  Addresses of records
-     * @param LinkFactory         $linkFactory Links, such as to files
+     * @param StructuredDataGraph $graph            JSON-LD graph of the page
+     * @param RecordUris          $recordUris       Addresses of records
+     * @param LinkFactory         $linkFactory      Links, such as to files
+     * @param PersonRepository    $personRepository People, for whether a profile is public
      */
     public function __construct(
         private StructuredDataGraph $graph,
         private RecordUris $recordUris,
         private LinkFactory $linkFactory,
+        private PersonRepository $personRepository,
     ) {}
 
     /**
@@ -252,6 +255,14 @@ final readonly class SchemaBuilder
      */
     public function person(ServerRequestInterface $request, Person $person): string
     {
+        // Of a person without a public profile, only the name is public
+        if (!$this->personRepository->hasPublicProfile($person)) {
+            $id = $this->id($request, '', 'person-' . $person->getUid());
+            $this->graph->register('Person', $id, ['name' => $person->getName()]);
+
+            return $id;
+        }
+
         $url = $this->recordUris->person($request, $person);
         $id = $this->id($request, $url, 'person-' . $person->getUid());
         $this->graph->register('Person', $id, array_filter([

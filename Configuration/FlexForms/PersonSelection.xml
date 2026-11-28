@@ -60,30 +60,26 @@
                                     <value>website</value>
                                 </numIndex>
                                 <numIndex index="1">
-                                    <label>LLL:EXT:tw_events/Resources/Private/Language/locallang_plugins.xlf:flexform.details.email</label>
-                                    <value>email</value>
-                                </numIndex>
-                                <numIndex index="2">
                                     <label>LLL:EXT:tw_events/Resources/Private/Language/locallang_plugins.xlf:flexform.details.mastodon</label>
                                     <value>mastodon</value>
                                 </numIndex>
-                                <numIndex index="3">
+                                <numIndex index="2">
                                     <label>LLL:EXT:tw_events/Resources/Private/Language/locallang_plugins.xlf:flexform.details.linkedin</label>
                                     <value>linkedin</value>
                                 </numIndex>
-                                <numIndex index="4">
+                                <numIndex index="3">
                                     <label>LLL:EXT:tw_events/Resources/Private/Language/locallang_plugins.xlf:flexform.details.github</label>
                                     <value>github</value>
                                 </numIndex>
-                                <numIndex index="5">
+                                <numIndex index="4">
                                     <label>LLL:EXT:tw_events/Resources/Private/Language/locallang_plugins.xlf:flexform.details.twitter</label>
                                     <value>twitter</value>
                                 </numIndex>
-                                <numIndex index="6">
+                                <numIndex index="5">
                                     <label>LLL:EXT:tw_events/Resources/Private/Language/locallang_plugins.xlf:flexform.details.facebook</label>
                                     <value>facebook</value>
                                 </numIndex>
-                                <numIndex index="7">
+                                <numIndex index="6">
                                     <label>LLL:EXT:tw_events/Resources/Private/Language/locallang_plugins.xlf:flexform.details.instagram</label>
                                     <value>instagram</value>
                                 </numIndex>

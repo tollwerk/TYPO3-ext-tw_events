@@ -2,11 +2,11 @@
 <f:argument name="contacts" type="string[]" optional="1" default="{}" description="Kinds of addresses in their order: &quot;website&quot;, &quot;email&quot;, &quot;phone&quot;, &quot;mastodon&quot;, &quot;linkedin&quot;, &quot;github&quot;, &quot;twitter&quot;, &quot;facebook&quot; or &quot;instagram&quot;" />
 <f:argument name="class" type="string" optional="1" default="" description="Class of the list" />
 <f:comment>Addresses of a person or an organisation, in the order of the choice</f:comment>
-<f:variable name="items"><f:for each="{contacts}" as="contact"><f:if condition="{record.{contact}}"><li class="Contacts__item Contacts__item--{contact}"><f:switch expression="{contact}">
-    <f:case value="email"><a class="u-email" href="mailto:{record.email}">{record.email}</a></f:case>
-    <f:case value="phone"><a class="p-tel" href="tel:{record.phone}">{record.phone}</a></f:case>
-    <f:defaultCase><a class="u-url" href="{record.{contact}}"><f:translate domain="tw_events.messages" key="profile.{contact}" /></a></f:defaultCase>
-</f:switch></li></f:if></f:for></f:variable>
-<f:if condition="{items -> f:format.trim()}">
-    <ul class="Contacts {class}">{items -> f:format.raw()}</ul>
+<f:variable name="items" value="{events:contacts(record: record, contacts: contacts)}" />
+<f:if condition="{items}">
+    <ul class="Contacts {class}"><f:for each="{items}" as="item"><li class="Contacts__item Contacts__item--{item.kind}"><f:switch expression="{item.kind}">
+    <f:case value="email"><a class="u-email" href="{item.href}">{item.value}</a></f:case>
+    <f:case value="phone"><a class="p-tel" href="{item.href}">{item.value}</a></f:case>
+    <f:defaultCase><a class="u-url" href="{item.href}"><f:translate domain="tw_events.messages" key="profile.{item.kind}" /></a></f:defaultCase>
+</f:switch></li></f:for></ul>
 </f:if>

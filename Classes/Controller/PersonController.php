@@ -55,7 +55,6 @@ final class PersonController extends AbstractRecordController
      */
     public const array CONTACTS = [
         'website',
-        'email',
         'mastodon',
         'linkedin',
         'github',
@@ -145,12 +144,13 @@ final class PersonController extends AbstractRecordController
      * @throws PropagateResponseException If the profile is not public, with the response of the error page
      * @throws PageNotFoundException If there is no error page
      * @throws InvalidArgumentException If the request is invalid
+     * @throws DBALException If the database cannot tell whether the profile is public
      */
     public function showAction(Person $person): ResponseInterface
     {
         $sessions = $this->sessionRepository->findBySpeaker($person);
         $organizedEvents = $this->eventRepository->findByOrganizer($person);
-        if (!$person->isPublic() && 0 === $sessions->count() && 0 === $organizedEvents->count()) {
+        if (!$this->personRepository->hasPublicProfile($person)) {
             $this->notFound('The profile of the person is not public');
         }
 
